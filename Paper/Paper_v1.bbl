@@ -1,0 +1,261 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.8 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\sortlist[entry]{nty/global/}
+  \entry{Hoequist1986}{incollection}{}
+    \name{author}{2}{}{%
+      {{hash=HCE}{%
+         family={Hoequist},
+         familyi={H\bibinitperiod},
+         given={Charles\bibnamedelima E},
+         giveni={C\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+      {{hash=KKJ}{%
+         family={Kohler},
+         familyi={K\bibinitperiod},
+         given={Klaus\bibnamedelima J},
+         giveni={K\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Universität Kiel, Institut für Phonetik}%
+    }
+    \strng{namehash}{HCEKKJ1}
+    \strng{fullhash}{HCEKKJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{booktitle}{Arbeitsberichte des Instituts für Phonetik und digitale
+  Sprachverarbeitung der Universität Kiel (AIPUK)}
+    \field{pages}{5\bibrangedash 28}
+    \field{title}{Summary of Speech rate Perception Research at Kiel}
+    \field{volume}{22}
+    \field{year}{1986}
+  \endentry
+
+  \entry{Yishan_Jiao_2015}{inproceedings}{}
+    \name{author}{4}{}{%
+      {{hash=JY}{%
+         family={Jiao},
+         familyi={J\bibinitperiod},
+         given={Yishan},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=BV}{%
+         family={Berisha},
+         familyi={B\bibinitperiod},
+         given={Visar},
+         giveni={V\bibinitperiod},
+      }}%
+      {{hash=TM}{%
+         family={Tu},
+         familyi={T\bibinitperiod},
+         given={Ming},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=LJ}{%
+         family={Liss},
+         familyi={L\bibinitperiod},
+         given={Julie},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{2}{%
+      {Institute of Electrical}%
+      {Electronics Engineers ({IEEE})}%
+    }
+    \strng{namehash}{JY+1}
+    \strng{fullhash}{JYBVTMLJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{J}
+    \field{sortinithash}{J}
+    \verb{doi}
+    \verb 10.1109/TASLP.2015.2434213
+    \endverb
+    \field{number}{9}
+    \field{pages}{1421\bibrangedash 1430}
+    \field{title}{Convex Weighting Criteria for Speaking Rate Estimation}
+    \verb{url}
+    \verb https://doi.org/10.1109%2Ftaslp.2015.2434213
+    \endverb
+    \field{volume}{23}
+    \verb{file}
+    \verb SR as syllables per second and syllable count approx via vowel count:
+    \verb C\:\\Users\\alexutza_a\\Abschlussarbeit\\Bibliografie\\Bib\\Jiang2015
+    \verb :PDF
+    \endverb
+    \field{journaltitle}{{IEEE}/{ACM} Transactions on Audio, Speech, and
+  Language Processing}
+    \field{year}{2015}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
+
+  \entry{Kohler1995}{book}{}
+    \name{author}{1}{}{%
+      {{hash=KKJ}{%
+         family={Kohler},
+         familyi={K\bibinitperiod},
+         given={Klaus\bibnamedelima J.},
+         giveni={K\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Erich Schmidt Verlag}%
+    }
+    \strng{namehash}{KKJ2}
+    \strng{fullhash}{KKJ2}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \field{edition}{2}
+    \field{isbn}{3-503-03097-2}
+    \field{title}{Einführung in die Phonetik des Deutschen}
+    \list{location}{1}{%
+      {Berlin}%
+    }
+    \field{year}{1995}
+  \endentry
+
+  \entry{Kohler1986}{incollection}{}
+    \name{author}{1}{}{%
+      {{hash=KKJ}{%
+         family={Kohler},
+         familyi={K\bibinitperiod},
+         given={Klaus\bibnamedelima J},
+         giveni={K\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Universität Kiel, Institut für Phonetik}%
+    }
+    \strng{namehash}{KKJ1}
+    \strng{fullhash}{KKJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \field{booktitle}{Arbeitsberichte des Instituts für Phonetik und digitale
+  Sprachverarbeitung der Universität Kiel (AIPUK)}
+    \field{pages}{137\bibrangedash 175}
+    \field{title}{Parameters of Speech Rate Perception in German WWord and
+  Sentences: Duration, Pitch Movement and Pitch Level}
+    \field{volume}{22}
+    \field{year}{1986}
+  \endentry
+
+  \entry{nishiike2008}{patent}{}
+    \name{author}{5}{}{%
+      {{hash=NR}{%
+         family={Nishiike},
+         familyi={N\bibinitperiod},
+         given={R.},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=SH}{%
+         family={Sasaki},
+         familyi={S\bibinitperiod},
+         given={H.},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=KN}{%
+         family={Katae},
+         familyi={K\bibinitperiod},
+         given={N.},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=MK}{%
+         family={Murase},
+         familyi={M\bibinitperiod},
+         given={K.},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=NT}{%
+         family={Noda},
+         familyi={N\bibinitperiod},
+         given={T.},
+         giveni={T\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Google Patents}%
+    }
+    \strng{namehash}{NR+1}
+    \strng{fullhash}{NRSHKNMKNT1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{N}
+    \field{sortinithash}{N}
+    \field{note}{US Patent App. 12/213,792}
+    \field{title}{Text-to-speech apparatus}
+    \verb{url}
+    \verb https://www.google.com/patents/US20080319755
+    \endverb
+    \field{type}{patent}
+    \field{year}{2008}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
+
+  \entry{Pfitzinger1998}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=PHR}{%
+         family={Pfitzinger},
+         familyi={P\bibinitperiod},
+         given={Hartmut\bibnamedelima R.},
+         giveni={H\bibinitperiod\bibinitdelim R\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{PHR1}
+    \strng{fullhash}{PHR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \verb{doi}
+    \verb doi=10.1.1.34.7749
+    \endverb
+    \field{title}{Local Speech Rate As A Combination Of Syllable And Phone
+  Rate}
+    \field{year}{1998}
+  \endentry
+
+  \entry{Pfitzinger1999}{inproceedings}{}
+    \name{author}{1}{}{%
+      {{hash=PHR}{%
+         family={Pfitzinger},
+         familyi={P\bibinitperiod},
+         given={Hartmut\bibnamedelima R.},
+         giveni={H\bibinitperiod\bibinitdelim R\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{PHR1}
+    \strng{fullhash}{PHR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \field{booktitle}{Proc. ICPhS 1999}
+    \field{pages}{893\bibrangedash 896}
+    \field{title}{Local Speech Rate Perception in German Speech}
+    \field{volume}{2}
+    \field{year}{1999}
+  \endentry
+\endsortlist
+\endinput

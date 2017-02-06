@@ -1,0 +1,66 @@
+\documentclass[a4paper]{scrreprt}
+\usepackage[backend=bibtex,style=numeric]{biblatex}
+\usepackage{ngerman}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[style=numeric]{biblatex}
+\bibliography{../PaperBib}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+
+\begin{document}
+
+\title{Improving the modelling of tempo and phoneme duration}
+\author{Alexandra Krah}
+\date{06. April ~2017}
+\maketitle
+\chapter*{}
+\tableofcontents
+
+\chapter{Introduction}
+The attempts to improve the quality of speech synthesis when tempo changes include linguistic processing, and phoneme length manipulation before the actual synthesis takes place. As mentioned in a patent documentation of Fujitsu Limited, phoneme length manipulation plays an important role in this context and one cannot rely on a linear adjustment function \cite{nishiike2008}. Phoneme length adjustment is the aspect we wish to adress in this work. In particular, we want to find an algorithm to modify the phoneme length which takes into consideration the local speech rate. The result should be an approximation of the phoneme length change which is close to the actual change that occurs when the speaking rate alters. Consequently, the modified speech unit would sound more natural at a faster or a slower speech rate than being modified with a linear function.
+
+Hoequist and Kohler observed already back in 1986 that the change in speaking tempo does not produce a linear change of the acoustic segments of an utterance (i. e. phonemes) \cite{Hoequist1986}. 
+
+Syllable and foot structure of the utternace belong to the important factors influencing the segment length modification  \cite{Hoequist1986}.
+
+More important as the segmentation of the utterance in words is its segmentation in prosodical segments. In spontaneous speech, some word parts may fall, others may be uttered together with other words so that the resulting phoneme duration tends to relate more to the structure of the resulting prosodic segment as to the original word \cite{Kohler1986}. This is also an alternative for calculating speech rate.
+\section{Goals}
+\section{Outline}
+
+\chapter{Fundamentals}
+\section{Data Mining}
+\section{Machine Learning}
+\section{Error Evaluation}
+\section{Preparing the Data}
+
+\chapter{Corpora}
+\section{Verbmobil}
+The Verbmobil corpus is a database of spontaneous speech containing a collection of appointment making dialogs, fully transliterated and annotated.
+
+\chapter{Phoneme durations and the dynamics of speech}
+We omitted pauses at the beginning and at the end of the turns.
+
+\section{Glottal stop}
+\section{Vowels}
+\section{Consonants}
+
+
+\chapter{Defining speech rate}
+
+Local speech rate (check window size) vs. global speech rate vs. relative speech rate.
+
+Pfitzinger \cite{Pfitzinger1998} showed that syllable count per second is a better approximation of the real speech rate than calculating the number of phones per second. He also proposed a formula combining the two rates, which should further improve this result for the calculation of the local speech rate, which was confirmed in later studies \cite{Pfitzinger1999}.
+
+We decided to calculate global speech rate as a ratio of number of syllables per second. As syllables were not annotated in our database, we decided to use the number of (realized?) vowels as an approximation for the number of syllables \cite{Yishan_Jiao_2015} \cite{Kohler1995}.
+
+We did compare speech rate considering only realized vowels/syllables and considering both realized and not realized syllables, as Koreman \cite{Koreman_2006} also did and...
+Calculate also local speech rate.
+
+\chapter{Finding an algorithm for modelling phoneme durations based on speech rate}
+
+\chapter{Conclusion and Outlook}
+Analyze duration changes of vowels in interrupted words.
+
+\printbibliography
+\end{document}
