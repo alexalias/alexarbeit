@@ -161,6 +161,40 @@
     \field{year}{1986}
   \endentry
 
+  \entry{Koreman_2006}{article}{}
+    \name{author}{1}{}{%
+      {{hash=KJ}{%
+         family={Koreman},
+         familyi={K\bibinitperiod},
+         given={Jacques},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Acoustical Society of America ({ASA})}%
+    }
+    \strng{namehash}{KJ1}
+    \strng{fullhash}{KJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \verb{doi}
+    \verb 10.1121/1.2133436
+    \endverb
+    \field{number}{1}
+    \field{pages}{582\bibrangedash 596}
+    \field{title}{Perceived speech rate: The effects of articulation rate and
+  speaking style in spontaneous speech}
+    \verb{url}
+    \verb https://doi.org/10.1121%2F1.2133436
+    \endverb
+    \field{volume}{119}
+    \field{journaltitle}{The Journal of the Acoustical Society of America}
+    \field{year}{2006}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
+
   \entry{nishiike2008}{patent}{}
     \name{author}{5}{}{%
       {{hash=NR}{%
