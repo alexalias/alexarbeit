@@ -8,13 +8,13 @@ import time
 # Generates an almost ready for processing with weka text file. 
 
 # List of phonemes to search for
-#phoneme_list = ["Q"]
+phoneme_list = ["a"]
 # All diphthongs:
 #phoneme_list = ["OY", "aU", "aI"]
 # All long vowels:
 #phoneme_list = ["a:", "e:", "E:", "i:", "o:", "u:", "y:", "2:", "a~:"]
 # All vowels:
-phoneme_list = ["a", "a~", "e", "E", "I", "i", "O", "o", "U", "u", "Y", "y", "9", "2", "a:", "a~:", "e:", "E:", "i:", "o:", "u:", "y:", "2:", "OY", "aU", "aI"]
+#phoneme_list = ["a", "a~", "e", "E", "I", "i", "O", "o", "U", "u", "Y", "y", "9", "2", "a:", "a~:", "e:", "E:", "i:", "o:", "u:", "y:", "2:", "OY", "aU", "aI"]
 
 # Get the dictionary of phonemes (keys) and their attributes (values)
 phon_dict = phon_dict.phon_dict(phoneme_list)
@@ -24,15 +24,16 @@ phon_dict = phon_dict.phon_dict(phoneme_list)
 dict_list = []
 for el in phoneme_list:
 	dict_list += phon_dict[el]
-
+no_of_e = len(dict_list)/12
+print(str(no_of_e))
 # Get the labels for the attribute: word
 word_list = set(dict_list[3::12])
 
 
 #test_file = open("C:/Users/alexutza_a/Abschlussarbeit/sp_kurzes_a.txt", "w") -> gibt falsche Anzahl von speech rates
-arff_file = open("C:/Users/alexutza_a/Abschlussarbeit/wekadateien/vowels_no_schwa.txt", "w")
+arff_file = open("C:/Users/alexutza_a/Abschlussarbeit/wekadateien/short_aln.txt", "w")
 
-arff_file.write("% ARFF file for Verbmobil\n% Phoneme: vowels_no_schwa\n%\n@relation vowels_no_schwa\n\n% List of attributes:\n%\n")
+arff_file.write("% ARFF file for Verbmobil\n% Phoneme: short_aln\n%\n@relation short_aln\n\n% List of attributes:\n%\n")
 arff_file.write("% Duration is expressed in milliseconds\n")
 
 arff_file.write("@attribute phoneme { ") 
