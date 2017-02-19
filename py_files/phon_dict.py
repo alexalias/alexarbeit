@@ -6,6 +6,7 @@ from collections import defaultdict
 import stress
 import speech_rate
 import math
+import find_syl_position
 
 # Creates a dictionary of durations (of specific phoneme)
 dur_file = open("C:/Users/alexutza_a/Abschlussarbeit/word_durations.txt", "w")
@@ -13,7 +14,7 @@ speech_rate_list = []
 # List of all german .par files in verbmobil, where the recording was done acn (main scenario dialogue 
 	#recorded means neckband microphone)
 def verbmo_par_files():
-	pattern = 'g*acn.*par'  # Pattern to be used for filtering filenames
+	pattern = 'g*acn*.par'  # Pattern to be used for filtering filenames
 	file_list = []			# Empty list to be populated with filenames matching pattern
 	path_list = []
 	for path, subfolder, filenames in os.walk('C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/verbmobil_par'):
@@ -27,6 +28,7 @@ file_list, path_list = verbmo_par_files()
 # Attributes are: Filename, Position in Speech (Start, Middle, End), Containing word, Stress, Overlapping, Speech rate
 def phon_dict(phoneme_list):
 	laut_schluessel = defaultdict(list)
+
 	# Iterate over the given list of phonemes, and
 	for phoneme in phoneme_list:
 		#iterate over all .par files in g016a and open/close one file at a time
@@ -37,15 +39,17 @@ def phon_dict(phoneme_list):
 		for file in path_list:
 			datei = open(file)
 			filename = str(file)
+			#print(filename)
 			words = total_words(datei)
 			overlapping_list = overlapped_word(datei)
 			sp_pho, sp_w, speech_rate_msyl, speech_rate_ksyl = speech_rate.speech_rate(datei)
 			zeile = 0
+			
 		
 			for line in datei:
 				zeile += 1
-				if re.match("MAU", line) and (str(line.split()[4]) == phoneme):
-					wort = line.split()[3]
+				if re.match("MAU", line) and (line.split()[4] == phoneme):
+					wort = int(line.split()[3])
 					# Attribute: phoneme, just for easier handling
 					laut_schluessel[phoneme].append(phoneme)
 					# Attribute: filename 
@@ -74,9 +78,11 @@ def phon_dict(phoneme_list):
 					laut_schluessel[phoneme].append(speech_rate_ksyl)
 					# Attribute: word position: initial, not initial - only for Q
 					#laut_schluessel[phoneme].append(stress.find_qPosition(file, (zeile+9)))
-					# Attribute: duration (in log(ms))
-					laut_schluessel[phoneme].append(round(math.log1p(freq_to_ms(int(line.split()[2])), 4)))
-					#datei.seek(91)
+					# Attribute: Position in word (based on syllable position): one_s, w_1, w_2, w_3
+					laut_schluessel[phoneme].append(find_syl_position.syl_position(file, wort, (zeile+9)))
+					# Attribute: duration (in sec)
+					laut_schluessel[phoneme].append(round(freq_to_ms(int(line.split()[2])/1000), 4))
+			#datei.seek(91)
 			datei.close()
 	return laut_schluessel
 	#, speech_rate_list
@@ -114,14 +120,14 @@ def get_word(datei, word_number):
 	word = ""
 	work_file = open(datei)
 	for line in work_file:
-		if re.match("POS", line) and (word_number in line): # check if type of word exists, and returns type if true
+		if re.match("POS", line) and (str(word_number) in line): # check if type of word exists, and returns type if true
 			word = line.split()[2]
 			break
 	
 	work_file.seek(91)	# set back cursor after header
 	if word == "":
 		for line in work_file:
-			if re.match("ORT", line) and (word_number in line): # search actual word for non-listed types
+			if re.match("ORT", line) and (str(word_number) in line): # search actual word for non-listed types
 				word = line.split()[2]
 				break
 	work_file.close()

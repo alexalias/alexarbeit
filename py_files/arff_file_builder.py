@@ -8,13 +8,13 @@ import time
 # Generates an almost ready for processing with weka text file. 
 
 # List of phonemes to search for
-phoneme_list = ["a"]
+#phoneme_list = ["a:"]
 # All diphthongs:
 #phoneme_list = ["OY", "aU", "aI"]
 # All long vowels:
 #phoneme_list = ["a:", "e:", "E:", "i:", "o:", "u:", "y:", "2:", "a~:"]
 # All vowels:
-#phoneme_list = ["a", "a~", "e", "E", "I", "i", "O", "o", "U", "u", "Y", "y", "9", "2", "a:", "a~:", "e:", "E:", "i:", "o:", "u:", "y:", "2:", "OY", "aU", "aI"]
+phoneme_list = ["a", "a~", "e", "E", "I", "i", "O", "o", "U", "u", "Y", "y", "9", "2", "a:", "a~:", "e:", "E:", "i:", "o:", "u:", "y:", "2:", "OY", "aU", "aI"]
 
 # Get the dictionary of phonemes (keys) and their attributes (values)
 phon_dict = phon_dict.phon_dict(phoneme_list)
@@ -24,17 +24,16 @@ phon_dict = phon_dict.phon_dict(phoneme_list)
 dict_list = []
 for el in phoneme_list:
 	dict_list += phon_dict[el]
-no_of_e = len(dict_list)/12
-print(str(no_of_e))
+
 # Get the labels for the attribute: word
-word_list = set(dict_list[3::12])
+word_list = set(dict_list[3::13])
 
 
 #test_file = open("C:/Users/alexutza_a/Abschlussarbeit/sp_kurzes_a.txt", "w") -> gibt falsche Anzahl von speech rates
-arff_file = open("C:/Users/alexutza_a/Abschlussarbeit/wekadateien/short_aln.txt", "w")
+arff_file = open("C:/Users/alexutza_a/Abschlussarbeit/wekadateien/all_vowels_noSchwa.txt", "w")
 
-arff_file.write("% ARFF file for Verbmobil\n% Phoneme: short_aln\n%\n@relation short_aln\n\n% List of attributes:\n%\n")
-arff_file.write("% Duration is expressed in milliseconds\n")
+arff_file.write("% ARFF file for Verbmobil\n% Phoneme: all_vowels_noSchwa\n%\n@relation all_vowels_noSchwa\n\n% List of attributes:\n%\n")
+arff_file.write("% Duration is expressed in seconds\n")
 
 arff_file.write("@attribute phoneme { ") 
 for el in phoneme_list:
@@ -56,6 +55,7 @@ arff_file.write("@attribute local_speech_rate numeric\n")
 arff_file.write("@attribute speech_rate_msyl numeric\n")
 arff_file.write("@attribute speech_rate_ksyl numeric\n")
 #arff_file.write("@attribute word_position {0, 1}\n")
+arff_file.write("@attribute syl_position { one_s, w_initial, w_middle, w_final }\n")
 arff_file.write("@attribute duration numeric\n\n")
 arff_file.write("@data\n%\n")
 
@@ -65,7 +65,7 @@ arff_file.write("@data\n%\n")
 # e.g. normalized speech rate values
 def write_data_in_arff_file(ph_list):
 	for el in dict_list:
-		if (dict_list.index(el) + 1) % 12 == 0:
+		if (dict_list.index(el) + 1) % 13 == 0:
 			arff_file.write(str(el) + "\n")
 		else:
 			arff_file.write(str(el) + ", ")

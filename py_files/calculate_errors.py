@@ -1,36 +1,19 @@
 import error
-import fetch_data
+import prepare_data
 import numpy as np
 
-durations_dict = fetch_data.calculate_pho_mean(fetch_data.read_trainig_files())
-st_value_means = fetch_data.standard_value_means()
+phon_dict, test_dict, tm_dict = prepare_data.calculate_pho_mean(prepare_data.read_trainig_files())
+#print(test_dict)
 
-def get_predictions():
-	predictions = []
-	for key in durations_dict.keys():
-		for i in range(1, len(durations_dict[key])):
-			predictions.append(durations_dict[key][0])
+testlist = prepare_data.read_testfiles()
+trainingdict = tm_dict
 
-	#print(durations_dict)
-	#print(predictions)
+predictions = prepare_data.create_prediction_list(testlist, trainingdict)
+actual = prepare_data.read_testfiles()[1::2]
 
-	return predictions
+#print(predictions)
+#print(prepare_data.read_testfiles())
+#print(actual)
 
-def get_observed():
-	observed = []
-
-	for key in durations_dict.keys():
-		observed += durations_dict[key][1:]
-	#print(observed)
-	return observed
-
-def calc_rmse_for_trdata():
-	min_o = min(get_observed())
-	max_o = max(get_observed())
-	rmse = error.rmse(np.array(get_predictions()), np.array(get_observed()))
-	rmse /= (max_o - min_o)
-	mae = error.mae(np.array(get_predictions()), np.array(get_observed()))
-	
-	return rmse, mae
-
-print(calc_rmse_for_trdata())
+rmse, mae = error.calc_error_for_data(predictions, actual)
+print(rmse, mae)

@@ -75,7 +75,7 @@ def speech_rate(datei):
 	return speech_rate_pho, speech_rate_w, speech_rate_msyl, speech_rate_ksyl
 
 # Returns:
-# - word duration in miliseconds,
+# - word duration in seconds,
 # - phoneme count per word
 # - syllable count per word
 def word_duration(datei, word_no):
