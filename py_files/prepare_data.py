@@ -53,12 +53,24 @@ def read_testfiles():
 		work_file.close()
 	
 	# Remove breaks from the data
+
+	# Get list of indexes for occurences of <p:>
+	pause_index = [i for i, val in enumerate(compare_list) if val == "<p:>"]
+	#print(pause_index)
+	pause_dur = [i + 1 for i in pause_index]
+	p_list = [x for y in zip (pause_index, pause_dur) for x in y]
+	#print(p_list)
+	actual_list = []
+
+	#print(compare_list)
+	ind = 0
+	# Copy list to new list, without pauses
 	for el in compare_list:
-		if el == "<p:>":
-			x = compare_list.index(el)
-			compare_list.pop(x+1)
-			compare_list.pop(x)
-	return compare_list
+		if ind not in p_list:
+			actual_list.append(el)
+		ind += 1
+
+	return actual_list
 
 # Calculates the mean of phoneme durations / phoneme and puts it at the beginning of the value lists
 # Returns:
@@ -90,3 +102,4 @@ def create_prediction_list(testfile_list, training_dict):
 	return prediction_list
 
 #print(create_prediction_list(read_testfiles(), test_dict))
+#print(read_testfiles())
