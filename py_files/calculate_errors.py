@@ -2,19 +2,23 @@ import error
 import prepare_data
 import numpy as np
 from collections import defaultdict
+import prep_data_LSR
 
-phon_dict, test_dict, tm_dict = prepare_data.calculate_pho_mean(prepare_data.read_trainig_files())
+#phon_dict, test_dict, tm_dict = prepare_data.calculate_pho_mean(prepare_data.read_trainig_files())
+stat_dict = prep_data_LSR.phone_stats(prep_data_LSR.read_trainig_files())
 #print(test_dict)
 
-testlist = prepare_data.read_testfiles()
-trainingdict = test_dict
+#testlist = prepare_data.read_testfiles()
+# Looks like: ["a", 583, 0.5, "b", 12, 0.78, "a", 489, 0.12, ...]
+testlist = prep_data_LSR.read_testfiles()
+#print(testlist)
 
-predictions = prepare_data.create_prediction_list(testlist, trainingdict)
-actual = prepare_data.read_testfiles()[1::2]
+predictions = prep_data_LSR.create_prediction_list(testlist, stat_dict)
+actual = prep_data_LSR.read_testfiles()[1::3]
 
-#print(predictions)
+#print(len(predictions))
 #print(prepare_data.read_testfiles())
-#print(actual)
+#print(len(actual))
 
 global_rmse, mae = error.calc_error_for_data(predictions, actual)
 print(global_rmse, mae)
@@ -25,30 +29,42 @@ print(global_rmse, mae)
 
 
 # Set of occuring phonemes to iterate on when creating dictionary
-set_phon = set(prepare_data.read_testfiles()[::2])
+#set_phon = set(prepare_data.read_testfiles()[::2])
+set_phon = set(prep_data_LSR.read_testfiles()[::3])
+#print(set_phon)
+
 # A list of phonemes in occuring order in the actual and pred lists
-a_phone_list = prepare_data.read_testfiles()[::2]
-# Use list comprehension to inweave the phoneme list with the list of predicted durations
+#a_phone_list = prepare_data.read_testfiles()[::2]
+a_phone_list = prep_data_LSR.read_testfiles()[::3]
+#print(a_phone_list)
+
+# Use list comprehension to interweave the phoneme list with the list of predicted durations
 #   so we can create the dictionary of predictions per phoneme
 pred_list = [x for y in zip (a_phone_list, predictions) for x in y]
+
 
 # Dictionary of actual values per phoneme
 a_dict = defaultdict(list)
 # Dictionary of predicted values per phoneme
 p_dict = defaultdict(list)
 
+
 # Populate dictionary of actual values
 for el in set_phon:
+	i = 0
 	for y in testlist:
 		if el == y:
-			a_dict[el].append(testlist[testlist.index(y)+1])
-
+			a_dict[el].append(testlist[i+1])
+		i += 1
+#print(a_dict)
 # Populate dictionary of predicted values
 for el in set_phon:
+	j = 0
 	for z in pred_list:
 		if el == z:
-			p_dict[el].append(pred_list[pred_list.index(z)+1])
-
+			p_dict[el].append(pred_list[j+1])
+		j += 1
+#print(p_dict)
 # Create lists for grouping rmse results
 b_list = []
 w_list = []
@@ -59,7 +75,7 @@ for el in set_phon:
 	if rmse[0] <= global_rmse:
 		b_list.append(el)
 	else:
-		print(el + ": " + str(rmse))
+		print(el + ": " + str(round(rmse[0], 4)) + "  " + str(round(rmse[1], 4)))
 		w_list.append(el)
 print("Scored better: " + str(b_list))
 print("Scored worse: " + str(w_list))
