@@ -31,7 +31,7 @@ More important as the segmentation of the utterance in words is its segmentation
 \chapter{Fundamentals}
 \section{Data Mining}
 \section{Machine Learning}
-\section{Error Evaluation}
+\section{Performance Evaluation}
 \section{Preparing the Data}
 
 \chapter{Corpora}
@@ -62,7 +62,16 @@ Calculated also local speech rate.
 
 We obtained the best approximation when using speech rate calculated as ...
 
-\chapter{Finding an algorithm for modelling phoneme durations based on speech rate}
+\chapter{Phoneme duration prediction models}
+There are several standard duration prediction methods in use: 
+\begin{itemize}
+	\item Klatt is a rather simple method developped originally for American English. It multiplies a so-called inherent duration of given segment with a context dependent factor value and add this to a segment specific minimal duration. The challenges of using this method reside in finding an appropriate inherent duration, adapting the Klatt factor values to the German language, and chosing the minimal duration to use.
+	\item CART \cite{Riley1992} is a binary classification and regression tree with questions about the influencing factors at nodes and predicted values at the leaves. It allows consideration of both categorical and continuous factors, is quite simple and easy to interpret, in contrast to e.g. neural networks, and has a good time complexity of N*logN. The challenge of selecting an appropriate feature set is solved statistically. The sole drawback is that it needs a huge amount of training data in order to perform well.
+ge is that it needs a large amount of training data.
+	\item neural networks
+\end{itemize}
+
+Brinckmann and Trouvain \cite{Brinckmann_2003} compared the Klatt and CART methods for predicting segment duration in synthetic speech using the PhonDat database. Their results show a significantly better performance of CART over Klatt. However, they also report a strong influence of  the quality of the input data on the model performance.
 
 \chapter{Conclusion and Outlook}
 Analyze duration changes of vowels in interrupted words.
