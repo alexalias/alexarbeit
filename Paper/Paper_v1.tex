@@ -7,6 +7,7 @@
 \bibliography{../PaperBib}
 \usepackage{graphicx}
 \usepackage{epstopdf}
+\usepackage{textcomp}
 
 \begin{document}
 
@@ -24,7 +25,7 @@ Hoequist and Kohler observed already back in 1986 that the change in speaking te
 
 Syllable and foot structure of the utternace belong to the important factors influencing the segment length modification  \cite{Hoequist1986}.
 
-More important as the segmentation of the utterance in words is its segmentation in prosodical segments. In spontaneous speech, some word parts may fall, others may be uttered together with other words so that the resulting phoneme duration tends to relate more to the structure of the resulting prosodic segment as to the original word \cite{Kohler1986}. This is also an alternative for calculating speech rate.
+More important as the segmentation of the utterance in words is its segmentation in prosodical segments, so-called feet. In spontaneous speech, some word parts may fall, others may be uttered together with other words so that the resulting phoneme duration tends to relate more to the structure of the resulting prosodic segment as to the original word \cite{Kohler1986}. 
 \section{Goals}
 \section{Outline}
 
@@ -32,16 +33,25 @@ More important as the segmentation of the utterance in words is its segmentation
 \section{Data Mining}
 \section{Machine Learning}
 \section{Performance Evaluation}
+We calculated the performance of our model in terms of root mean square error (RMSE), mean absolute error (MAE) and correlation coefficient.
 \section{Preparing the Data}
 
 \chapter{Corpora}
 \section{Verbmobil}
 The Verbmobil corpus is a database of spontaneous speech containing a collection of appointment making dialogs, fully transliterated and annotated.
 
+Following natural rules, the tipical characteristic of data in this corpus is that speech rate often varies significantly inside a speech turn. This results in the challenge of finding an appropriate description for the speech rate across the corpus to be used for modeling the phoneme durations. We handle the issue of the speech rate separately in chapter 5.
+
 \chapter{Phoneme durations and the dynamics of speech}
-We omitted pauses at the beginning and at the end of the turns.
+Pauses may be caused and/or quantitatively modified both by linguistic (e.g. phonological) and non-linguistic factors, like technical, psychological, dialog dynamics, etc. Consequently pause length variation needs to be treated separately from phoneme duration variation, as a not negligeable large set of other factors are to be considered for this, which extends beyond the purpose of this work. Moreover, we omitted pauses at the beginning and at the end of the turns completely from our analysis, as we supposed the influence of non-linguistic factors which we cannot evaluate whithin the limits of this work to be greater in these positions.
+
+Consistent with the study of Rosen \cite{Rosen2005} on the application of the lognormal distribution for modeling the variation of speech segment duration, we opted for a log-transformation of the observed phoneme durations, which proved to be a better description of the data in our database as well. (Include grafics?!)
 
 Long a shows a strong negative correlation with the local speech rate for secondary stressed and unstressed instances.
+
+There have been presented in the literature many influencing factors for the duration of phonemes, which vary not only from one author to another but also from one language to another. For the German language, intuition aside, we have information on such factors provided by: Kohler \cite{Kohler1992}, Riedi \cite{Riedi1995}, ...
+
+We selected ... because...
 
 \section{Glottal stop}
 \section{Vowels}
@@ -49,33 +59,40 @@ Long a shows a strong negative correlation with the local speech rate for second
 
 
 \chapter{Defining speech rate}
+Under speech rate one always tends to understand a fraction of something divided by total time ocupied by that something. The German word ``Sprechgeschwindigkeit`` involves the concept of ``speed`` in the equation, which would be space divided by time. In the case of speech this would be number of units divided by total time ocupied by those units. However, this approach doesn't consider the contribution of the single phoneme durations to the whole segment, but rather supposes an equal length for all phonemes in the numerator.
 
-Local speech rate (check window size) vs. global speech rate vs. relative speech rate.
+Speech rate may be seen as a discrete or as a continuous variable. We opted for the continuous version, as it is better suited for our purpose.
+Speech rate may be calculated as global, local or relative speech rate.
 
 Pfitzinger \cite{Pfitzinger1998} showed that syllable count per second is a better approximation of the real speech rate than calculating the number of phones per second. He also proposed a formula combining the two rates, which should further improve this result for the calculation of the local speech rate, which was confirmed in later studies \cite{Pfitzinger1999}.
 
 We decided to calculate global speech rate as a ratio of number of syllables per second. As syllables were not annotated in our database, we decided to use the number of (realized?) vowels as an approximation for the number of syllables \cite{Yishan_Jiao_2015} \cite{Kohler1995}.
 
-Koreman showed \cite{Koreman_2006} that the perceived speech rate is also influenced by the listener's knowledge of the expected articulations for a particular utterance, therefore it makes a difference if all expected phones are also articulated or not. Consequently, we did compare speech rate considering only articulated vowels/syllables, as well as considering both realized and intended syllables,  and tested both methods in our model.
+Koreman showed \cite{Koreman_2006} that the perceived speech rate is also influenced by the listener's knowledge of the expected articulations for a particular utterance, therefore it makes a difference if all expected phones are also articulated or not. Consequently, we did compare speech rate considering only articulated vowels/syllables, as well as considering both realized and intended syllables, and tested both methods in our model. Our tests showed that ...
 
-Calculated also local speech rate.
+In our study we avoided expressing speech rate neither as a fraction, nor as a number. We took the segment duration (i.e. denominator) alone, varied it, and tried to figure out what happends in the numerator so that the proportion stays. Expressed mathematically, if the durations of the constituent phonemes are $d_1$, $d_2$, and $d_3$, \textit{SR} is the resulting speech rate and \textit{time} represents the total duration of the 3 elements, this corresponds to the follwoing transformation:
 
-We obtained the best approximation when using speech rate calculated as ...
+$$\frac{d_1+d_2+d_3}{time} = SR \iff (d_1+d_2+d_3)  = SR \cdot time $$
 
 \chapter{Phoneme duration prediction models}
-There are several standard duration prediction methods in use: 
+There are several duration prediction methods in use: 
 \begin{itemize}
-	\item Klatt is a rather simple method developped originally for American English. It multiplies a so-called inherent duration of given segment with a context dependent factor value and add this to a segment specific minimal duration. The challenges of using this method reside in finding an appropriate inherent duration, adapting the Klatt factor values to the German language, and chosing the minimal duration to use.
-	\item CART \cite{Riley1992} is a binary classification and regression tree with questions about the influencing factors at nodes and predicted values at the leaves. It allows consideration of both categorical and continuous factors, is quite simple and easy to interpret, in contrast to e.g. neural networks, and has a good time complexity of N*logN. The challenge of selecting an appropriate feature set is solved statistically. The sole drawback is that it needs a huge amount of training data in order to perform well.
-ge is that it needs a large amount of training data.
-	\item neural networks
+	\item Klatt \cite{Klatt1979} is a rather simple method developped originally for American English. It multiplies a so-called inherent duration of given segment with a context dependent factor value and adds this to a segment specific minimal duration. Then the duration is estimated by adjusting the change coeficient successively for different factors, 11 of them being suggested by Klatt. These account for 84\% of observed total variance in segmental durations. The challenges of using this method reside in finding an appropriate inherent duration, adapting the Klatt factor values to the German language, and chosing the minimal duration to use.
+	\item CART \cite{Riley1992} is a binary classification and regression tree with questions about the influencing factors at nodes and predicted values at the leaves. It allows consideration of both categorical and continuous factors, is quite simple and easy to interpret, in contrast to e.g. neural networks, and has a good time complexity of N*logN. The challenge of selecting an appropriate feature set is solved statistically. One drawback is that it needs a huge amount of training data in order to perform well. Also its performance deteriorates significantly with noisy or sparse training data \cite{Moebius1996}.
+	\item Sums-of-products (SoP) proposed by van Santen \cite{Santen1994} generalizes the formula proposed by Klatt and uses a decision tree to group factors acting in the same direction, either lengthening or shortening the phonemes, so their effects add up (amplificatory interactions). In fact, the most important part and main challange of this model is to find an appropriate combination of factors to be used for specific phoneme groups. He didn't use speech rate as a factor, but observed that the performance of the model deteriorates when the speech rate changes. The advantage of this solution is that is copes well with noisy or missing data, and works well with much less training data than CART \cite{Moebius1996}. The application of this model for the German language by Möbius and van Santen using the PhontDat database resulted in an overall correlation coefficient of 0.896.
+	\item Neural networks. Riedi \cite{Riedi1995} implemented a feed-forward neural network with two hidden layers for the prediction of phoneme durations and obtained a slightly better correlation coefficient than CART of 0.89 vs. 0.86.
 \end{itemize}
 
-Brinckmann and Trouvain \cite{Brinckmann_2003} compared the Klatt and CART methods for predicting segment duration in synthetic speech using the PhonDat database. Their results show a significantly better performance of CART over Klatt. However, they also report a strong influence of  the quality of the input data on the model performance.
+Brinckmann and Trouvain \cite{Brinckmann_2003} compared Klatt and CART methods for predicting segment duration using the PhonDat database. Their results show a significantly better performance of CART over Klatt, with values of 0.86 vs. 0.79 for the correlation coefficient, consistent with previous results. However, they also report a strong influence of  the quality of the input data on the model performance.
+
+All these models have an upper asymptote for their accuracy situated at less than 100\%. It has been suggested, that the influence of so-called ``macroscopic`` \cite{Cummins1999} or para-linguistic \cite{Santen1994} factors should be examined in order to move this asymptote further up. We focused on the speech rate. 
+
+\section{Method}
+Whichever phoneme duration prediction model one takes, and whichever size of the segment one takes in the denominator, in terms of syllable, word, foot or phrase duration... Larger the segment size, larger the number of influencing factors for phoneme duration. We opted for a progressive approach, starting at the syllable level.
 
 \chapter{Conclusion and Outlook}
 Analyze duration changes of vowels in interrupted words.
-Consider actual realized syllables in speech instead of syllables based on the canonical transcription. In spontaneous speech, the word and syllable boundaries change, and this change influences other phonetic aspects such as stress, syllable duration, phoneme duration.
+Consider actual realized syllables in speech instead of syllables based on the canonical transcription?. In spontaneous speech, the word and syllable boundaries change, and this change influences other phonetic aspects such as stress, syllable duration, phoneme duration.
 
 \printbibliography
 \end{document}
