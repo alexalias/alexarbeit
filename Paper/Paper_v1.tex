@@ -40,7 +40,9 @@ We calculated the performance of our model in terms of root mean square error (R
 \section{Verbmobil}
 The Verbmobil corpus is a database of spontaneous speech containing a collection of appointment making dialogs, fully transliterated and annotated.
 
-Following natural rules, the tipical characteristic of data in this corpus is that speech rate often varies significantly inside a speech turn. This results in the challenge of finding an appropriate description for the speech rate across the corpus to be used for modeling the phoneme durations. We handle the issue of the speech rate separately in chapter 5.
+Following natural rules, the tipical characteristic of data in this corpus is that speech rate often varies significantly inside a speech turn. This results in the challenge of finding an appropriate description for the speech rate across the corpus to be used for modeling the phoneme durations. We handle the issue of the speech rate separately in chapter 5. 
+
+Another challenge resulting from the structure of this corpus as collection of dialogs is the speaker variation. The exact values of the phoneme duration coordinates vary across speakers, as one can see in Fig. ??? for the case of /a/.
 
 \chapter{Phoneme durations and the dynamics of speech}
 Pauses may be caused and/or quantitatively modified both by linguistic (e.g. phonological) and non-linguistic factors, like technical, psychological, dialog dynamics, etc. Consequently pause length variation needs to be treated separately from phoneme duration variation, as a not negligeable large set of other factors are to be considered for this, which extends beyond the purpose of this work. Moreover, we omitted pauses at the beginning and at the end of the turns completely from our analysis, as we supposed the influence of non-linguistic factors which we cannot evaluate whithin the limits of this work to be greater in these positions.
