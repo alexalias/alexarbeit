@@ -18,7 +18,9 @@ def read_trainig_files():
 		for line in work_file:
 			if re.match("MAU", line):
 				training_dict[line.split()[4]].append(int(line.split()[2]))
-				training_dict[line.split()[4]].append(speech_rate.local_speech_rate(file, int(line.split()[3])))
+				word_duration, phon_count, syl_count = speech_rate.word_duration(file, int(line.split()[3]))
+				training_dict[line.split()[4]].append((word_duration/0.0000625)/phon_count)
+				#training_dict[line.split()[4]].append(speech_rate.local_speech_rate(file, int(line.split()[3])))
 
 		work_file.close()
 	
@@ -37,6 +39,7 @@ def phone_stats(training_dict):
 
 	return stat_dict
 
+# Not used
 def mean_of_means(stat_dict):
 	m1 = 0
 
@@ -59,7 +62,9 @@ def read_testfiles():
 			if re.match("MAU", line):
 				compare_list.append(str(line.split()[4]))
 				compare_list.append(int(line.split()[2]))
-				compare_list.append(speech_rate.local_speech_rate(file, int(line.split()[3])))
+				word_duration, phon_count, syl_count = speech_rate.word_duration(file, int(line.split()[3]))
+				compare_list.append((word_duration/0.0000625)/phon_count) # speech rate as word_duration / # phonemes
+				#compare_list.append(speech_rate.local_speech_rate(file, int(line.split()[3])))
 		work_file.close()
 	#print(compare_list)
 	# Remove breaks from the data
@@ -102,15 +107,16 @@ def official_stats():
 #  from the official mean statistics of Verbmobil, for phonemes, which don't occur in the training set.
 # @param testfile_list: the list returned by read_testfiles()
 #	Looks like: ["a", 583, 0.5, "b", 12, 0.78, "a", 489, 0.12, ...]
-# @param training_dict: the full dictionary built from the training data
-#	Looks like {a: [1452, 0.8, 799, 0.5], b : [655, 0.5, 799, 0.45]...}
+# @param stat_dict: dictionary giving the mean and the SD for each phoneme 
+#   NO: the full dictionary built from the training data
+#	NO: Looks like {a: [1452, 0.8, 799, 0.5], b : [655, 0.5, 799, 0.45]...}
 def create_prediction_list(testfile_list, stat_dict):
 	phone_list = testfile_list[::3]
 	#print(phone_list)
-	mini = min(testfile_list[1::3])
-	lsr_list = testfile_list[2::3]
+	#mini = min(testfile_list[1::3])
+	#lsr_list = testfile_list[2::3]
 	prediction_list = []
-	off_dict = official_stats()
+	#off_dict = official_stats()
 
 	#print(len(lsr_list))
 	#print(len(phone_list))
@@ -121,22 +127,23 @@ def create_prediction_list(testfile_list, stat_dict):
 	for phone in phone_list:
 		#print(i)
 		#print(phone)
-		if phone in stat_dict.keys():
+		prediction_list = testfile_list[2::3]
+	#	if phone in stat_dict.keys():
 	#		prediction_list.append(mini + (stat_dict[phone][0]-mini)*lsr_list[i]) # Klatt
 	#		prediction_list.append(mini + stat_dict[phone][1]*lsr_list[i])  # Klatt mit SD statt Differenz
 	#		prediction_list.append(mini + stat_dict[phone][1]/3*lsr_list[i])  # Klatt mit SD / 3
-			prediction_list.append(stat_dict[phone][0]) # just mean per phoneme
+	#		prediction_list.append(stat_dict[phone][0]) # just mean per phoneme
 	#		if lsr_list[i] <= 0.45:
 	#			prediction_list.append(stat_dict[phone][0] - stat_dict[phone][1]/3) # mean +/- sigma/3 
 	#		elif lsr_list[i] >= 0.65:
 	#			prediction_list.append(stat_dict[phone][0] + stat_dict[phone][1]/3)
 	#		else:
 	#			prediction_list.append(stat_dict[phone][0])
-		else:
+	#	else:
 	#		prediction_list.append(mini + (off_dict[phone][0]-mini)*lsr_list[i]) # Klatt mit offiziellen Werten
 	#		prediction_list.append(mini + off_dict[phone][1]*lsr_list[i])  # Klatt mit SD statt Differenz
 	#		prediction_list.append(mini + off_dict[phone][1]/3*lsr_list[i]) 	# # Klatt mit SD / 3
-			prediction_list.append(off_dict[phone][0])  # mean / phoneme (aus offiziellen Werten)
+	#		prediction_list.append(off_dict[phone][0])  # mean / phoneme (aus offiziellen Werten)
 	#		
 	#		if lsr_list[i] <= 0.45:
 	#			prediction_list.append(off_dict[phone][0] - (off_dict[phone][1]/3))

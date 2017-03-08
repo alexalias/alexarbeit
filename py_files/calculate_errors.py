@@ -5,6 +5,7 @@ from collections import defaultdict
 import prep_data_LSR
 
 #phon_dict, test_dict, tm_dict = prepare_data.calculate_pho_mean(prepare_data.read_trainig_files())
+# A dictionary giving the values of Mean and SD in a list for each encountered phoneme.
 stat_dict = prep_data_LSR.phone_stats(prep_data_LSR.read_trainig_files())
 #print(test_dict)
 
@@ -16,12 +17,14 @@ testlist = prep_data_LSR.read_testfiles()
 predictions = prep_data_LSR.create_prediction_list(testlist, stat_dict)
 actual = prep_data_LSR.read_testfiles()[1::3]
 
+
 #print(len(predictions))
 #print(prepare_data.read_testfiles())
 #print(len(actual))
 
 global_rmse, mae = error.calc_error_for_data(predictions, actual)
-print(global_rmse, mae)
+corrCoef = error.corrCoef(predictions, actual)[0]
+print(global_rmse, mae, corrCoef)
 
 
 ### Following is rmse calculation individually (per phoneme) ###

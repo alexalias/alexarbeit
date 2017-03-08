@@ -1,4 +1,5 @@
 import numpy as np
+from scipy.stats.stats import pearsonr
 
 #predictions = [0.06, 0.06, 0.06, 0.06]
 #actual_values = [0.04, 0.06, 0.02, 0.06]
@@ -36,6 +37,9 @@ def RMSE(prediction, actual):
 # Need
 def MAE(prediction, actual):
 	return np.absolute(prediction - actual).mean()
+
+def corrCoef(prediction, actual):
+	return pearsonr(prediction, actual)
 
 #rmse_val = rmse(np.array(predictions), np.array(actual_values))
 #mae_val = mae(np.array(predictions), np.array(actual_values))
