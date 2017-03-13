@@ -31,7 +31,12 @@ def syl_position(datei, word_no, cursor):
 			last_syl = max(syl_dict.keys())
 		#print("New last syl: " + str(last_syl))
 		#print(syl_dict)
-		syl_no = get_syl(mau1.index(mau1[-1]), syl_dict)-1
+		try:
+			syl_no = get_syl(mau1.index(mau1[-1]), syl_dict)-1
+		except:
+			syl_no = 0
+		else:
+			syl_no = 0
 		#print("Syl no: " + str(syl_no))
 	else:
 		first_syl, last_syl = 0, 0
@@ -147,18 +152,19 @@ def compare_strings(mau12, sylsplit_word):
 
 	for el in mau:
 		#print(el)
-		if el == sylsplit_word[0]:
-			sylsplit_word = sylsplit_word[1:]
-		elif el in sylsplit_word:
-			if len(mau) <= len(sylsplit_word[sylsplit_word.index(el):]):
-				if "." in sylsplit_word[:sylsplit_word.index(el)]:
-					syl_count +=1
-				sylsplit_word = sylsplit_word[sylsplit_word.index(el)+1:]
-		elif (el not in sylsplit_word) and (sylsplit_word[0] == "."):
-			syl_count += 1
-			sylsplit_word = sylsplit_word[1:]
-
-		
+		try:
+			if el == sylsplit_word[0]:
+				sylsplit_word = sylsplit_word[1:]
+			elif el in sylsplit_word:
+				if len(mau) <= len(sylsplit_word[sylsplit_word.index(el):]):
+					if "." in sylsplit_word[:sylsplit_word.index(el)]:
+						syl_count +=1
+					sylsplit_word = sylsplit_word[sylsplit_word.index(el)+1:]
+			elif (el not in sylsplit_word) and (sylsplit_word[0] == "."):
+				syl_count += 1
+				sylsplit_word = sylsplit_word[1:]
+		except:
+			print(mau, sylsplit_word)
 		mau_syl_d[syl_count].append(el)
 		mau = mau[1:]
 

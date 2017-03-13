@@ -21,8 +21,8 @@ def verbmo_par_files():
 		for filename in fnmatch.filter(filenames, pattern):
 			file_list.append(filename)
 			path_list.append(os.path.join(path, filename))
-	return file_list, path_list
-file_list, path_list = verbmo_par_files()
+	return path_list#,file_list
+path_list = verbmo_par_files()
 
 # Dictionary of the given phoneme instance length in ms (keys) in Verbmobil and its attributes (values in list)
 # Attributes are: Filename, Position in Speech (Start, Middle, End), Containing word, Stress, Overlapping, Speech rate
@@ -75,7 +75,9 @@ def phon_dict(phoneme_list):
 					# Attribute: speech rate as effective syllables / sec
 					laut_schluessel[phoneme].append(speech_rate_msyl)
 					# Attribute: speech rate as total syllables / sec
-					laut_schluessel[phoneme].append(speech_rate_ksyl)
+					#laut_schluessel[phoneme].append(speech_rate_ksyl)
+					word_duration, phon_count, syl_count = speech_rate.word_duration(file, int(line.split()[3]))
+					laut_schluessel[phoneme].append(round((word_duration*0.00000625)/phon_count, 4))
 					# Attribute: word position: initial, not initial - only for Q
 					#laut_schluessel[phoneme].append(stress.find_qPosition(file, (zeile+9)))
 					# Attribute: Position in word (based on syllable position): one_s, w_1, w_2, w_3
@@ -187,8 +189,8 @@ def total_words(datei):
 	words = max(no_of_words)
 	# sets back cursor position after header
 	datei.seek(91)
-
 	return words
-
+d = phon_dict(["a:"])
+print(d["a:"][:65])
 #print(p_rank_in_word("C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/verbmobil_par/g016a/g016acn1_016_ABE.par", 11, "a", 410))
 #print(stress_type("C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/verbmobil_par/g016a/g016acn1_016_ABE.par", 11, "a", 407))

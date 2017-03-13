@@ -1,8 +1,7 @@
-import error
-import prepare_data
+import performance_measures
 import numpy as np
 from collections import defaultdict
-import prep_data_LSR
+import pd_LSR
 
 #phon_dict, test_dict, tm_dict = prepare_data.calculate_pho_mean(prepare_data.read_trainig_files())
 # A dictionary giving the values of Mean and SD in a list for each encountered phoneme.
@@ -22,8 +21,8 @@ actual = prep_data_LSR.read_testfiles()[1::3]
 #print(prepare_data.read_testfiles())
 #print(len(actual))
 
-global_rmse, mae = error.calc_error_for_data(predictions, actual)
-corrCoef = error.corrCoef(predictions, actual)[0]
+global_rmse, mae = performance_measures.calc_error_for_data(predictions, actual)
+corrCoef = performance_measures.corrCoef(predictions, actual)[0]
 print(global_rmse, mae, corrCoef)
 
 
@@ -74,7 +73,7 @@ w_list = []
 # Populate b_list with all phonemes having a better score than global rmse
 # 	and w_list with all phonemes scoring worse than global rmse.
 for el in set_phon:
-	rmse = error.calc_error_for_data(p_dict[el], a_dict[el])
+	rmse = performance_measures.calc_error_for_data(p_dict[el], a_dict[el])
 	if rmse[0] <= global_rmse:
 		b_list.append(el)
 	else:

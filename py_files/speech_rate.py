@@ -86,19 +86,21 @@ def word_duration(datei, word_no):
 
 	for line in work_file:
 		if re.match("MAU", line) and (int(line.split()[3]) == int(word_no)):
+			#print(line)
 			word_duration += int(line.split()[2])
 			phoneme_count += 1
 			if str(line.split()[4]) in vowel_list:
 				mau_syl_count += 1
 	
-	word_duration *= 0.0000625
+	#word_duration *= 0.0000625
 	work_file.close()
+	#print(word_duration)
 	return word_duration, phoneme_count, mau_syl_count
 
 # Calculates local speech rate based on Pfitzingers formula (SR = s * syl_rate + p * phoneme_rate)
 def local_speech_rate(datei, word_no):
 	w_duration, phoneme_count, syllable_count = word_duration(datei, word_no)
-	w_duration = float(w_duration)
+	w_duration = float(w_duration*0.0000625)
 	phoneme_count = float(phoneme_count)
 	syllable_count = float(syllable_count)
 
