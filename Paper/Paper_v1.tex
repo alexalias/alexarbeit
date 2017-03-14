@@ -31,14 +31,24 @@ More important as the segmentation of the utterance in words is its segmentation
 
 \chapter{Fundamentals}
 \section{Data Mining}
+Data Mining means in foreground looking for patterns in data with the help of computers. Patterns are helpful for humans to understand data. They reduce the amount of data, and of available features to the relevant ones. Computers help process within resonable time amounts of data that would need years of manual processing.
 \section{Machine Learning}
-\section{Performance Evaluation}
-We calculated the performance of our model in terms of root mean square error (RMSE), mean absolute error (MAE) and correlation coefficient.
+Machine Learning means building a program (model) which based on data mining results from a given dataset can make predictions about an unseen dataset  (fill in missing information). 
 \section{Preparing the Data}
+A very important and time consuming step in data mining is data preparation. 
+\section{Performance Evaluation}
+Considering machine learning, it is straightforward that one needs to split the available dataset at least into two parts: a training dataset, used for discovering patterns (data mining) in data, and a test dataset, used for testing the performance of the model (result of machine learning process). 
+Model performance may be evaluated in several ways. We decided for the following three:
+\begin{enumerate}
+	\item \textbf{RMSE} or \textbf{root mean squared error} measures the differences between the numeric values predicted by a model and those actually observed: 
+$RMSE = \sqrt{\frac{\sum(predicted-actual)^2}{n}}$. It is a very popular method for evaluating errors of a model, but it is very sensible to outliers.
+	\item \textbf{MAE} or \textbf{mean absolute error} is similar to RMSE, but penalises outliers less. It is computed using the average of the absolute errors: $MAE = \frac{\sum\left|predicted-actual\right|}{n}$
+	\item The \textbf{Correlation coefficient} is a number between -1 and 1 that quantifies the correlation between two datasets, that is how much the value change in one dataset corresponds to the value change in the other dataset. Values close to 1 mean that greater values in one dataset imply greater values in the second dataset, negative values mean the values of the two sets vary in opposite directions, and values close to 0 mean there is no correlation between the two datasets. However, one must keep in mind that correlation does not imply causality.
+\end{enumerate}
 
 \chapter{Corpora}
 \section{Verbmobil}
-The Verbmobil corpus is a database of spontaneous speech containing a collection of appointment making dialogs, fully transliterated and annotated.
+The Verbmobil corpus is a database of spontaneous speech containing a collection of appointment making dialogs, fully transliterated and annotated. We used 286 recordings from the last verbmobil phase (Verbmobil II) created by 131 speakers. The total VMII corpus used amounts to 11783 conversational turns representing recorded speech time of 15,5 hours. The ``symbolic data`` corresponding to each turn (e.g.phonetic transcription, segmentation, labeling, etc.) is captured in so-called ``par files``, representing files in the ``BAS Partitur Format`` \cite{Burger}. 
 
 Following natural rules, the tipical characteristic of data in this corpus is that speech rate often varies significantly inside a speech turn. This results in the challenge of finding an appropriate description for the speech rate across the corpus to be used for modeling the phoneme durations. We handle the issue of the speech rate separately in chapter 5. 
 
