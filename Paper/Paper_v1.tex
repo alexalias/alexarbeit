@@ -6,8 +6,10 @@
 \usepackage[style=numeric]{biblatex}
 \bibliography{../PaperBib}
 \usepackage{graphicx}
-\usepackage{epstopdf}
+\usepackage[outdir=../Graphen/]{epstopdf}
 \usepackage{textcomp}
+\usepackage{floatrow}
+\renewcommand{\figurename}{Fig.}
 
 \begin{document}
 
@@ -17,6 +19,7 @@
 \maketitle
 \chapter*{}
 \tableofcontents
+\listoffigures
 
 \chapter{Introduction}
 The attempts to improve the quality of speech synthesis when tempo changes include linguistic processing, and phoneme length manipulation before the actual synthesis takes place. As mentioned in a patent documentation of Fujitsu Limited, phoneme length manipulation plays an important role in this context and one cannot rely on a linear adjustment function \cite{nishiike2008}. Phoneme length adjustment is the aspect we wish to adress in this work. In particular, we want to find an algorithm to modify the phoneme length which takes into consideration the local speech rate. The result should be an approximation of the phoneme length change which is close to the actual change that occurs when the speaking rate alters. Consequently, the modified speech unit would sound more natural at a faster or a slower speech rate than being modified with a linear function.
@@ -26,6 +29,8 @@ Hoequist and Kohler observed already back in 1986 that the change in speaking te
 Syllable and foot structure of the utternace belong to the important factors influencing the segment length modification  \cite{Hoequist1986}.
 
 More important as the segmentation of the utterance in words is its segmentation in prosodical segments, so-called feet. In spontaneous speech, some word parts may fall, others may be uttered together with other words so that the resulting phoneme duration tends to relate more to the structure of the resulting prosodic segment as to the original word \cite{Kohler1986}. 
+
+Accross the paper we will use the German SAMPA notations when referring to phonemes.
 \section{Goals}
 \section{Outline}
 
@@ -50,12 +55,40 @@ $RMSE = \sqrt{\frac{\sum(predicted-actual)^2}{n}}$. It is a very popular method 
 \section{Verbmobil}
 The Verbmobil corpus is a database of spontaneous speech containing a collection of appointment making dialogs, fully transliterated and annotated. This was an important point in selecting this database for our purpose, as phoneme duration is influenced by many factors, and the Verbmobil textual database provides most of them. We used 286 recordings from the last verbmobil phase (Verbmobil II) created by 131 speakers. The total VMII corpus used amounts to 11783 conversational turns representing recorded speech time of 15,5 hours. The ``symbolic data`` corresponding to each turn (e.g.phonetic transcription, segmentation, labeling, etc.) is captured in so-called ``par files``, representing files in the ``BAS Partitur Format`` \cite{Burger}. 
 
-Drawbacks of this database come mainly from the characteristics of spontaneous speech. Following natural rules, speech rate often varies significantly inside a speech turn. One starts his turn at a normal speech rate, then gets to a point where he/she hesitates and gets slower, like when weighting different transport means to get to the appointment they are to agree upon. This results in the challenge of finding an appropriate description for the speech rate to be used for modeling phoneme durations across the corpus. We handle this issue of speech rate separately in chapter 5. Another challenge resulting from the structure of this corpus as a collection of dialogs is speaker variation. The exact coordinates of the phoneme durations vary across speakers, as one can see in Fig. ??? for the case of /a/.
+Drawbacks of this database come mainly from the characteristics of spontaneous speech. Following natural rules, speech rate often varies significantly inside a speech turn. One starts his turn at a normal speech rate, then gets to a point where he/she hesitates and gets slower, like when weighting different transport means to get to the appointment they are to agree upon. This results in the challenge of finding an appropriate description for the speech rate to be used for modeling phoneme durations across the corpus. We handle this issue of speech rate separately in chapter 5. Another challenge resulting from the structure of this corpus as a collection of dialogs is speaker variation. The exact coordinates of the phoneme durations vary across speakers, as one can see in Fig. \ref{fig:speaker_cmp} for the case of /a:/.
+
+\begin{figure}[htbp]
+	\includegraphics[width=0.6\textwidth]{../Graphen/Duration_of_a_5speakers.eps}
+	\centering
+	\caption[Phoneme length variation between speakers]{Overview of /a:/ length on the 5 most frequent speakers. Phoneme length is expressed as the natural logarithmus of the sample frequency. While the minimum duration is technically limited to an equal value corresponding to 0.04 sec, all other coordinates vary, e.g. maximum value has a variation of 0.14 sec between speakers AKX and ALR. The greatest median variation is 0.07 sec between speakers ALR (0.15 sec) and AJZ (0.08 sec).}
+	\label{fig:speaker_cmp}
+\end{figure}
 
 \chapter{Phoneme durations and the dynamics of speech}
+The phoneme inventory used in Verbmobil includes 52 classes defined according to the German SAMPA. Using the classical phonetic conventions, we can group these phonemes according to their phonetic features using a tree structure into vowels, consonants and a glottal stop on a first level, although glottal stop is usually treated as a consonant. Further relevant groupings are:
+\begin{itemize}
+	\item Vowels
+
+	\begin{itemize}
+		\item Diphthongs: when two vowels are articulated together in a syllable. They are generally characterized by longer durations. German knows three diphthongs: /aI/, /aU/ and /OY/.
+		\item Schwa: most frequent vowel in German as well as in English. It is also called a reduction vowel \cite{Kohler1995}, as most of the other monophthongs tend to be articulated as schwa in non-stressed vowels. Verbmobil differentiates two types of schwa for the German language: /@/ like in the last syllable of \texttt{lesen} and /6/ like in \texttt{Leser}, where the reduced vowel is followed by an /r/.
+		\item Monophthongs, which may be further split according to the short - long pairs or based on the articulation point like open - closed vowels or back - front vowels. We shall verify the relevance of these subcategories for our purpose in the section dedicated to vowels.
+	\end{itemize}
+
+	\item Consonants
+	
+	\begin{itemize}
+		\item Plosives, which are generally short, is due to their articulation characteristics.
+		\item Fricatives, which show a legth variation almost comparable to that of vowels.
+		\item Nasals: /m/, /n/, /N/.
+		\item Laterals: /l/
+		\item Specials: /h/, /C/, /j/, /r/
+	\end{itemize}
+\end{itemize}
+
 Pauses may be caused and/or quantitatively modified both by linguistic (e.g. phonological) and non-linguistic factors, like technical, psychological, dialog dynamics, etc. Consequently pause length variation needs to be treated separately from phoneme duration variation, as a not negligeable large set of other factors are to be considered for this, which extends beyond the purpose of this work. Moreover, we omitted pauses at the beginning and at the end of the turns completely from our analysis, as we supposed the influence of non-linguistic factors which we cannot evaluate whithin the limits of this work to be greater in these positions.
 
-Consistent with the study of Rosen \cite{Rosen2005} on the application of the lognormal distribution for modeling the variation of speech segment duration, we opted for a log-transformation of the observed phoneme durations, which proved to be a better description of the data in our database as well. (Include grafics?!)
+Consistent with the study of Rosen \cite{Rosen2005} on the application of the lognormal distribution for modeling the variation of speech segment duration, we opted for a log-transformation of the observed phoneme durations using the natural logarithm, which proved to be a better description of the data in our database as well. (Include grafics?!)
 
 Long a shows a strong negative correlation with the local speech rate for secondary stressed and unstressed instances.
 
@@ -63,8 +96,8 @@ There have been presented in the literature many influencing factors for the dur
 
 We selected ... because...
 
-\section{Glottal stop}
 \section{Vowels}
+\section{Glottal stop}
 \section{Consonants}
 
 
