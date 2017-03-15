@@ -8,13 +8,13 @@ import time
 # Generates an almost ready for processing with weka text file. 
 
 # List of phonemes to search for
-#phoneme_list = ["a:"]
+phoneme_list = ["Q"]
 # All diphthongs:
 #phoneme_list = ["OY", "aU", "aI"]
 # All long vowels:
 #phoneme_list = ["a:", "e:", "E:", "i:", "o:", "u:", "y:", "2:", "a~:"]
 # All vowels:
-phoneme_list = ["a", "a~", "e", "E", "I", "i", "O", "o", "U", "u", "Y", "y", "9", "2", "a:", "a~:", "e:", "E:", "i:", "o:", "u:", "y:", "2:", "OY", "aU", "aI"]
+#phoneme_list = ["a", "a~", "e", "E", "I", "i", "O", "o", "U", "u", "Y", "y", "9", "2", "a:", "a~:", "e:", "E:", "i:", "o:", "u:", "y:", "2:", "OY", "aU", "aI"]
 
 # Get the dictionary of phonemes (keys) and their attributes (values)
 phon_dict = phon_dict.phon_dict(phoneme_list)
@@ -30,14 +30,14 @@ word_list = set(dict_list[3::13])
 
 
 #test_file = open("C:/Users/alexutza_a/Abschlussarbeit/sp_kurzes_a.txt", "w") -> gibt falsche Anzahl von speech rates
-arff_file = open("C:/Users/alexutza_a/Abschlussarbeit/wekadateien/all_vowels_noSchwa.txt", "w")
+arff_file = open("C:/Users/alexutza_a/Abschlussarbeit/wekadateien/Q.txt", "w")
 
-arff_file.write("% ARFF file for Verbmobil\n% Phoneme: all_vowels_noSchwa\n%\n@relation all_vowels_noSchwa\n\n% List of attributes:\n%\n")
+arff_file.write("% ARFF file for Verbmobil\n% Phoneme: all_vowels_noSchwa\n%\n@relation glottal_stop\n\n% List of attributes:\n%\n")
 arff_file.write("% Duration is expressed in seconds\n")
 
-arff_file.write("@attribute phoneme { ") 
-for el in phoneme_list:
-	arff_file.write(el + ", ")
+arff_file.write("@attribute phoneme { Q") 
+#for el in phoneme_list:
+#	arff_file.write(el + ", ")
 arff_file.write( " }\n")
 
 arff_file.write("@attribute filename string\n")

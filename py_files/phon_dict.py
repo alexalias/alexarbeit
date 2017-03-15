@@ -61,7 +61,7 @@ def phon_dict(phoneme_list):
 					# Attribute: pause = if a pause preceeds or follows the word in which the phoneme occurs: near_pause, no_pause
 					laut_schluessel[phoneme].append(is_pause_near(file, wort))
 					# Attribute: stress = type of stress: none, s_stress, p_stress
-					laut_schluessel[phoneme].append(stress.stress_type(file, wort, phoneme, (zeile+9)))
+					laut_schluessel[phoneme].append(stress.stress_type(file, wort, phoneme, (zeile+10))) #modified zeile from +9 to +10, just for Q
 					# Attribute: overlapping
 					if wort in overlapping_list:
 						laut_schluessel[phoneme].append("1")
@@ -79,11 +79,12 @@ def phon_dict(phoneme_list):
 					word_duration, phon_count, syl_count = speech_rate.word_duration(file, int(line.split()[3]))
 					laut_schluessel[phoneme].append(round((word_duration*0.00000625)/phon_count, 4))
 					# Attribute: word position: initial, not initial - only for Q
-					#laut_schluessel[phoneme].append(stress.find_qPosition(file, (zeile+9)))
+					laut_schluessel[phoneme].append(stress.find_qPosition(file, (zeile+9)))
 					# Attribute: Position in word (based on syllable position): one_s, w_1, w_2, w_3
 					laut_schluessel[phoneme].append(find_syl_position.syl_position(file, wort, (zeile+9)))
 					# Attribute: duration (in sec)
-					laut_schluessel[phoneme].append(round(freq_to_ms(int(line.split()[2])/1000), 4))
+					laut_schluessel[phoneme].append(int(line.split()[2]))
+					#laut_schluessel[phoneme].append(round(freq_to_ms(int(line.split()[2])/1000), 4))
 			#datei.seek(91)
 			datei.close()
 	return laut_schluessel
