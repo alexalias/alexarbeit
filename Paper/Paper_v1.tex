@@ -10,6 +10,8 @@
 \usepackage{textcomp}
 \usepackage{floatrow}
 \renewcommand{\figurename}{Fig.}
+\usepackage{caption}
+\usepackage{subcaption}
 
 \begin{document}
 
@@ -65,28 +67,28 @@ Drawbacks of this database come mainly from the characteristics of spontaneous s
 \end{figure}
 
 \chapter{Phoneme durations and the dynamics of speech}
-The phoneme inventory used in Verbmobil includes 52 classes defined according to the German SAMPA. Using the classical phonetic conventions, we can group these phonemes according to their phonetic features using a tree structure into vowels, consonants and a glottal stop on a first level, although glottal stop is usually treated as a consonant. Further relevant groupings are:
-\begin{itemize}
-	\item Vowels
-
-	\begin{itemize}
-		\item Diphthongs: when two vowels are articulated together in a syllable. They are generally characterized by longer durations. German knows three diphthongs: /aI/, /aU/ and /OY/.
-		\item Schwa: most frequent vowel in German as well as in English. It is also called a reduction vowel \cite{Kohler1995}, as most of the other monophthongs tend to be articulated as schwa in non-stressed vowels. Verbmobil differentiates two types of schwa for the German language: /@/ like in the last syllable of \texttt{lesen} and /6/ like in \texttt{Leser}, where the reduced vowel is followed by an /r/.
-		\item Monophthongs, which may be further split according to the short - long pairs or based on the articulation point like open - closed vowels or back - front vowels. We shall verify the relevance of these subcategories for our purpose in the section dedicated to vowels.
-	\end{itemize}
-
-	\item Consonants
-	
-	\begin{itemize}
-		\item Plosives, which are generally short, is due to their articulation characteristics.
-		\item Fricatives, which show a legth variation almost comparable to that of vowels.
-		\item Nasals: /m/, /n/, /N/.
-		\item Laterals: /l/
-		\item Specials: /h/, /C/, /j/, /r/
-	\end{itemize}
-\end{itemize}
+The phoneme inventory used in Verbmobil includes 52 classes defined according to the German SAMPA. Using the classical phonetic conventions, we can group these phonemes according to their phonetic features using a tree structure into vowels, consonants and a glottal stop on a first level, although glottal stop is usually treated as a consonant. Further relevant groupings are being examined in the sections ``Vowels`` and ``Consonants``.
 
 Pauses may be caused and/or quantitatively modified both by linguistic (e.g. phonological) and non-linguistic factors, like technical, psychological, dialog dynamics, etc. Consequently pause length variation needs to be treated separately from phoneme duration variation, as a not negligeable large set of other factors are to be considered for this, which extends beyond the purpose of this work. Moreover, we omitted pauses at the beginning and at the end of the turns completely from our analysis, as we supposed the influence of non-linguistic factors which we cannot evaluate whithin the limits of this work to be greater in these positions.
+
+\begin{figure}[htbp]
+\centering
+	\begin{subfigure}[h]{0.45\textwidth}
+	\centering
+	\includegraphics[width=\textwidth]{../Graphen/Hist_aims_no_title.eps}
+	\caption{Duration of /aI/ measured in seconds.}
+	\label{fig:ai_ms}
+	\end{subfigure}
+\hfill
+	\begin{subfigure}[h]{0.45\textwidth}
+	\centering
+	\includegraphics[width=\textwidth]{../Graphen/Hist_ailn_no_title.eps}
+	\caption{Duration of /aI/ measured in ln(sec).}
+	\label{fig:ai_ln}
+	\end{subfigure}
+\caption[Phoneme duration distribution ms vs ln(ms)]{Phoneme durations measured in seconds have a not normal distribution shape. However, when applying a logarithmic transformation in terms of ln(msec), the distribution is better shaped.}
+\label{fig:aI_distrib}
+\end{figure}
 
 Consistent with the study of Rosen \cite{Rosen2005} on the application of the lognormal distribution for modeling the variation of speech segment duration, we opted for a log-transformation of the observed phoneme durations using the natural logarithm, which proved to be a better description of the data in our database as well. (Include grafics?!)
 
@@ -97,8 +99,25 @@ There have been presented in the literature many influencing factors for the dur
 We selected ... because...
 
 \section{Vowels}
+\begin{itemize}
+	\item Diphthongs: when two vowels are articulated together in a syllable. They are generally characterized by longer durations. German knows three diphthongs: /aI/, /aU/ and /OY/.
+	\item Schwa: most frequent vowel in German as well as in English. It is also called a reduction vowel \cite{Kohler1995}, as most of the other monophthongs tend to be articulated as schwa in non-stressed vowels. Verbmobil differentiates two types of schwa for the German language: /@/ like in the last syllable of \texttt{lesen} and /6/ like in \texttt{Leser}, where the reduced vowel is followed by an /r/.
+	\item Monophthongs, which may be further split according to the short - long pairs or based on the articulation point like open - closed vowels or back - front vowels. We shall verify the relevance of these subcategories for our purpose in the section dedicated to vowels.
+\end{itemize}
+
 \section{Glottal stop}
+The glottal stop occurs only word initially in our database, and was marked with \texttt{/Q/}. We decided to treat it separately because of its particular usage in German: it may occur only at the beginning of a word or a word stem and in front of a vowel. Some phonetic manuals don't event consider it a phoneme \cite{Ternes2012}. Furthermore, it's acoustical properties make it look like a pause in speech, as you may see in Fig. ..., which represents a challenge for the transcription. As our files were segmented automatically, there is place for doubt about the accuracy of the collected data for \texttt{/Q/}.
+
+However, unlike pauses we did consider it  for analysis, as it is has an important communicative function as a delimiter for words and morphemes. It is in fact one of the important clues which help the hearer to understand speech \cite{Ternes2012}. 
+
+The information collected from our database show a very large variation of it's duration from 0.04 sec. to 2.05 sec., with $\sigma = 0.06$, consistent with the official data on the complete VMII. However, if we remove the upper 0.8 \% of the duration data, we obtain a dataset having only half of the mentioned variation with $\sigma = 0.03$ and a maximum duration of 0.3 seconds. 
 \section{Consonants}
+\begin{itemize}
+	\item Plosives, which are generally short, is due to their articulation characteristics.
+	\item Fricatives, which show a legth variation almost comparable to that of vowels.
+	\item Nasals: /m/, /n/, /N/.
+	\item Specials: /h/, /l/, /C/, /j/, /r/
+\end{itemize}
 
 
 \chapter{Defining speech rate}
