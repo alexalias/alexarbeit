@@ -11,6 +11,7 @@
 \usepackage{floatrow}
 \renewcommand{\figurename}{Fig.}
 \usepackage{caption}
+\setcapindent{0pt}
 \usepackage{subcaption}
 
 \begin{document}
@@ -24,7 +25,7 @@
 \listoffigures
 
 \chapter{Introduction}
-The attempts to improve the quality of speech synthesis when tempo changes include linguistic processing, and phoneme length manipulation before the actual synthesis takes place. As mentioned in a patent documentation of Fujitsu Limited, phoneme length manipulation plays an important role in this context and one cannot rely on a linear adjustment function \cite{nishiike2008}. Phoneme length adjustment is the aspect we wish to adress in this work. In particular, we want to find an algorithm to modify the phoneme length which takes into consideration the local speech rate. The result should be an approximation of the phoneme length change which is close to the actual change that occurs when the speaking rate alters. Consequently, the modified speech unit would sound more natural at a faster or a slower speech rate than being modified with a linear function.
+The attempts to improve the quality of speech synthesis when tempo changes include linguistic processing, and phoneme length manipulation before the actual synthesis takes place. As mentioned in a patent documentation of Fujitsu Limited, phoneme length manipulation plays an important role in this context and one cannot rely on a linear adjustment function \cite{nishiike2008}. Phoneme length adjustment is the aspect we wish to adress in this work. In particular, we want to find an algorithm to modify the phoneme length which takes into consideration the local speech rate. The result should be an approximation of the phoneme length change which is close to the actual change that occurs when the speaking rate alters. This would be the same as playing an audio file faster or slower. The purpose is therefore not to find another duration approximation model for TTS-systems, but to improve the algorithm of phoneme duration adjustment, given a known reference phoneme and word duration, and a target word duration. Consequently, the modified speech unit would sound more natural at a faster or a slower speech rate than being modified with a linear function. 
 
 Hoequist and Kohler observed already back in 1986 that the change in speaking tempo does not produce a linear change of the acoustic segments of an utterance (i. e. phonemes) \cite{Hoequist1986}. 
 
@@ -55,21 +56,23 @@ $RMSE = \sqrt{\frac{\sum(predicted-actual)^2}{n}}$. It is a very popular method 
 
 \chapter{Corpora}
 \section{Verbmobil}
-The Verbmobil corpus is a database of spontaneous speech containing a collection of appointment making dialogs, fully transliterated and annotated. This was an important point in selecting this database for our purpose, as phoneme duration is influenced by many factors, and the Verbmobil textual database provides most of them. We used 286 recordings from the last verbmobil phase (Verbmobil II) created by 131 speakers. The total VMII corpus used amounts to 11783 conversational turns representing recorded speech time of 15,5 hours. The ``symbolic data`` corresponding to each turn (e.g.phonetic transcription, segmentation, labeling, etc.) is captured in so-called ``par files``, representing files in the ``BAS Partitur Format`` \cite{Burger}. 
+The Verbmobil corpus is a database of spontaneous speech containing a collection of appointment making dialogs, fully transliterated and annotated. This was an important point in selecting this database for our purpose, as phoneme duration is influenced by many factors, and the Verbmobil textual database provides most of them. We used 286 recordings from the last verbmobil phase (Verbmobil II) created by 131 speakers. The total VMII corpus used amounts to 11783 conversational turns representing recorded speech time of 15,5 hours. The ``symbolic data`` corresponding to each turn (e.g.phonetic transcription, segmentation, labeling, etc.) is captured in so-called ``par files``, representing files in the ``BAS Partitur Format`` \cite{Burger2000}. 
 
-Drawbacks of this database come mainly from the characteristics of spontaneous speech. Following natural rules, speech rate often varies significantly inside a speech turn. One starts his turn at a normal speech rate, then gets to a point where he/she hesitates and gets slower, like when weighting different transport means to get to the appointment they are to agree upon. This results in the challenge of finding an appropriate description for the speech rate to be used for modeling phoneme durations across the corpus. We handle this issue of speech rate separately in chapter 5. Another challenge resulting from the structure of this corpus as a collection of dialogs is speaker variation. The exact coordinates of the phoneme durations vary across speakers, as one can see in Fig. \ref{fig:speaker_cmp} for the case of /a:/.
+Drawbacks of this database come mainly from the characteristics of spontaneous speech. Following natural rules, speech rate often varies significantly inside a speech turn. One starts his turn at a normal speech rate, then gets to a point where he/she hesitates and gets slower, like when weighting different transport means to get to the appointment they are to agree upon. This results in the challenge of finding an appropriate description for the speech rate to be used for modeling phoneme durations across the corpus. We handle this issue of speech rate separately in chapter 5. Another challenge resulting from the structure of this corpus as a collection of dialogs is speaker variation. The exact coordinates of the phoneme durations vary across speakers, as one can see in Fig. \ref{fig:speaker_cmp} for the case of \texttt{/a:/}.
 
 \begin{figure}[htbp]
 	\includegraphics[width=0.6\textwidth]{../Graphen/Duration_of_a_5speakers.eps}
 	\centering
-	\caption[Phoneme length variation between speakers]{Overview of /a:/ length on the 5 most frequent speakers. Phoneme length is expressed as the natural logarithmus of the sample frequency. While the minimum duration is technically limited to an equal value corresponding to 0.04 sec, all other coordinates vary, e.g. maximum value has a variation of 0.14 sec between speakers AKX and ALR. The greatest median variation is 0.07 sec between speakers ALR (0.15 sec) and AJZ (0.08 sec).}
+	\caption[Phoneme length variation between speakers]{Overview of \texttt{/a:/} length on the 5 most frequent speakers. Phoneme length is expressed as the natural logarithmus of the sample frequency. While the minimum duration is technically limited to an equal value corresponding to 0.04 sec, all other coordinates vary, e.g. maximum value has a variation of 0.14 sec between speakers AKX and ALR. The greatest median variation is 0.07 sec between speakers ALR (0.15 sec) and AJZ (0.08 sec).}
 	\label{fig:speaker_cmp}
 \end{figure}
 
 \chapter{Phoneme durations and the dynamics of speech}
 The phoneme inventory used in Verbmobil includes 52 classes defined according to the German SAMPA. Using the classical phonetic conventions, we can group these phonemes according to their phonetic features using a tree structure into vowels, consonants and a glottal stop on a first level, although glottal stop is usually treated as a consonant. Further relevant groupings are being examined in the sections ``Vowels`` and ``Consonants``.
 
-Pauses may be caused and/or quantitatively modified both by linguistic (e.g. phonological) and non-linguistic factors, like technical, psychological, dialog dynamics, etc. Consequently pause length variation needs to be treated separately from phoneme duration variation, as a not negligeable large set of other factors are to be considered for this, which extends beyond the purpose of this work. Moreover, we omitted pauses at the beginning and at the end of the turns completely from our analysis, as we supposed the influence of non-linguistic factors which we cannot evaluate whithin the limits of this work to be greater in these positions.
+Pauses may be caused and/or be quantitatively modified both by linguistic (e.g. phonological) and non-linguistic factors, like technical, psychological, dialog dynamics, etc. Consequently pause length variation needs to be treated separately from phoneme duration variation, as a not negligeable large set of other factors are to be considered for this, which extends beyond the purpose of this work.
+
+Consistent with the study of Rosen \cite{Rosen2005} on the application of the lognormal distribution for modeling the variation of speech segment duration, we opted for a log-transformation of the observed phoneme durations using the natural logarithm, which proved to be a better description of the data in our database as well (fig. \ref{fig:aI_distrib}).
 
 \begin{figure}[htbp]
 \centering
@@ -90,27 +93,27 @@ Pauses may be caused and/or quantitatively modified both by linguistic (e.g. pho
 \label{fig:aI_distrib}
 \end{figure}
 
-Consistent with the study of Rosen \cite{Rosen2005} on the application of the lognormal distribution for modeling the variation of speech segment duration, we opted for a log-transformation of the observed phoneme durations using the natural logarithm, which proved to be a better description of the data in our database as well. (Include grafics?!)
-
-Long a shows a strong negative correlation with the local speech rate for secondary stressed and unstressed instances.
-
-There have been presented in the literature many influencing factors for the duration of phonemes, which vary not only from one author to another but also from one language to another. For the German language, intuition aside, we have information on such factors provided by: Kohler \cite{Kohler1992}, Riedi \cite{Riedi1995}, ...
+There have been presented in the literature many influencing factors for the duration of phonemes, which vary not only from one author to another but also from one language to another. For the German language, intuition aside, we have information on such factors provided by: Kohler \cite{Kohler1992}, Riedi \cite{Riedi1995}, Moebius \cite{Moebius1996}, and Brinckmann \& Trouvain \cite{Brinckmann_2003}, who applied some of the existent segment duration models to the German language.
 
 We selected ... because...
 
 \section{Vowels}
+Vowels are an important class, because their variation in terms of duration correlates well with the speech rate. One can say that vowels generally tend to get proportionally longer when the words themselves are spoken slower. We obtained an overall correlation coefficient of 0.72 for vowels against speech rate. Inside the vowel group we could identify the primary stressed vowels as the actual correlation owners, with a group correlation value of 0.75, while the unstressed and secondary stressed ones showed rather modest correlation values of 0.56, resp. 0.47. 
+
+As long vowels usually carry the primary stress, as some german phonetics manuals such as the one of Kohler \cite{Kohler1995} suggest, we considered the long vowels as a standalone subclass of vowels. The correlation value for the long vowel group is even greather than that of the primary stressed one, amounting to 0.79.
+
 \begin{itemize}
-	\item Diphthongs: when two vowels are articulated together in a syllable. They are generally characterized by longer durations. German knows three diphthongs: /aI/, /aU/ and /OY/.
-	\item Schwa: most frequent vowel in German as well as in English. It is also called a reduction vowel \cite{Kohler1995}, as most of the other monophthongs tend to be articulated as schwa in non-stressed vowels. Verbmobil differentiates two types of schwa for the German language: /@/ like in the last syllable of \texttt{lesen} and /6/ like in \texttt{Leser}, where the reduced vowel is followed by an /r/.
+	\item Diphthongs: when two vowels are articulated together in a syllable. They are generally characterized by longer durations. German knows three diphthongs: \texttt{/aI/, /aU/} and \texttt{/OY/}.
+	\item Schwa: most frequent vowel in German as well as in English. It is also called a reduction vowel \cite{Kohler1995}, as most of the other monophthongs tend to be articulated as schwa in non-stressed vowels. Verbmobil differentiates two types of schwa for the German language: \texttt{/@/} like in the last syllable of \texttt{lesen} and \texttt{/6/} like in \texttt{Leser}, where the reduced vowel is followed by an \texttt{/r/}.
 	\item Monophthongs, which may be further split according to the short - long pairs or based on the articulation point like open - closed vowels or back - front vowels. We shall verify the relevance of these subcategories for our purpose in the section dedicated to vowels.
 \end{itemize}
 
 \section{Glottal stop}
-The glottal stop occurs only word initially in our database, and was marked with \texttt{/Q/}. We decided to treat it separately because of its particular usage in German: it may occur only at the beginning of a word or a word stem and in front of a vowel. Some phonetic manuals don't event consider it a phoneme \cite{Ternes2012}. Furthermore, it's acoustical properties make it look like a pause in speech, as you may see in Fig. ..., which represents a challenge for the transcription. As our files were segmented automatically, there is place for doubt about the accuracy of the collected data for \texttt{/Q/}.
+The glottal stop occurs 13 348 times and only word initially in our database, marked with \texttt{/Q/}. We decided to treat it separately because of its particular usage in German: it may occur only at the beginning of a word or a word stem and in front of a vowel. Some phonetic manuals don't event consider it a phoneme \cite{Ternes2012}. Furthermore, it's acoustical properties make it look like a (filled) pause in speech, as you may see in Fig. ..., which represents a challenge for the transcription. As our files were segmented automatically, there is place for doubt about the accuracy of the collected data for \texttt{/Q/}.
 
 However, unlike pauses we did consider it  for analysis, as it is has an important communicative function as a delimiter for words and morphemes. It is in fact one of the important clues which help the hearer to understand speech \cite{Ternes2012}. 
 
-The information collected from our database show a very large variation of it's duration from 0.04 sec. to 2.05 sec., with $\sigma = 0.06$, consistent with the official data on the complete VMII. However, if we remove the upper 0.8 \% of the duration data, we obtain a dataset having only half of the mentioned variation with $\sigma = 0.03$ and a maximum duration of 0.3 seconds. 
+The information collected from our database show a very large variation of it's duration from 0.04 sec. to 2.05 sec., with $\sigma = 0.06$, consistent with the official data on the complete VMII. However, if we remove the upper 0.8 \% of the duration data, we obtain a dataset having only half of the mentioned variation with $\sigma = 0.03$ and a maximum duration of 0.3 seconds. We checked manually some of the largest outliers and they proved to be a result of wrong segmentation. Their real duration was within the first 2 thirds of the data.
 \section{Consonants}
 \begin{itemize}
 	\item Plosives, which are generally short, is due to their articulation characteristics.
@@ -147,12 +150,30 @@ There are several duration prediction methods in use:
 
 Brinckmann and Trouvain \cite{Brinckmann_2003} compared Klatt and CART methods for predicting segment duration using the PhonDat database. Their results show a significantly better performance of CART over Klatt, with values of 0.86 vs. 0.79 for the correlation coefficient, consistent with previous results. However, they also report a strong influence of  the quality of the input data on the model performance.
 
-All these models have an upper asymptote for their accuracy situated at less than 100\%. It has been suggested, that the influence of so-called ``macroscopic`` \cite{Cummins1999} or para-linguistic \cite{Santen1994} factors should be examined in order to move this asymptote further up. We focused on the speech rate. 
+All these models have an upper asymptote for their accuracy situated at less than 100\%. It has been suggested, that the influence of so-called ``macroscopic`` \cite{Cummins1999} or para-linguistic \cite{Santen1994} factors should be examined in order to move this asymptote further up. We focused on speech rate. 
 
 \section{Method}
-Whichever phoneme duration prediction model one takes, and whichever size of the segment one takes in the denominator, in terms of syllable, word, foot or phrase duration... Larger the segment size, larger the number of influencing factors for phoneme duration. We opted for a progressive approach, starting at the syllable level.
+Whichever phoneme duration prediction model one takes, and whichever size of the segment one takes in the denominator, in terms of syllable, word, foot or phrase duration... Larger the segment size, larger the number of influencing factors for phoneme duration. We opted for a progressive approach, starting at the syllable level ?.
+
+Our approach is based on the observation that specific phonemes, respectively phoneme groups, occupy a specific percent of the total word duration (fig. \ref{fig:boxplot_genau}), and that certain phonemes seem to modify their duration according to that of the segment they're in to a much higher degree than others, as you can see in fig. \ref{fig:w_dur_vs_pho}.
+
+\begin{figure}[htbp]
+	\includegraphics[width=\textwidth]{../Graphen/Stats_for_genau.eps}
+	\centering
+	\caption[Word duration of ``genau`` vs. its phoneme durations]{We ordered ascendingly the 706 occurences of the word ``genau`` based on word duration and ploted recorded durations of the component phonemes against it. The picture suggests clearly that the diphthong \texttt{/aU/} occupies a rather fixed steak of the total word duration, while the others show no adjustment to the increasing word total duration. }
+	\label{fig:w_dur_vs_pho}
+\end{figure}
+
+\begin{figure}[htbp]
+	\includegraphics[width=.55\linewidth]{../Graphen/Sound_boxplot_genau.eps}
+	\centering
+	\caption[Phoneme proportions in ``genau``]{Proportions taken by the component phonemes of ``genau`` suggest the possibility of grouping them in disjunct classes. Here we explored the phoneme distribution for a relatively short occurence of our reference word, of only 0.3 sec found 25 times. This one, as well as others, correlates well with the overall phoneme distribution on all occurences.}
+	\label{fig:boxplot_genau}
+\end{figure}
 
 \chapter{Conclusion and Outlook}
+Our model calculates an approximation for the phoneme duration when its corresponding speech segment changes in terms of duration. It does this no matter what was the cause of the duration change in the segment. However, when speech rate changes, there are also other speech characteristics, like prosody and phoneme quality which change, and which cannot be simulated only by modifying the phoneme duration. Therefore, making speech sound natural while modifying the speech rate needs to consider and adjust these other features too.
+
 Analyze duration changes of vowels in interrupted words.
 Consider actual realized syllables in speech instead of syllables based on the canonical transcription?. In spontaneous speech, the word and syllable boundaries change, and this change influences other phonetic aspects such as stress, syllable duration, phoneme duration.
 
