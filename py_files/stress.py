@@ -8,6 +8,14 @@ short_vowels = ["a", "e", "E", "I", "i", "O", "o", "U", "u", "Y", "y", "9", "2"]
 def stress_type(datei, word_number, phoneme, cursor):
 	work_file = open(datei)
 	word_no = int(word_number)
+	z = 0
+#	Instructions for Q to get the stress of the following phoeneme
+#	for line in work_file:
+#		z += 1
+#		if z == (cursor):
+#			phoneme = line.split()[4]
+			#print(phoneme)
+		
 	mau_rank = p_rank_in_mau(work_file, word_no, phoneme, cursor)
 	stress_type = ""
 	word = ""
@@ -235,3 +243,4 @@ def p_rank_in_mau(datei, word_number, phoneme, cursor):
 #print(p_rank_in_mau("C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/verbmobil_par/g419a/g419acn1_012_ALW.par", 9, "i:", 155))
 #print(set_stress("C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/verbmobil_par/g419a/g419acn1_012_ALW.par", "definit'i:f", "i:", 9, 0, 155))
 #print(stress_type("C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/verbmobil_par/g419a/g419acn1_012_ALW.par", 9,  "i:", 155))
+#print(stress_type("C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/verbmobil_par/g419a/g419acn1_016_ALW.par", 4, "Q", 116))

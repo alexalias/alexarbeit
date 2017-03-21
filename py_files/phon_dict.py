@@ -7,6 +7,7 @@ import stress
 import speech_rate
 import math
 import find_syl_position
+import time
 
 # Creates a dictionary of durations (of specific phoneme)
 dur_file = open("C:/Users/alexutza_a/Abschlussarbeit/word_durations.txt", "w")
@@ -24,6 +25,7 @@ def verbmo_par_files():
 	return path_list#,file_list
 path_list = verbmo_par_files()
 
+t1 = time.time()
 # Dictionary of the given phoneme instance length in ms (keys) in Verbmobil and its attributes (values in list)
 # Attributes are: Filename, Position in Speech (Start, Middle, End), Containing word, Stress, Overlapping, Speech rate
 def phon_dict(phoneme_list):
@@ -61,7 +63,7 @@ def phon_dict(phoneme_list):
 					# Attribute: pause = if a pause preceeds or follows the word in which the phoneme occurs: near_pause, no_pause
 					laut_schluessel[phoneme].append(is_pause_near(file, wort))
 					# Attribute: stress = type of stress: none, s_stress, p_stress
-					laut_schluessel[phoneme].append(stress.stress_type(file, wort, phoneme, (zeile+10))) #modified zeile from +9 to +10, just for Q
+					laut_schluessel[phoneme].append(stress.stress_type(file, wort, phoneme, (zeile+9))) #modified zeile from +9 to +10, just for Q
 					# Attribute: overlapping
 					if wort in overlapping_list:
 						laut_schluessel[phoneme].append("1")
@@ -77,9 +79,9 @@ def phon_dict(phoneme_list):
 					# Attribute: speech rate as total syllables / sec
 					#laut_schluessel[phoneme].append(speech_rate_ksyl)
 					word_duration, phon_count, syl_count = speech_rate.word_duration(file, int(line.split()[3]))
-					laut_schluessel[phoneme].append(round((word_duration*0.00000625)/phon_count, 4))
+					laut_schluessel[phoneme].append(round((word_duration*0.0000625)/phon_count, 4))
 					# Attribute: word position: initial, not initial - only for Q
-					laut_schluessel[phoneme].append(stress.find_qPosition(file, (zeile+9)))
+					#laut_schluessel[phoneme].append(stress.find_qPosition(file, (zeile+9)))
 					# Attribute: Position in word (based on syllable position): one_s, w_1, w_2, w_3
 					laut_schluessel[phoneme].append(find_syl_position.syl_position(file, wort, (zeile+9)))
 					# Attribute: duration (in sec)
@@ -89,7 +91,8 @@ def phon_dict(phoneme_list):
 			datei.close()
 	return laut_schluessel
 	#, speech_rate_list
-
+t2 = time.time()
+print("Time to build the dict: " + str(t2-t1))
 
 # Get attribute position_in_speech_round. 
 # Values: starting word(s), middle word(s), end word(s)
@@ -191,7 +194,7 @@ def total_words(datei):
 	# sets back cursor position after header
 	datei.seek(91)
 	return words
-d = phon_dict(["a:"])
-print(d["a:"][:65])
+#d = phon_dict(["a:"])
+#print(d["a:"][:65])
 #print(p_rank_in_word("C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/verbmobil_par/g016a/g016acn1_016_ABE.par", 11, "a", 410))
 #print(stress_type("C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/verbmobil_par/g016a/g016acn1_016_ABE.par", 11, "a", 407))

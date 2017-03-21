@@ -144,7 +144,9 @@ def speech_rate_list():
 		datei.close()
 	return spl
 
-#print(word_duration("C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/verbmobil_par/g016a/g016acn1_002_ABE.par", 0))
+#word_duration, phon_count, syl_count = word_duration("C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/verbmobil_par/g217a/g217acn1_004_AHP.par", 2)
+#print(word_duration("C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/verbmobil_par/g217a/g217acn1_004_AHP.par", 2))
+#print(round((word_duration*0.0000625)/phon_count, 4))
 #print(speech_rate("C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/verbmobil_par/g016a/g016acn1_000_ABE.par"))
 #print(speech_rate("C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/verbmobil_par/g016a/g016acn1_016_ABE.par"))
 
