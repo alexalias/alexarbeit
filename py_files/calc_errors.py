@@ -5,16 +5,16 @@ import pd_LSR
 
 #phon_dict, test_dict, tm_dict = prepare_data.calculate_pho_mean(prepare_data.read_trainig_files())
 # A dictionary giving the values of Mean and SD in a list for each encountered phoneme.
-stat_dict = prep_data_LSR.phone_stats(prep_data_LSR.read_trainig_files())
+stat_dict = pd_LSR.phone_stats(pd_LSR.read_trainig_files())
 #print(test_dict)
 
 #testlist = prepare_data.read_testfiles()
 # Looks like: ["a", 583, 0.5, "b", 12, 0.78, "a", 489, 0.12, ...]
-testlist = prep_data_LSR.read_testfiles()
+testlist = pd_LSR.read_testfiles()
 #print(testlist)
 
-predictions = prep_data_LSR.create_prediction_list(testlist, stat_dict)
-actual = prep_data_LSR.read_testfiles()[1::3]
+predictions = pd_LSR.create_prediction_list(testlist, stat_dict)
+actual = pd_LSR.read_testfiles()[1::3]
 
 
 #print(len(predictions))
@@ -32,12 +32,12 @@ print(global_rmse, mae, corrCoef)
 
 # Set of occuring phonemes to iterate on when creating dictionary
 #set_phon = set(prepare_data.read_testfiles()[::2])
-set_phon = set(prep_data_LSR.read_testfiles()[::3])
+set_phon = set(pd_LSR.read_testfiles()[::3])
 #print(set_phon)
 
 # A list of phonemes in occuring order in the actual and pred lists
 #a_phone_list = prepare_data.read_testfiles()[::2]
-a_phone_list = prep_data_LSR.read_testfiles()[::3]
+a_phone_list = pd_LSR.read_testfiles()[::3]
 #print(a_phone_list)
 
 # Use list comprehension to interweave the phoneme list with the list of predicted durations

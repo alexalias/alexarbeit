@@ -25,7 +25,7 @@ def verbmo_par_files():
 	return path_list#,file_list
 path_list = verbmo_par_files()
 
-t1 = time.time()
+
 # Dictionary of the given phoneme instance length in ms (keys) in Verbmobil and its attributes (values in list)
 # Attributes are: Filename, Position in Speech (Start, Middle, End), Containing word, Stress, Overlapping, Speech rate
 def phon_dict(phoneme_list):
@@ -91,8 +91,6 @@ def phon_dict(phoneme_list):
 			datei.close()
 	return laut_schluessel
 	#, speech_rate_list
-t2 = time.time()
-print("Time to build the dict: " + str(t2-t1))
 
 # Get attribute position_in_speech_round. 
 # Values: starting word(s), middle word(s), end word(s)
