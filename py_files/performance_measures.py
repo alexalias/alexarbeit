@@ -39,7 +39,7 @@ def MAE(prediction, actual):
 	return np.absolute(prediction - actual).mean()
 
 def corrCoef(prediction, actual):
-	return pearsonr(prediction, actual)
+	return pearsonr(np.array(prediction), np.array(actual))
 
 #rmse_val = rmse(np.array(predictions), np.array(actual_values))
 #mae_val = mae(np.array(predictions), np.array(actual_values))

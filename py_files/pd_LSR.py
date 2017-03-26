@@ -160,15 +160,15 @@ def create_prediction_list(testfile_list, stat_dict):
 	#			prediction_list.append(stat_dict[phone][0] + stat_dict[phone][1]/3)
 	#		else:
 	#			prediction_list.append(stat_dict[phone][0])
-			if phone in vowels:						# split for using SR instead of mean
-				if test_mean(read_trainig_files(), stat_dict)[phone] >= 0.8:		
-					prediction_list.append(testfile_list[i*3+2] + ((stat_dict[phone][1]/3)))
-				elif test_mean(read_trainig_files(), stat_dict)[phone] <= 0.45:
-					prediction_list.append(testfile_list[i*3+2] - ((stat_dict[phone][1]/3)))
-				else: 
-					prediction_list.append(testfile_list[i*3+2])
-			else:
-				prediction_list.append(stat_dict[phone][0])
+	#		if phone in vowels:						# split for using SR instead of mean based on relation mean - SR
+	#			if test_mean(read_trainig_files(), stat_dict)[phone] >= 0.8:		
+	#				prediction_list.append(testfile_list[i*3+2] + ((stat_dict[phone][1]/3)))
+	#			elif test_mean(read_trainig_files(), stat_dict)[phone] <= 0.45:
+	#				prediction_list.append(testfile_list[i*3+2] - ((stat_dict[phone][1]/3)))
+	#			else: 
+	#				prediction_list.append(testfile_list[i*3+2])
+	#		else:
+	#			prediction_list.append(stat_dict[phone][0])
 	#	else:
 	#		prediction_list.append(mini + (off_dict[phone][0]-mini)*lsr_list[i]) # Klatt mit offiziellen Werten
 	#		prediction_list.append(mini + off_dict[phone][1]*lsr_list[i])  # Klatt mit SD statt Differenz
