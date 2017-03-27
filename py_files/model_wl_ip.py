@@ -31,7 +31,7 @@ valid_phonemes = ["a", "a~", "e", "E", "I", "i", "O", "o", "U", "u", "Y", "y", "
 # {"a" : { 1 : [median_a1, mean_a1, (m_a1 + m_a1) /2], 2 : [median_a2, mean_a2, (m_a2 + m_a2) /2], ...}, 
 #  "b" : { 1 : [...], ...}, ...}
 def phon_wl_compressed_dict(phon_wordleng_dict):
-	phon_wl_compressed_dict = dict.fromkeys(phon_wordleng_dict.keys(), defaultdict(list))
+	phon_wl_compressed_dict = dict( (i, defaultdict(list)) for i in phon_wordleng_dict.keys() )
 	pho_key_list = [key for key, val in phon_wordleng_dict.items()]
 
 	for phon in pho_key_list:
@@ -39,6 +39,9 @@ def phon_wl_compressed_dict(phon_wordleng_dict):
 			phon_wl_compressed_dict[phon][w_leng] = [round(np.median(phon_wordleng_dict[phon][w_leng][2::3]), 3)]
 			phon_wl_compressed_dict[phon][w_leng].append(round(np.mean(phon_wordleng_dict[phon][w_leng][2::3]), 3))
 			phon_wl_compressed_dict[phon][w_leng].append(round((np.median(phon_wordleng_dict[phon][w_leng][2::3]) + np.mean(phon_wordleng_dict[phon][w_leng][2::3]))/2, 3))
+	#print(phon_wl_compressed_dict["Z"])
+	#print(phon_wl_compressed_dict["j"])
+	#print(len(phon_wl_compressed_dict))
 	return phon_wl_compressed_dict
 
 phon_wl_compressed_dict = phon_wl_compressed_dict(model_utilities.phon_wordleng_dict(path_list_training))
@@ -50,11 +53,19 @@ phon_wl_compressed_dict = phon_wl_compressed_dict(model_utilities.phon_wordleng_
 #
 # Looks like: phon_wl_compressed_dict but is not nested anymore: {"a" : [median1, mean1, (m1+m2)/2 ], "aU" : [...], ...}
 #      and contains as keys only phonemes from the given word (only keys of composition_dict)
-def phoneme_steak(composition_dict):
-	phoneme_steak_dict = dict.fromkeys(composition_dict.keys())
-	for phoneme in composition_dict.keys():
-		phoneme_steak_dict[phoneme] = phon_wl_compressed_dict[phoneme][len(composition_dict)]
+def phoneme_steak(composition_dict, word_dur, phon_count):
+	phoneme_steak_dict = dict( (i, []) for i in composition_dict.keys())
 
+	for phoneme in composition_dict.keys():
+		# In case the word contains 2 identical phonemes, the values of the 1st one will be overwritten
+		# -> this is ok, because the values would be the same (e.g. steak of "a" in a 5-elem-word)
+		if len(phon_wl_compressed_dict[phoneme][len(composition_dict)]) > 0:
+			phoneme_steak_dict[phoneme] = phon_wl_compressed_dict[phoneme][len(composition_dict)]
+		# For unknown phonemes / w_lengs we calculate the steak as if all phoneme durations in word would be equal
+		else:
+			phoneme_steak_dict[phoneme] += ([word_dur/(word_dur * phon_count), word_dur/(word_dur * phon_count), word_dur/(word_dur * phon_count)])
+	#print(phoneme_steak_dict["t"])
+	#print(phoneme_steak_dict["@"])
 	return phoneme_steak_dict
 
 
@@ -70,6 +81,7 @@ def build_composition_dict(datei, word_no):
 		if re.match("MAU", line) and (int(line.split()[3]) == word_no):
 			composition_dict[str(line.split()[4])] += 1
 	work_file.close()
+
 	return composition_dict
 #print(build_composition_dict("C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/Evaluation/Test/g002acn1_000_AAJ.par", 10))
 
@@ -81,7 +93,7 @@ def pdur_prediction_value(datei, word_no, phoneme, model):
 	word_dur, phoneme_count, mau_syl_count = model_utilities.word_statistics(datei, word_no)
 
 	# Actually calculate the phon duration prediction
-	pdur_prediction = int(round( ((word_dur * phoneme_steak(composition_dict)[phoneme][model])/composition_dict[phoneme]), 0))
+	pdur_prediction = int(round( ((word_dur * phoneme_steak(composition_dict, word_dur, phoneme_count)[phoneme][model])/composition_dict[phoneme]), 0))
 
 	return pdur_prediction
-#print(pdur_prediction_value("C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/Evaluation/Test1/g002acn1_000_AAJ.par", 10, "t", 0))
+#print(pdur_prediction_value("C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/Evaluation/Test/g002acn1_006_AAJ.par", 5, "j", 0))

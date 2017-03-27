@@ -31,44 +31,44 @@ def get_path_list(dataset_path):
 	return path_list
 
 
+# Creates a flat dictionary of phonemes and their durations in the given dataset
+# Return looks like: {"a" : [1599, 2348, 959, ...], "b" : [...], ...}
+def phon_dur_dict(path_list):
+    phon_dur_dict = dict( (i, []) for i in valid_phonemes)
+
+    for datei in path_list:
+        work_file = open(datei)
+        
+        for line in work_file:
+            if re.match("MAU", line) and (str(line.split()[4]) in valid_phonemes):
+                phon_dur_dict[str(line.split()[4])].append(int(line.split()[2]))
+        work_file.close()
+    #print(l)
+    #print(len(phon_dur_dict["Z"]))
+    #print(len(phon_dur_dict["a~:"]))
+    return phon_dur_dict
+
 
 # Creates a nested dict of phoneme proportions in words of specific lengths (as no of phonemes) - w_dur in samples
 # Returns: a dictionary
 # Looks like: {"a" : {1 : [w_dur1, pho_dur1, pho_prop1, w_dur2, pho_dur2, pho_prop2, ...], 2: [...], ...}, 
 #              "b" : {1 : [w_dur1, pho_dur1, pho_prop1, w_dur2, pho_dur2, pho_prop2, ...], 2: [...], ...}, 
 #               ...}
-# @param dataset_path: list of paths to the files in the (training) dataset to be used
-def phon_wordleng_dict(dataset_path):
-    simple_phoprop_dict = defaultdict(dict) # the dict to be returned
-    simple_prop_dict = defaultdict(list)   # the value dict
-    #os.chdir("C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/Evaluation/Training")
+# @param path_list: list of paths to the files in the (training) dataset to be used
+def phon_wordleng_dict(path_list):
+    simple_phoprop_dict = dict( (i, defaultdict(list)) for i in valid_phonemes) # the dict to be returned
     
     #Iterate over the training files
-    for datei in dataset_path:
+    for datei in path_list:
         work_file = open(datei)
         for line in work_file:
             if re.match("MAU", line):
-                w_dur, phon_count, syl_count = word_statistics(datei, int(line.split()[3]))
-                key = phon_count
-                simple_prop_dict[key].append(w_dur)                 # w_dur used in samples
-                simple_prop_dict[key].append(int(line.split()[2]))   # pho duration in samples
-                simple_prop_dict[key].append(round(int(line.split()[2])/w_dur, 3))   # calc pho prop as pho_dur/w_dur
-                if key in simple_phoprop_dict[line.split()[4]].keys():
-                    simple_phoprop_dict[line.split()[4]][key] += simple_prop_dict[key]
-                else: 
-                    simple_phoprop_dict[line.split()[4]][key] = simple_prop_dict[key]
-                simple_prop_dict.clear()
-        work_file.close()
-
-    # Clear dictionary of not relevant keys like <p:> and <usb> 
-    #    aka: ensure dict.keys() only contain accepted phonemes
-    key_list = []
-    for el in simple_phoprop_dict.keys():
-    	key_list.append(el)
-    for phon in key_list:
-    	if phon not in valid_phonemes:
-    		del simple_phoprop_dict[phon]
-
+                if (str(line.split()[4]) in valid_phonemes):
+                    w_dur, phon_count, syl_count = word_statistics(datei, int(line.split()[3]))
+                    simple_phoprop_dict[str(line.split()[4])][phon_count].append(w_dur)
+                    simple_phoprop_dict[str(line.split()[4])][phon_count].append(int(line.split()[2]))
+                    simple_phoprop_dict[str(line.split()[4])][phon_count].append( round(int(line.split()[2])/w_dur, 3))
+        work_file.close()  
     return simple_phoprop_dict
 
 
@@ -94,3 +94,6 @@ def word_statistics(datei, word_no):
 	work_file.close()
 
 	return word_duration, phoneme_count, mau_syl_count
+
+#print(len(phon_dur_dict(get_path_list('C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/Evaluation/Training'))))
+#print(len(phon_wordleng_dict(get_path_list('C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/Evaluation/Training'))))
