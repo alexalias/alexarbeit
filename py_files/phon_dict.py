@@ -7,6 +7,7 @@ import stress
 import speech_rate
 import math
 import find_syl_position
+import model_utilities
 import time
 
 # Creates a dictionary of durations (of specific phoneme)
@@ -14,16 +15,7 @@ dur_file = open("C:/Users/alexutza_a/Abschlussarbeit/word_durations.txt", "w")
 speech_rate_list = []
 # List of all german .par files in verbmobil, where the recording was done acn (main scenario dialogue 
 	#recorded means neckband microphone)
-def verbmo_par_files():
-	pattern = 'g*acn*.par'  # Pattern to be used for filtering filenames
-	file_list = []			# Empty list to be populated with filenames matching pattern
-	path_list = []
-	for path, subfolder, filenames in os.walk('C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/verbmobil_par'):
-		for filename in fnmatch.filter(filenames, pattern):
-			file_list.append(filename)
-			path_list.append(os.path.join(path, filename))
-	return path_list#,file_list
-path_list = verbmo_par_files()
+path_list = model_utilities.get_path_list('C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/verbmobil_par')
 
 
 # Dictionary of the given phoneme instance length in ms (keys) in Verbmobil and its attributes (values in list)
@@ -64,7 +56,7 @@ def phon_dict(phoneme_list):
 					laut_schluessel[phoneme].append(is_pause_near(file, wort))
 					# Attribute: stress = type of stress: none, s_stress, p_stress
 					laut_schluessel[phoneme].append(stress.stress_type(file, wort, phoneme, (zeile+9))) #modified zeile from +9 to +10, just for Q
-					# Attribute: overlapping
+					# Attribute: overlapping (1- phoneme in overlapped speech, 0- not)
 					if wort in overlapping_list:
 						laut_schluessel[phoneme].append("1")
 					else:
