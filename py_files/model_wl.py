@@ -41,8 +41,7 @@ valid_phonemes = ["a", "a~", "e", "E", "I", "i", "O", "o", "U", "u", "Y", "y", "
 # {"diphthongs" : { 1 : [0.5, 0.62, 0.55, ...], 2 : [0.4, 0.42, 0.45, ...] ...}, 
 #  "long_vowels" : { 1 : [...], ...}, ...}
 def pcat_dict(phon_wordleng_dic):
-	dict_keys = phon_class_dict.keys()
-	pcat_dict = dict.fromkeys(phon_class_dict.keys(), defaultdict(list))
+	pcat_dict = dict( (i, defaultdict(list)) for i in phon_class_dict.keys() )
 
 	# Incorporate all phoneme proportion lists for each phoneme class:
 	#    - the phoneme keys are grouped according to the classes of the phon_class_dict
@@ -54,27 +53,24 @@ def pcat_dict(phon_wordleng_dic):
 		p_category = ([ key for key,val in phon_class_dict.items() if phoneme in val ] + ["long_vowels"])[0]
 		for w_leng in phon_wordleng_dic[phoneme].keys():
 			pcat_dict[p_category][w_leng] += phon_wordleng_dic[phoneme][w_leng][2::3]
-	
-	phon_list = [key for key, val in pcat_dict.items()]
 
 	# Reduce the proportion lists to lists containing the coresponding median, mean, and mean+median/2
 	# Looks like: 
 	#   {"diphthongs" : { 1 : [median1, mean1, (m1+m1)/2 ], 2 : [median2, mean2, (m2+m2)/2] ...}, 
 	#    "long_vowels" : { 1 : [median, mean, (m+m)/2], ...}, ...}
-	pcat_dict_reduced = dict.fromkeys(pcat_dict.keys(), defaultdict(list))
-	for categ in phon_list:
-		wleng_list = [key for key, val in pcat_dict[categ].items()]
-		for w_leng in wleng_list:
-			if len(pcat_dict[categ]) != 0:
-				pcat_dict_reduced[categ][w_leng].append(round(np.median(pcat_dict[p_category][w_leng]), 3))   # append median (model = 0)
-				pcat_dict_reduced[categ][w_leng].append(round(np.mean(pcat_dict[p_category][w_leng]), 3))     # append mean (model = 1)
-				pcat_dict_reduced[categ][w_leng].append(round((np.median(pcat_dict[p_category][w_leng]) + np.mean(pcat_dict[p_category][w_leng]))/2, 3))   # append (median+mean)/2 (model = 2)
-			else:
-				del pcat_dict_reduced[categ][w_leng]
+	pcat_dict_reduced = dict( (j, defaultdict(list)) for j in pcat_dict.keys())
+	for categ in pcat_dict_reduced.keys():
+		for w_leng in pcat_dict[categ].keys():
+			pcat_dict_reduced[categ][w_leng].append(round(np.median(pcat_dict[categ][w_leng]), 3))   # append median (model = 0)
+			pcat_dict_reduced[categ][w_leng].append(round(np.mean(pcat_dict[categ][w_leng]), 3))     # append mean (model = 1)
+			pcat_dict_reduced[categ][w_leng].append(round((np.median(pcat_dict[categ][w_leng]) + np.mean(pcat_dict[categ][w_leng]))/2, 3))   # append (median+mean)/2 (model = 2)
+
 	return pcat_dict_reduced
 
 # Call the dictionary from the training data
 pcat_dict_reduced = pcat_dict(model_utilities.phon_wordleng_dict(path_list_training))
+#print(pcat_dict_reduced["diphthong"][3])
+#print(pcat_dict_reduced["others"][3])
 
 ###################################### DYNAMIC DATA STRUCTURES (testdata) ##########################################
 
