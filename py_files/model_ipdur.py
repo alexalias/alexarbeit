@@ -25,7 +25,7 @@ valid_phonemes = ["a", "a~", "e", "E", "I", "i", "O", "o", "U", "u", "Y", "y", "
 # Returns: a flat dictionary. Looks like: 
 # {"a" : [median_1, mean_1, (m_1 + m_1) /2], "b" : [median_2, mean_2, (m_2 + m_2) /2], ...}
 def phon_dur_compressed_dict(phon_dur_dict):
-	phon_dur_compressed_dict = dict( (i, []) for i in phon_dur_dict.keys())
+	phon_dur_compressed_dict = dict( (i, []) for i in valid_phonemes)
 
 	for phon in valid_phonemes:
 		phon_dur_compressed_dict[phon] = [round(np.median(phon_dur_dict[phon]), 3)]
@@ -45,8 +45,12 @@ def phon_dur_compressed_dict(phon_dur_dict):
 # @param model: 0, 1, or 2 meaning (median, mean, or (median + mean)/2)
 def pdur_prediction_value(datei, word_no, phoneme, model):
 	pdur_compressed_dict = phon_dur_compressed_dict(model_utilities.phon_dur_dict(path_list_training))
+	word_dur, phoneme_count, mau_syl_count = model_utilities.word_statistics(datei, word_no)
 	#print(pdur_compressed_dict)
-	pdur_prediction = int(round(pdur_compressed_dict[phoneme][model], 0))
+	try:
+		pdur_prediction = int(round(pdur_compressed_dict[phoneme][model], 0))
+	except:
+		pdur_prediction = int(round(word_dur / phoneme_count, 0))
 
 	return pdur_prediction
 

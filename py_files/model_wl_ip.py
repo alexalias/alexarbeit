@@ -17,7 +17,7 @@ import model_utilities
 
 # Create list of filepaths to explore. This one uses entire data set, for exploration purposes.
 # path_list_training = verbmo_par_files('C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/verbmobil_par')
-path_list_training = model_utilities.get_path_list('C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/Evaluation/Training')
+#path_list_training = model_utilities.get_path_list('C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/Evaluation/Training')
 
 valid_phonemes = ["a", "a~", "e", "E", "I", "i", "O", "o", "U", "u", "Y", "y", "9", "2", "a:", "a~:", "e:", "E:", "i:",
                  "o:", "u:", "y:", "2:", "OY", "aU", "aI", "@", "6", "z", "S", "Z", "C", "x", "N", "Q", "b", "d", "f", 
@@ -44,7 +44,7 @@ def phon_wl_compressed_dict(phon_wordleng_dict):
 	#print(len(phon_wl_compressed_dict))
 	return phon_wl_compressed_dict
 
-phon_wl_compressed_dict = phon_wl_compressed_dict(model_utilities.phon_wordleng_dict(path_list_training))
+#phon_wl_compressed_dict = phon_wl_compressed_dict(model_utilities.phon_wordleng_dict(path_list_training))
 
 ###################################### DYNAMIC DATA STRUCTURES (testdata) ##########################################
 
@@ -53,14 +53,15 @@ phon_wl_compressed_dict = phon_wl_compressed_dict(model_utilities.phon_wordleng_
 #
 # Looks like: phon_wl_compressed_dict but is not nested anymore: {"a" : [median1, mean1, (m1+m2)/2 ], "aU" : [...], ...}
 #      and contains as keys only phonemes from the given word (only keys of composition_dict)
-def phoneme_steak(composition_dict, word_dur, phon_count):
+def phoneme_steak(composition_dict, word_dur, phon_count, path_list_training):
 	phoneme_steak_dict = dict( (i, []) for i in composition_dict.keys())
+	p_wl_compressed_dict = phon_wl_compressed_dict(model_utilities.phon_wordleng_dict(path_list_training))
 
 	for phoneme in composition_dict.keys():
 		# In case the word contains 2 identical phonemes, the values of the 1st one will be overwritten
 		# -> this is ok, because the values would be the same (e.g. steak of "a" in a 5-elem-word)
-		if len(phon_wl_compressed_dict[phoneme][len(composition_dict)]) > 0:
-			phoneme_steak_dict[phoneme] = phon_wl_compressed_dict[phoneme][len(composition_dict)]
+		if len(p_wl_compressed_dict[phoneme][len(composition_dict)]) > 0:
+			phoneme_steak_dict[phoneme] = p_wl_compressed_dict[phoneme][len(composition_dict)]
 		# For unknown phonemes / w_lengs we calculate the steak as if all phoneme durations in word would be equal
 		else:
 			phoneme_steak_dict[phoneme] += ([word_dur/(word_dur * phon_count), word_dur/(word_dur * phon_count), word_dur/(word_dur * phon_count)])
@@ -88,12 +89,12 @@ def build_composition_dict(datei, word_no):
 
 # Returns: (type: int) the predicted duration (samples) of given phoneme based on word composition
 # @param model: 0, 1, or 2 meaning (median, mean, or (median + mean)/2)
-def pdur_prediction_value(datei, word_no, phoneme, model):
+def pdur_prediction_value(datei, word_no, phoneme, model, path_list_training):
 	composition_dict = build_composition_dict(datei, word_no)
 	word_dur, phoneme_count, mau_syl_count = model_utilities.word_statistics(datei, word_no)
 
 	# Actually calculate the phon duration prediction
-	pdur_prediction = int(round( ((word_dur * phoneme_steak(composition_dict, word_dur, phoneme_count)[phoneme][model])/composition_dict[phoneme]), 0))
+	pdur_prediction = int(round( ((word_dur * phoneme_steak(composition_dict, word_dur, phoneme_count, path_list_training)[phoneme][model])/composition_dict[phoneme]), 0))
 
 	return pdur_prediction
 #print(pdur_prediction_value("C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/Evaluation/Test/g002acn1_006_AAJ.par", 5, "j", 0))
