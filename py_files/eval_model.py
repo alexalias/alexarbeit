@@ -2,6 +2,7 @@ import performance_measures
 import numpy as np
 import create_eval_lists
 import model_utilities
+import time
 
 #### Running this file prints out the results of the performance evaluation of the differen models ####
 
@@ -14,11 +15,14 @@ import model_utilities
 
 # Splitting dataset 10 times into disjunct training- and test-datasets (90% to 10%)
 rmse_list, mae_list, corr_list = [], [], []
+
+
 dataset = model_utilities.get_path_list('C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/Evaluation/Training')
 num_folds = 10
 subset_size = int(len(dataset)/num_folds)
 for i in range(num_folds):
-	path_list_test = dataset[:i*subset_size]
+	t1 = time.time()
+	path_list_test = dataset[i*subset_size:][:subset_size]
 	path_list_training = dataset[:i*subset_size] + dataset[(i+1)*subset_size:]
 
 	# Taking the best model for further testing
@@ -31,6 +35,7 @@ for i in range(num_folds):
 	rmse_list.append(global_rmse)
 	mae_list.append(mae)
 	corr_list.append(corrCoef)
+	print(str(i) + ". fold time:" + str(time.time() - t1))
 # A name list to use when printing the results
 model_name_list = ["WL", "WL_IP", "IP_dur"]
 
