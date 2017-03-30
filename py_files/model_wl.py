@@ -76,7 +76,7 @@ pcat_dict_reduced = pcat_dict(model_utilities.phon_wordleng_dict(path_list_train
 
 
 # Wendet den pcat_dict_reduced auf dem vorgegebenen Wort ein
-# Return: dictionary mit den entsprechenden phon_class steaks für das aktuelle Wort (erfasst in composition_dict)
+# Return: dictionary mit den entsprechenden phon_class steaks fuer das aktuelle Wort (erfasst in composition_dict)
 # Looks like: pcat_dict_reduced, but is not nested anymore: {"diph" : [median1, mean1, (m1+m2)/2 ], "long_vowels" : [...], ...}
 def class_steak(composition_dict):
 	class_correction_factor = defaultdict(list)
