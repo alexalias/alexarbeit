@@ -1,4 +1,3 @@
-
  Build and evaluate models:
 ############################
 
@@ -14,6 +13,11 @@ File description:
 
 - eval_model.py : run this file to evaluate given models
 	- performance_measures.py: contains the code to calculate the RMSE, MAE, and Pearson correlation coefficient.
+	- right now some things are being commented out
+### Present configuration of eval_model.py (and correlated files) evaluates only model_wl_ip. Use the var "dataset" ###
+######### to provide a link to the dataset. Split into training- and test-dataset is done afterwards using ############
+############################################# 10-fold cross-validation ################################################
+
 
 - create_eval_lists.py : - gets the prediction- and actual-lists from different models.
 			 - contains a set of almost identical functions (one per model)
@@ -32,8 +36,40 @@ Models:
 - model_utilities: a set of help functions to use in models
 		(e.g. hier we get the list of paths to the files of the needed dataset to iterate on)
 
- Exploring the data 
-####################
+Old model
+#########
+
+speech_rate -  -> pd_LSR -
+			   \
+performance_measures	-- > -> calc_errors
+
+File description:
+
+pd_LSR.py: Here is when the data is prepared for evaluation. You must provide a link to the dataset. 
+	   Phoneme durations in seconds.
+	Functions: + read_training_files() -> Returns a dictionary of phoneme occurences (keys) in the training data and their durations (values), and LSR (values)
+	---------			   -> Looks like {a: [phon_dur1, speech_rate1, phon_dur2, speech_rate2...], 
+							  b : [phon_dur1, speech_rate1, phon_dur2, ...], ...}
+					   -> Provide a link to the training dataset on 2nd line: os.chdir(#your link#)
+
+		   + phone_stats(training_dict) -> transforms the previous dictionary in one containing only the mean & std. dev. of 
+						   each value list from training_dict. 
+						-> Looks like: {a: [mean_of_a, sd_of_a], b: [mean_of_b, sd_of_b], ...}
+		   
+		   + read_testfiles() -> similar to read_training_files() but for the test_dataset, and retrieves a list
+				      -> Looks like: [a, phon_dur1, speech_rate1, a, phon_dur2, SR2, b, phon_dur3, SR3, ...]
+				      -> Provide a link to the training dataset on 2nd line: os.chdir(#your link#)
+		   + official_stats() -> provides a similar dictionary like phone_stats to use when specific phonemes are missing in training DB
+				      -> the file on which var. "official file" points at can also be found in py_files
+		   + create_prediction_list(testfile_list, stat_dict) -> here I tested several prediction models (ways), 
+									more or less commented out and annotated at corresp. line-end
+
+calc_errors.py == equivalent of eval_model.py, working with pd_LSR and performance_measures.py
+		- if it's well set up, it also provide information on which phonemes performes worse (and which better)
+		- if set up is correct, it's enough to run it
+
+Files for Exploring the data 
+############################
 
 arff_file_builder.py -> fetches all data from phon_dict.py for data mining with weka in a single text file.
 
