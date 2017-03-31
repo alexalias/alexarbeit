@@ -1,3 +1,5 @@
+Before running python notebooks: you need to add the py_files folder to the pythonpath (export PYTHONPATH=py_files)
+
  Build and evaluate models:
 ############################
 
