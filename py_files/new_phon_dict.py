@@ -1,5 +1,6 @@
 import re
 import model_utilities
+import new_SR
 from collections import defaultdict
 
 ######################################################## STATIC DATA #############################################################
@@ -266,6 +267,9 @@ def cart_dict(dataset_path):
 						p_dict[p_key].append(get_syl_part(datei, following_phoneme[1], following_phoneme[0], following_phoneme[2]))
 					else:
 						p_dict[p_key].append("none")
+
+					# Speech rate calculated as word_duration / phoneme_count_in_word
+					p_dict[p_key].append(new_SR.get_word_SR(datei, int(line.split()[3]))[0])
 
 					# Duration of current phoneme in msec
 					p_dict[p_key].append(round(int(line.split()[2]) * 0.0625, 2))
