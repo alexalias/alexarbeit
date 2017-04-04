@@ -63,6 +63,7 @@ arff_file.write("@attribute foll_p_type { v, c, none }\n")
 arff_file.write("@attribute foll_p_artic { v, p, f, n, l, j, o, none }\n")
 arff_file.write("@attribute foll_p_voiced { v, y, n, none }\n")
 arff_file.write("@attribute syl_part_foll_p { onset, nucleus, coda, single, none }\n")
+arff_file.write("@attribute speech_rate numeric\n")
 arff_file.write("@attribute duration numeric\n%\n")
 
 ######################################################## Writing file: data #############################################################
@@ -80,11 +81,18 @@ print("Time to create dictionary: " + str(t2 - t1))
 cart_list = []
 for phon in cart_dict.keys():
 	cart_list += cart_dict[phon]
+t3 = time.time()
+print("Time to build the list for writing: " + str(t3 - t2))
+
+list_len = len(cart_list)
 
 time1 = time.time()
+print("Time to get list length: " + str(time1 - t3))
+
 # Write elements of the cart_list to the arff_file
 for el in cart_list:
-		if (cart_list.index(el) + 1) % 18 == 0:
+	for ind in range(list_len):
+		if (ind + 1) % 19 == 0:
 			arff_file.write(str(el) + "\n")
 		else:
 			arff_file.write(str(el) + ", ")
