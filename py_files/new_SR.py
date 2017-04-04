@@ -185,3 +185,5 @@ def get_word_SR(datei, word_nr):
 	n_phon_WSR = round(phon_count / word_dur, 2)
 
 	return p_phon_WSR, n_phon_WSR
+
+#print(get_word_SR('C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/mod_dataset/g001acn1_000_AAJ_a.par', 1)[0])

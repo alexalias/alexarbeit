@@ -90,7 +90,7 @@ def get_syl_part(datei, phoneme, word_no, syl_no):
 		nucleus_ind = "NaN"
 
 	# Get the index of current phoneme in syl_list
-	p_index = syl_list.index([x for x in syl_list if x == phoneme][0])
+	p_index = syl_list.index(phoneme)
 
 	if type(nucleus_ind) == int:
 		if p_index < nucleus_ind:

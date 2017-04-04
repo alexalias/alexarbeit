@@ -90,7 +90,7 @@ def word_statistics(datei, word_no):
 			if str(line.split()[4]) in vowel_list:
 				mau_syl_count += 1
 	
-	#word_duration *= 0.0000625
+	word_duration *= 0.0625
 	work_file.close()
 
 	return word_duration, phoneme_count, mau_syl_count

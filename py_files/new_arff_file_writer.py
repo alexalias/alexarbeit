@@ -6,7 +6,7 @@ import time
 
 ######################################################## STATIC DATA #############################################################
 # Dataset used must contain only modified par-files
-dataset_path = model_utilities.get_path_list('C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/mod_dataset')
+dataset_path = model_utilities.get_path_list('C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/Evaluation/Test_a')
 
 # List of phonemes approximated by our models. 
 # As there are also other phonetic items segmented in our database, we use this list to sort those out.
@@ -33,7 +33,7 @@ wtype_dict = {
 
 ######################################################## Writing file: attribute description #############################################################
 
-arff_file = open("C:/Users/alexutza_a/Abschlussarbeit/wekadateien/cart_58db.txt", "w")
+arff_file = open("C:/Users/alexutza_a/Abschlussarbeit/wekadateien/cart_test.txt", "w")
 
 arff_file.write("% ARFF file for Verbmobil\n% \n@relation cart\n%\n% List of attributes:\n")
 arff_file.write("% Duration is expressed in miliseconds\n%\n")
@@ -84,20 +84,23 @@ for phon in cart_dict.keys():
 t3 = time.time()
 print("Time to build the list for writing: " + str(t3 - t2))
 
-list_len = len(cart_list)
+i = 0
 
 time1 = time.time()
 print("Time to get list length: " + str(time1 - t3))
 
 # Write elements of the cart_list to the arff_file
 for el in cart_list:
-	for ind in range(list_len):
-		if (ind + 1) % 19 == 0:
-			arff_file.write(str(el) + "\n")
-		else:
-			arff_file.write(str(el) + ", ")
+	if  (cart_list.index(el) + 1):
+		arff_file.write(str(el) + "\n")
+		i += 1
+	else:
+		arff_file.write(str(el) + ", ")
+		i += 1
+
 
 arff_file.close()
 
 time2 = time.time()
 print("Time to write the data: " + str(time2-time1))
+#
