@@ -88,7 +88,7 @@ Machine Learning means building a program or model which can make predictions ab
 \section{Preparing the Data}
 A very important and time consuming step in data mining is data preparation, which is the next step after data collection. At this stage one needs to asses the quality of the data, expressed as noise ratio, and strategies for dealing with it. If the data used has been originally collected for another purpose, then it needs to be assessed in terms of features it contains, actually needed features, and organization resp. reorganization of data to serve new purpose. 
 
-Considering machine learning, it is straightforward that one needs to split the available dataset at least into two parts: a training dataset, used for discovering patterns in data through data mining, and a test dataset, used for testing the performance of the model resulting from the machine learning process. 
+Considering machine learning, it is straightforward that one needs to split the available dataset at least into two parts: a (bigger) training dataset, used for training the model, meaning discover patterns in data, and a (smaller) test dataset, used for testing the performance of the model resulting from the machine learning process. 
 
 We explain how we prepared our data in chapter 3, dedicated to our database.
 
@@ -102,28 +102,19 @@ $RMSE = \sqrt{\frac{\sum(predicted-actual)^2}{n}}$. It is a very popular method 
 \end{enumerate}
 
 \chapter{Corpora}
-Segmented and annotated German speech corpora represent sets of text files, so-called ``textual data``, containing information about the speech data. Our minimum requirement for such corpora was that they contain speech segmented at phoneme level, allowing us to calculate the duration of each phoneme occurence. The unit in which this duration is expressed is not relevant.
+Language related databases are called corpora, and for our purpose we needed one containing segmented and annotated German speech as a set of text files, so-called ``textual data``. Our minimum requirement for such a corpus was that it contains speech segmented at phoneme level, allowing us to calculate the duration of each phoneme occurence. The unit in which this duration is expressed is not relevant. As phoneme duration may be influenced by several factors, and we did not intent to do any further processing of the audio files, we also needed that this textual database contains enough information to identify following attributes: 
 
-For further processing of this information from our side, we considered the study of Rosen \cite{Rosen2005} on the application of the lognormal distribution for modeling the variation of speech segment duration. In accordance to this, during the data mining tasks we opted for a log-transformation of the observed phoneme durations using the natural logarithm, which proved to be a better description of the data in our database as well (fig. \ref{fig:aI_distrib}).
+\begin{itemize}
+	\item phrase boundaries
+	\item word boundaries
+	\item syllable boundaries
+	\item phoneme identification
+	\item vowel stress
+	\item pauses
+\end{itemize}
 
-\begin{figure}[htbp]
-\centering
-	\begin{subfigure}[h]{0.45\textwidth}
-	\centering
-	\includegraphics[width=\textwidth]{../Graphen/Hist_aims_no_title.eps}
-	\caption{Duration of /aI/ measured in seconds.}
-	\label{fig:ai_ms}
-	\end{subfigure}
-\hfill
-	\begin{subfigure}[h]{0.45\textwidth}
-	\centering
-	\includegraphics[width=\textwidth]{../Graphen/Hist_ailn_no_title.eps}
-	\caption{Duration of /aI/ measured in ln(sec).}
-	\label{fig:ai_ln}
-	\end{subfigure}
-\caption[Phoneme duration distribution ms vs ln(ms)]{Phoneme durations measured in seconds have a not normal distribution shape. However, when applying a logarithmic transformation in terms of ln(msec), the distribution is better shaped.}
-\label{fig:aI_distrib}
-\end{figure}
+There are three corpora which we had at our disposal: (1) The Kiel Corpus of Read (PhonDat) and of Spontaneous Speech, (2) Verbmobil, and (3) spoken Wikipedia. The first one contains two equal sized corpora of > 4 hours each: KCoRS, which is a collection of read speech, and KCoSS, which is a collection of spontaneous speech, both being manually segmented, which is a good indicator for good segmentation quality. However, as Pfitzinger \cite{Pfitzinger} also showed in his reassessment of the PhonDat-II corpus, for nowadays research the Kiel Corpus is rather small. Spoken Wikipedia is a new project comprising of a much larger collection of read speech. Unfortunately, the phoneme-level segmentation was not ready on time to evaluate in our project.
+
 
 \section{Verbmobil}
 The Verbmobil corpus is a database of spontaneous speech containing a collection of appointment making dialogs, fully transliterated and annotated. This was an important point in selecting this database for our purpose, as phoneme duration is influenced by many factors, and the Verbmobil textual database provides most of them. We used 286 recordings from the last verbmobil phase (Verbmobil II) created by 131 speakers. The total VMII corpus used amounts to 11783 conversational turns representing recorded speech time of 15,5 hours. The ``symbolic data`` corresponding to each turn (e.g. phonetic transcription, segmentation, labeling, etc.) is captured in so-called ``par files``, representing files in the ``BAS Partitur Format`` \cite{Burger2000}. 
@@ -133,7 +124,7 @@ Drawbacks of this database come mainly from the characteristics of spontaneous s
 \begin{figure}[htbp]
 	\includegraphics[width=0.6\textwidth]{../Graphen/Duration_of_a_5speakers.eps}
 	\centering
-	\caption[Phoneme length variation between speakers]{Overview of \texttt{/a:/} length on the 5 most frequent speakers. Phoneme length is expressed as the natural logarithmus of the sample frequency. While the minimum duration is technically limited to an equal value corresponding to 0.04 sec, all other coordinates vary, e.g. maximum value has a variation of 0.14 sec between speakers AKX and ALR. The greatest median variation is 0.07 sec between speakers ALR (0.15 sec) and AJZ (0.08 sec).}
+	\caption[Phoneme length variation between speakers]{Overview of \texttt{/a:/} length on the 5 most frequent speakers. Phoneme length is expressed as the natural logarithm of the sample frequency. While the minimum duration is technically limited to an equal value corresponding to 0.04 sec, all other coordinates vary, e.g. maximum value has a variation of 0.14 sec between speakers AKX and ALR. The greatest median variation is 0.07 sec between speakers ALR (0.15 sec) and AJZ (0.08 sec).}
 	\label{fig:speaker_cmp}
 \end{figure}
 
