@@ -84,8 +84,6 @@ for phon in cart_dict.keys():
 t3 = time.time()
 print("Time to build the list for writing: " + str(t3 - t2))
 
-i = 0
-
 time1 = time.time()
 print("Time to get list length: " + str(time1 - t3))
 
@@ -93,10 +91,8 @@ print("Time to get list length: " + str(time1 - t3))
 for el in cart_list:
 	if  (cart_list.index(el) + 1):
 		arff_file.write(str(el) + "\n")
-		i += 1
 	else:
 		arff_file.write(str(el) + ", ")
-		i += 1
 
 
 arff_file.close()
