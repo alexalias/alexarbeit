@@ -81,11 +81,21 @@ Accross the paper we will use the German SAMPA notations when referring to phone
 \subsection*{Outline}
 We start our approach by defining our methods in chapter 2. In the following chapter we examine our database so that we can proceed with the actual task in chapter 4, where we analyze the German phonemes. We dedicate chapter 5 to the challenge of finding an adequate speech rate definition for our database and purpose. Chapter 6 finally deals with phoneme duration prediction models and the challenge of finding a solution to our above presented issue.
 
-\chapter{Fundamentals}
+\chapter{Basics}
 \section{Data Mining}
 Data Mining means in foreground looking for patterns in data with the help of computers. Patterns are helpful for humans to understand data. They reduce the amount of data, and of available features to the relevant ones. Computers help process within resonable time amounts of data that would need years of manual processing.
+
 \section{Machine Learning}
-Machine Learning means building a program or model which can make predictions about an unseen dataset, like filling in missing information, based on data mining results from a given dataset. 
+Machine Learning means building a program or model which can make predictions about an unseen dataset, like filling in missing information, based on data mining results from a given dataset. It consists of a so-called training phase, in which the training data is being processed by the selected machine learning method and hypotheses or models are formed. These can then be used to make predictions about new data. The training data consists of a set of instances, each of them being described by a feature vector. The training phase is followed by an evaluation phase, in which predictions about unseen data are being made and compared to the actual values. 
+
+We used machine learning to solve a task involving both classification and numeric prediction. We used for this two model tree methods: M5P and REPTree. The reasons we chose them is because trees are easy to interpret, they can perform both classification and numeric prediction tasks, we could easily generate them using Weka, and are the closest to classification and regression (CART) trees, also used in the literature \cite{Brinckmann2003} for phoneme duration prediction, so we have data to compare with.
+
+\subsection{REPTree}
+
+
+\subsection{M5P}
+The M5P model tree is a decision tree based on the M5 algorithm introduced by Quinlan (1992). It 
+
 \section{Preparing the Data}
 A very important and time consuming step in data mining is data preparation, which is the next step after data collection. At this stage one needs to asses the quality of the data, expressed as noise ratio, and strategies for dealing with it. If the data used has been originally collected for another purpose, then it needs to be assessed in terms of features it contains, actually needed features, and organization resp. reorganization of data to serve new purpose. 
 
@@ -101,6 +111,8 @@ $RMSE = \sqrt{\frac{\sum(predicted-actual)^2}{n}}$. It is a very popular method 
 	\item \textbf{MAE} or \textbf{mean absolute error} is similar to RMSE, but penalises outliers less. It is computed using the average of the absolute errors: $MAE = \frac{\sum\left|predicted-actual\right|}{n}$
 	\item The \textbf{correlation coefficient} is a number between -1 and 1 that quantifies the correlation between two variables, each having a separate value set. We can interpret this as how much the variable movement through its value set corresponds to the movement of the other variable in its own value set. Values close to 1 mean that greater values of the one variable imply greater values for the second variable, negative values mean the two variables move in opposite directions, and values close to 0 mean there is no correlation between the two variables. However, one must keep in mind that correlation does not imply causality, so the presence of correlation between two variables does not mean that one of them has any influence on the other one. If we compare red Ferrari cars to blue Renault cars, one may find a correlation between car color red and car speed. However, this does not imply that red cars are faster.
 \end{enumerate}
+
+\section{Tools}
 
 \chapter{Corpora}
 Language related databases are called corpora, and for our purpose we needed one containing segmented and annotated German speech as a set of text files, so-called ``textual data``. Our minimum requirement for such a corpus was that it contains speech segmented at phoneme level, allowing us to calculate the duration of each phoneme occurence. The unit in which this duration is expressed is not relevant. As phoneme duration may be influenced by several factors, and we did not intent to do any further processing of the audio files, we also needed that this textual database contains enough information to identify following attributes: 
@@ -232,7 +244,28 @@ Word  & $word\_dur / phon\_count$ &  0.794901825792\\
 \end{tabular}
 \end{table}
 
-
+\begin{figure}[htbp]
+\centering
+	\begin{subfigure}[h]{0.48\textwidth}
+	\centering
+	\includegraphics[width=\textwidth]{../Graphen/SR_turn.eps}
+	\label{fig:tsr}
+	\end{subfigure}
+\hfill
+	\begin{subfigure}[h]{0.48\textwidth}
+	\centering
+	\includegraphics[width=\textwidth]{../Graphen/SR0.eps}
+	\label{fig:phraseSR}
+	\end{subfigure}
+\hfill
+	\begin{subfigure}[h]{0.48\textwidth}
+	\centering
+	\includegraphics[width=\textwidth]{../Graphen/SR4.eps}
+	\label{fig:wsr}
+	\end{subfigure}
+\caption[Speech rate vs long vowel duration]{Phoneme durations measured in msec plotted against different speech rates.}
+\label{fig:SR_corr}
+\end{figure}
 
 \chapter{Phoneme duration prediction models}
 There are several duration prediction methods in use: 
