@@ -82,19 +82,22 @@ Accross the paper we will use the German SAMPA notations when referring to phone
 We start our approach by defining our methods in chapter 2. In the following chapter we examine our database so that we can proceed with the actual task in chapter 4, where we analyze the German phonemes. We dedicate chapter 5 to the challenge of finding an adequate speech rate definition for our database and purpose. Chapter 6 finally deals with phoneme duration prediction models and the challenge of finding a solution to our above presented issue.
 
 \chapter{Basics}
-\section{Data Mining}
-Data Mining means in foreground looking for patterns in data with the help of computers. Patterns are helpful for humans to understand data. They reduce the amount of data, and of available features to the relevant ones. Computers help process within resonable time amounts of data that would need years of manual processing.
 
 \section{Machine Learning}
 Machine Learning means building a program or model which can make predictions about an unseen dataset, like filling in missing information, based on data mining results from a given dataset. It consists of a so-called training phase, in which the training data is being processed by the selected machine learning method and hypotheses or models are formed. These can then be used to make predictions about new data. The training data consists of a set of instances, each of them being described by a feature vector. The training phase is followed by an evaluation phase, in which predictions about unseen data are being made and compared to the actual values. 
 
+Data Mining means in foreground looking for patterns in data with the help of computers. Patterns are helpful for humans to understand data. They reduce the amount of data, and of available features to the relevant ones. Computers help process within resonable time amounts of data that would need years of manual processing.
+
 We used machine learning to solve a task involving both classification and numeric prediction. We used for this two model tree methods: M5P and REPTree. The reasons we chose them is because trees are easy to interpret, they can perform both classification and numeric prediction tasks, we could easily generate them using Weka, and are the closest to classification and regression (CART) trees, also used in the literature \cite{Brinckmann2003} for phoneme duration prediction, so we have data to compare with.
 
-\subsection{REPTree}
+\subsection{Decision trees}
+Decision trees divide the attribute space into well defined clusters, identified by a class name or a numeric value. In the first case we are dealing with a classification tree, in the second one with a regression tree. If one needs to combine the two methods, he/she may use a classification and regression tree, called CART, or a model tree. The advantage of trees is that new instances are easily assigned to a class, or a numeric value, or a linear model which leads to such a numeric value, and they are easy to unterstand.
 
+The \textbf{M5P model tree} \cite{Witten2011} is a decision tree based on the M5 algorithm introduced by Quinlan (1992). It builds a usual classification tree out of the attributes, and retrieves a linear regression model in each leaf out of the attributes contained in that specific subtree. Branching is realised based on the reduction of variation within the resulting subset.
 
-\subsection{M5P}
-The M5P model tree \cite{Witten2011} is a decision tree based on the M5 algorithm introduced by Quinlan (1992). It builds a usual classification tree out of the attributes, and retrieves a linear regression model in each leaf out of the attributes contained in that specific subtree.
+A \textbf{REPTree} is a decision and regression tree similar to M5P, but optimized for speed. This means it sorts values for numeric attributes only once. 
+
+Both trees 
 
 \section{Preparing the Data}
 A very important and time consuming step in data mining is data preparation, which is the next step after data collection. At this stage one needs to asses the quality of the data, expressed as noise ratio, and strategies for dealing with it. If the data used has been originally collected for another purpose, then it needs to be assessed in terms of features it contains, actually needed features, and organization resp. reorganization of data to serve new purpose. 
@@ -104,15 +107,18 @@ Considering machine learning, it is straightforward that one needs to split the 
 We explain how we prepared our data in chapter 3, dedicated to our database.
 
 \section{Performance Evaluation}
-Models produced by machine learning may have different performance levels, which may be evaluated in several ways. We decided for the following three:
+Models produced by machine learning may have different performance levels, which may be evaluated in several ways. As they assess different features of the models, and treat outliers differently, we didn't want to rely only on one of them. Furthermore, we wanted to be able to compare the results with results presented in the literature. After studying the common evaluation methods used for other phoneme prediction models, we chose the following three: 
 \begin{enumerate}
 	\item \textbf{RMSE} or \textbf{root mean squared error} measures the differences between the numeric values predicted by a model and those actually observed: 
 $RMSE = \sqrt{\frac{\sum(predicted-actual)^2}{n}}$. It is a very popular method for evaluating errors of a model, but it is very sensible to outliers.
 	\item \textbf{MAE} or \textbf{mean absolute error} is similar to RMSE, but penalises outliers less. It is computed using the average of the absolute errors: $MAE = \frac{\sum\left|predicted-actual\right|}{n}$
-	\item The \textbf{correlation coefficient} is a number between -1 and 1 that quantifies the correlation between two variables, each having a separate value set. We can interpret this as how much the variable movement through its value set corresponds to the movement of the other variable in its own value set. Values close to 1 mean that greater values of the one variable imply greater values for the second variable, negative values mean the two variables move in opposite directions, and values close to 0 mean there is no correlation between the two variables. However, one must keep in mind that correlation does not imply causality, so the presence of correlation between two variables does not mean that one of them has any influence on the other one. If we compare red Ferrari cars to blue Renault cars, one may find a correlation between car color red and car speed. However, this does not imply that red cars are faster.
+	\item The \textbf{Pearson correlation coefficient}, a popular measure for continuous data, is a number between -1 and 1 that quantifies the correlation between two variables, each having a separate value set. We can interpret this as how much the variable movement through its value set corresponds to the movement of the other variable in its own value set. Values close to 1 mean that greater values of the one variable imply greater values for the second variable, negative values mean the two variables move in opposite directions, and values close to 0 mean there is no correlation between the two variables. However, one must keep in mind that correlation does not imply causality, so the presence of correlation between two variables does not mean that one of them has any influence on the other one. If we compare red Ferrari cars to blue Renault cars, one may find a correlation between car color red and car speed. However, this does not imply that red cars are faster.
 \end{enumerate}
 
 \section{Tools}
+We used \textbf{Weka} 3.8 for building and training the model trees for the phoneme duration prediction. It is an open source freeware using a Java VM, and contains a collection of tools for all machine learning tasks we needed, from data pre-processing over classification and regression till model evaluation and data visualization.
+
+In order to extract the needed information from our database, and put it in a form ready to use with Weka, we used self-made code written in Python 3.6. This is an easy to learn programming language with many features dedicated to statistical analysis and even machine learning. Most of the figures in this paper were produced in python as well.
 
 \chapter{Corpora}
 Language related databases are called corpora, and for our purpose we needed one containing segmented and annotated German speech as a set of text files, so-called ``textual data``. Our minimum requirement for such a corpus was that it contains speech segmented at phoneme level, allowing us to calculate the duration of each phoneme occurence. The unit in which this duration is expressed is not relevant. As phoneme duration may be influenced by several factors, and we did not intent to do any further processing of the audio files, we also needed that this textual database contains enough information to identify following attributes: 
