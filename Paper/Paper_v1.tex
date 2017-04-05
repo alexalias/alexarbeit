@@ -208,25 +208,30 @@ From the beginning, we did not consider the variant of calculating a speech rate
 Seing this, there is no wonder that we got no good correlation values as long as we calculated speech rate on entire turns. This got better when we reduced the size of the segment to phrase, and then further down to words. 
 An additional measure we used to evaluate how well a speech rate calculating formula may suit our purpose was the correlation value between speech rate and phoneme duration. As long vowels proved to be the most sensible to the variation of the speaking tempo, we present below the values we obtained for this group, together with the speech rate calculated at different segment sizes.
 
-%\begin{table}[htbp]
-%\caption {Duration of long vowels vs. speech rate calculated at turn, phrase, and word level} 
+\begin{table}[htbp]
+\caption {Duration of long vowels vs. speech rate calculated at turn, phrase, and word level} 
 %\centering
 \vspace{10mm}
-\begin{tabular}{|l|l|}
+\begin{tabular}{|l|l|c|}
 \hline
-Segment	 & Correlation coefficient (Pearson)\\
+Segment	 & Formula & Correlation coefficient (Pearson)\\
 \hline
 \hline
-Turn 		&0.727178570436 \\
+Turn 		& $turn\_dur / phon\_count$ &0.727178570436 \\
 	\hline
-Phrase  &\\
+	&  $phon\_count / turn\_dur$ & -0.270392865503 \\
 	\hline
-Word  &  0.794901825792\\
+Phrase  & $phrase\_dur / phon\_count$ & 0.561266362391\\
+	\hline
+	&  $phon\_count / phrase\_dur$ & -0.377058296098\\
+	\hline
+Word  & $word\_dur / phon\_count$ &  0.794901825792\\
+	\hline
+	&  $phon\_count / phrase\_dur$ & -0.616539202577\\
 	\hline
 \end{tabular}
-%\end{table}
+\end{table}
 
-%\end{table}
 
 
 \chapter{Phoneme duration prediction models}
