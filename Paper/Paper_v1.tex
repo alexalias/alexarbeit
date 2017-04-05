@@ -38,11 +38,11 @@ Some people speak faster, others speak slower, and all people speak sometimes fa
 The attempts to improve the quality of speech synthesis when tempo changes include linguistic processing, and phoneme length manipulation before the actual synthesis takes place. As mentioned in a patent documentation of Fujitsu Limited, phoneme length manipulation plays an important role in this context and one cannot rely on a linear adjustment function \cite{nishiike2008}. 
 
 \subsection*{Scope}
-Phoneme length adjustment is the aspect we wish to adress in this work. In particular, we want to find an algorithm to adjust the phoneme duration according to the speech rate. The resulting phoneme duration should be close to the actual duration that occurs when the speaking rate alters. This would be the same as playing an audio file faster or slower. 
+Phoneme length adjustment is the aspect we wish to adress in this work. In particular, we want to find an algorithm for adjusting phoneme durations according to the variations in speech rate. The resulting phoneme duration should be close to the actual duration that occurs when the speaking rate alters. This would be the same as playing an audio file faster or slower. 
 
-There are several models for phoneme duration approximation, that work pretty well for some languages, German inclusive. However, they consistently don't take the speech rate into consideration, their performance level being acquired within a specific speech rate. When this varies, model performance deteriorates, like van Santen states for his model \cite{Santen1994}. Moreover, all these models have an upper asymptote for their accuracy situated at less than 100\%. It has been suggested, that the influence of so-called ``macroscopic`` \cite{Cummins1999} or para-linguistic \cite{Santen1994} factors should be examined in order to move this asymptote further up. So we focused on speech rate. 
+There are several models for phoneme duration approximation, that work pretty well for some languages, German inclusive. However, they consistently don't take the speech rate into consideration, their performance level being acquired rather within a specific speech rate. When this varies, model performance deteriorates, like van Santen states for his model \cite{Santen1994}. Moreover, all these models have an upper asymptote for their accuracy situated at less than 100\%. It has been suggested, that the influence of so-called ``macroscopic`` \cite{Cummins1999} or para-linguistic \cite{Santen1994} factors should be examined in order to move this asymptote further up. So we focused on speech rate. 
 
-The purpose is therefore not to find another duration approximation model for TTS-systems, but to improve the algorithm of phoneme duration adjustment, given known reference phoneme and word durations, and a target word duration, as presented in Table \ref{tab:Question}. Consequently, the modified speech unit would sound more natural at a faster or a slower speech rate than being modified with a linear function. 
+The purpose is therefore not to find another duration approximation model for TTS-systems, but to improve the algorithm of phoneme duration prediction by considering the speech tempo. Table \ref{tab:Question} vizualises our challenge: we want to put all available/visible information from the table in relation so that we can replace the question marks with values that are close to the real ones. Consequently, the modified speech unit would sound more natural at a faster or a slower speech rate as when being modified with a linear function. 
 
 \begin{table}[htbp]
 \caption {The challenge} 
@@ -58,7 +58,7 @@ Durations (sec) & 0.05 & 0.07 & 0.05 & 0.11 & ?  & ?  & ?  & ? \\
 Speech rate $dur/\#phon$ & \multicolumn{4}{c||}{0.07} & \multicolumn{4}{c|}{0.11} \\
 	\hline
 \end{tabular}
-\caption*{The first column shows our inputs: duration of each phoneme in German word ``genau``, given a speech rate of 0.07 sec, or a word duration of 0.28 sec. The second column presents our challenge: how long is the duration of each phoneme of the given word, when it is spoken slower, taking e.g. 0.42 sec, speech rate of approx. 0.11 sec?}
+\caption{The first column shows our inputs: duration of each phoneme in German word ``genau``, given a speech rate of 0.07 sec, or a word duration of 0.28 sec. The second column contains our challenge: How long is the duration of each phoneme of the given word, at a speech rate of 0.11 sec, equivalent of a word length of 0.42 s ?}
 \label{tab:Question} 
 \end{table}
 
@@ -97,7 +97,7 @@ The \textbf{M5P model tree} \cite{Witten2011} is a decision tree based on the M5
 
 A \textbf{REPTree} is a decision and regression tree similar to M5P, but optimized for speed. This means it sorts values for numeric attributes only once. 
 
-Both trees 
+Both trees cope well with missing data. However, both need a very large training set in order to perform well.
 
 \section{Preparing the Data}
 A very important and time consuming step in data mining is data preparation, which is the next step after data collection. At this stage one needs to asses the quality of the data, expressed as noise ratio, and strategies for dealing with it. If the data used has been originally collected for another purpose, then it needs to be assessed in terms of features it contains, actually needed features, and organization resp. reorganization of data to serve new purpose. 
@@ -279,29 +279,23 @@ There are several duration prediction methods in use:
 	\item Klatt \cite{Klatt1979} is a rather simple method developped originally for American English. It multiplies a so-called inherent duration of given segment with a context dependent factor value and adds this to a segment specific minimal duration. Then the duration is estimated by adjusting the change coeficient successively for different factors, 11 of them being suggested by Klatt. These account for 84\% of observed total variance in segmental durations. The challenges of using this method reside in finding an appropriate inherent duration, adapting the Klatt factor values to the German language, and chosing the minimal duration to use.
 	\item CART \cite{Riley1992} is a binary classification and regression tree with questions about the influencing factors at nodes and predicted values at the leaves. It allows consideration of both categorical and continuous factors, is quite simple and easy to interpret, in contrast to e.g. neural networks, and has a good time complexity of N*logN. The challenge of selecting an appropriate feature set is solved statistically. One drawback is that it needs a huge amount of training data in order to perform well. Also its performance deteriorates significantly with noisy or sparse training data \cite{Moebius1996}.
 	\item Sums-of-products (SoP) proposed by van Santen \cite{Santen1994} generalizes the formula proposed by Klatt and uses a decision tree to group factors acting in the same direction, either lengthening or shortening the phonemes, so their effects add up (amplificatory interactions). In fact, the most important part and main challange of this model is to find an appropriate combination of factors to be used for specific phoneme groups. He didn't use speech rate as a factor, but observed that the performance of the model deteriorates when the speech rate changes. The advantage of this solution is that is copes well with noisy or missing data, and works well with much less training data than CART \cite{Moebius1996}. The application of this model for the German language by Möbius and van Santen using the PhontDat database resulted in an overall correlation coefficient of 0.896.
-	\item Neural networks. Riedi \cite{Riedi1995} implemented a feed-forward neural network with two hidden layers for the prediction of phoneme durations and obtained a slightly better correlation coefficient than CART of 0.89 vs. 0.86.
+	\item Neural networks. Riedi \cite{Riedi1995} implemented a feed-forward neural network with two hidden layers for the prediction of phoneme durations and obtained a slightly better correlation coefficient than CART of 0.89 vs. 0.86. The drawback of this model is its intransparency.
 \end{itemize}
 
 Brinckmann and Trouvain \cite{Brinckmann_2003} compared Klatt and CART methods for predicting segment duration using the PhonDat database. Their results show a significantly better performance of CART over Klatt, with values of 0.86 vs. 0.79 for the correlation coefficient, consistent with previous results. However, they also report a strong influence of  the quality of the input data on the model performance.
 
 \section{Method}
-Whichever phoneme duration prediction model one takes, and whichever size of the segment one takes in the denominator, in terms of syllable, word, foot or phrase duration... Larger the segment size, larger the number of influencing factors for phoneme duration. We opted for a progressive approach, starting at the syllable level ?.
+Our starting premise was that phoneme durations are being influenced by the speaking tempo. In addition to this, we assumed that this influence is not equal on all phonemes, and on all situations, and therefore also not linear. So we formulated our aim as to investigate the influence of speech rate on the duration of different phonemes and find a way of using this information to improve the performance of phoneme prediction models. 
 
-Our approach is based on the observation that specific phonemes, respectively phoneme groups, occupy a specific percent of the total word duration (fig. \ref{fig:boxplot_genau}), and that certain phonemes seem to modify their duration according to that of the segment they're in to a much higher degree than others, as you can see in fig. \ref{fig:w_dur_vs_pho}.
+In order to achieve this aim, we first examined the phonemes with respect to their duration. We found out that the classical phonetics book grouping of phonemes is not respected in terms of duration. There are consonants like \texttt{/N/}, and \texttt{/m/} which may be longer than some long vowels, and long vowels which are shorter than some short vowels or even several consonants, like \texttt{/y:/}. If one would apply a clustering method on phonemes to group them on seven classes based on their duration interval coordinates using, say k-means method, the resulting groups would certainly differ from those listed in Chapter 4. Fig?! 
 
-\begin{figure}[htbp]
-	\includegraphics[width=\textwidth]{../Graphen/Stats_for_genau.eps}
-	\centering
-	\caption[Word duration of ``genau`` vs. its phoneme durations]{We ordered ascendingly the 706 occurences of the word ``genau`` based on word duration and ploted recorded durations of the component phonemes against it. The picture suggests clearly that the diphthong \texttt{/aU/} occupies a rather fixed steak of the total word duration, while the others show no adjustment to the increasing word total duration. }
-	\label{fig:w_dur_vs_pho}
-\end{figure}
+Therefore we decided to capture phoneme identity as well in our model, although it inflates the number of attributes and attribute values to compute. 
 
-\begin{figure}[htbp]
-	\includegraphics[width=.55\linewidth]{../Graphen/Sound_boxplot_genau.eps}
-	\centering
-	\caption[Phoneme proportions in ``genau``]{Proportions taken by the component phonemes of ``genau`` suggest the possibility of grouping them in disjunct classes. Here we explored the phoneme distribution for a relatively short occurence of our reference word, of only 0.3 sec found 25 times. This one, as well as others, correlates well with the overall phoneme distribution on all occurences.}
-	\label{fig:boxplot_genau}
-\end{figure}
+Then we looked for a definition of speech rate that can be used to model phoneme durations. This supposed the presence of a good correlation between speech rate and phoneme duration, at least for some phoneme groups. We explained our choice whith respect to this in Chapter 5. 
+
+\section{Experiment}
+
+\section{Results}
 
 \chapter{Conclusion and Outlook}
 Our model calculates an approximation for the phoneme duration when its corresponding speech segment changes in terms of duration. It does this no matter what was the cause of the duration change in the segment. However, when speech rate changes, there are also other speech characteristics, like prosody and phoneme quality which change, and which cannot be simulated only by modifying the phoneme duration. Therefore, making speech sound natural while modifying the speech rate needs to consider and adjust these other features too.
