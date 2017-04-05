@@ -5,6 +5,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[style=numeric]{biblatex}
 \bibliography{../PaperBib}
+\usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage[outdir=../Graphen/]{epstopdf}
 \usepackage{textcomp}
@@ -113,11 +114,10 @@ Language related databases are called corpora, and for our purpose we needed one
 	\item pauses
 \end{itemize}
 
-There are three corpora which we had at our disposal: (1) The Kiel Corpus of Read (PhonDat) and of Spontaneous Speech, (2) Verbmobil, and (3) spoken Wikipedia. The first one contains two equal sized corpora of > 4 hours each: KCoRS, which is a collection of read speech, and KCoSS, which is a collection of spontaneous speech, both being manually segmented, which is a good indicator for good segmentation quality. However, as Pfitzinger \cite{Pfitzinger} also showed in his reassessment of the PhonDat-II corpus, for nowadays research the Kiel Corpus is rather small. Spoken Wikipedia is a new project comprising of a much larger collection of read speech. Unfortunately, the phoneme-level segmentation was not ready on time to evaluate in our project.
-
+There are three corpora which we had at our disposal: (1) The Kiel Corpus of Read (PhonDat) and of Spontaneous Speech, (2) Verbmobil, and (3) spoken Wikipedia. The first one contains two equal sized corpora of > 4 hours each: KCoRS, which is a collection of read speech, and KCoSS, which is a collection of spontaneous speech, both being manually segmented, which is a good indicator for good segmentation quality. However, as Pfitzinger \cite{Pfitzinger2002} also showed in his reassessment of the PhonDat-II corpus, for nowadays research the Kiel Corpus is rather small. Spoken Wikipedia is a new project comprising of a much larger collection of read speech. Unfortunately, the phoneme-level segmentation was not ready on time to evaluate in our project.
 
 \section{Verbmobil}
-The Verbmobil corpus is a database of spontaneous speech containing a collection of appointment making dialogs, fully transliterated and annotated. This was an important point in selecting this database for our purpose, as phoneme duration is influenced by many factors, and the Verbmobil textual database provides most of them. We used 286 recordings from the last verbmobil phase (Verbmobil II) created by 131 speakers. The total VMII corpus used amounts to 11783 conversational turns representing recorded speech time of 15,5 hours. The ``symbolic data`` corresponding to each turn (e.g. phonetic transcription, segmentation, labeling, etc.) is captured in so-called ``par files``, representing files in the ``BAS Partitur Format`` \cite{Burger2000}. 
+The Verbmobil corpus is a database of spontaneous speech containing a collection of appointment making dialogs, fully transliterated and annotated. This was an important point in selecting this database for our purpose, as phoneme duration is influenced by many factors, and the Verbmobil textual database provides most of them. We used 286 recordings from the last verbmobil phase (Verbmobil II) created by 131 speakers. The total VMII corpus used amounts to 11783 conversational turns representing recorded speech time of 15,5 hours. The ``symbolic data`` corresponding to each turn (e.g. phonetic transcription, segmentation, labeling, etc.) is captured in so-called ``par files``, representing files in the ``BAS Partitur Format`` \cite{Burger2000}. Our dataset included 604355 automatically labeled phoneme instances.
 
 Drawbacks of this database come mainly from the characteristics of spontaneous speech. Following natural rules, speech rate often varies significantly inside a speech turn. This means one starts his turn at a normal speech rate, then gets to a point where he/she hesitates and gets slower, like when weighting different transport means to get to the appointment they are to agree upon. This results in the challenge of finding an appropriate description for the speech rate to be used for modeling phoneme durations across the corpus. We handle this issue of speech rate separately in chapter 5. Another challenge resulting from the structure of this corpus as a collection of dialogs is speaker variation. The exact coordinates of phoneme durations vary across speakers, as one can see in Fig. \ref{fig:speaker_cmp} for the case of \texttt{/a:/}.
 
@@ -129,13 +129,26 @@ Drawbacks of this database come mainly from the characteristics of spontaneous s
 \end{figure}
 
 \chapter{Phoneme durations and the dynamics of speech}
-The phoneme inventory used in Verbmobil includes 52 classes defined according to the German SAMPA. Using the classical phonetic conventions, we can group these phonemes on a first level according to their phonetic features using a tree structure into vowels, consonants and a glottal stop, although the latter one is sometimes treated as a consonant \cite{Kohler1995}. Further relevant groupings are being examined under sections ``Vowels`` and ``Consonants``.
+The phoneme inventory used in Verbmobil includes 52 classes defined according to the German SAMPA. Using the classical phonetic conventions, we can group these phonemes on a first level according to their phonetic features using a tree structure into vowels, consonants and a glottal stop, although the latter one is sometimes treated as a consonant \cite{Kohler1995}. Vowels represent 24\% of the total phoneme inventory analyzed. Further relevant groupings are being examined under sections ``Vowels`` and ``Consonants``.
 
 Pauses may be caused and/or be quantitatively modified both by linguistic (e.g. phonological) and non-linguistic factors, like technical, psychological, dialog dynamics, etc. Consequently pause length variation needs to be treated separately from phoneme duration variation, as a not negligeable large set of other factors are to be considered for this, which extends beyond the purpose of this work.
 
 The literature records on many potential influencing factors for the duration of phonemes, which vary not only from one author to another but also from one language to another. For the German language, intuition aside, we have information on such factors provided by: Kohler \cite{Kohler1992}, Riedi \cite{Riedi1995}, Moebius \cite{Moebius1996}, and Brinckmann \& Trouvain \cite{Brinckmann_2003}, who applied some of the existent segment duration models to the German language.
 
-We selected ... because...
+As we recreated the tree model of Brinckmann \& Trouvain \cite{Brinckmann_2003} for the most part, we also selected most of the features used by them. Here just a rough listing of these factors:
+
+\begin{itemize}
+	\item phoneme id
+	\item vowel and syllable stress
+	\item manner of articulation for consonants
+	\item position of phoneme in syllable
+	\item position of syllable in word
+	\item position of word in turn
+	\item part-of-speech: function word, content word, proper name, interjection-or-answer-particle
+	\item speech rate
+\end{itemize}
+
+A detailed description of the model implementation and phoneme features used follows in Chapter 6.
 
 \section{Vowels}
 Vowels are an important class, because their variation in terms of duration correlates well with the speech rate. One can say that vowels generally tend to get proportionally longer when the words themselves are spoken slower. We obtained an overall correlation coefficient of 0.72 for vowels against speech rate. Inside the vowel group we could identify the primary stressed vowels as the actual correlation owners, with a group correlation value of 0.75, while the unstressed and secondary stressed ones showed rather modest correlation values of 0.56, resp. 0.47. 
@@ -171,16 +184,50 @@ Below an overview of the classical consonant categories.
 
 
 \chapter{Defining speech rate}
-Under speech rate one always tends to understand a fraction of something divided by total time ocupied by that something. The German word ``Sprechgeschwindigkeit`` involves the concept of ``speed`` in the equation, which would be space divided by time. In the case of speech this would be number of units divided by total time ocupied by those units. However, this approach doesn't consider the contribution of the single phoneme durations to the whole segment, but rather supposes an equal length for all phonemes in the numerator.
+Under speech rate or speech tempo we understand a measure of how fast someone speaks. This may be seen as a discrete variable, with discrete values as \textit{slow}, \textit{normal}, and \textit{fast} or as a continuous one, with continuous numerical values.  We opted for the continuous version, as it is better suited for our purpose.
 
-Speech rate may be seen as a discrete or as a continuous variable. We opted for the continuous version, as it is better suited for our purpose.
-Speech rate may be calculated as global, local or relative speech rate.
+Expressed mathematically, this would be a fraction of something divided by total time ocupied by that something. The German word ``Sprechgeschwindigkeit`` involves the concept of ``speed`` in the equation, which would be space divided by time. In the case of speech this would be number of units divided by total time ocupied by those units. This is fine, if one has a fixed time interval and is interested in the number of units that may fit in. However, this way of looking at it does not consider the fact, that the length of the unit may vary. We are not interested in variing the number of units, which should actually stay constant. We are rather interested in variing the time interval while keeping the number of units constant. This is what happends when someone is speaking faster or slower than a specific norm. Therefore we inverted the typical speed-like calculating formula, as you can see in Eq. \ref{eq1}, so we can investigate the length variation in the speech units, with focus on units = phonemes.
 
-Pfitzinger \cite{Pfitzinger1998} showed that syllable count per second is a better approximation of the real speech rate than calculating the number of phones per second. He also proposed a formula combining the two rates, which should further improve this result for the calculation of the local speech rate, which was confirmed in later studies \cite{Pfitzinger1999}.
+\begin{equation}
+\label{eq1}
+	SR = \frac{segment \quad duration}{unit\quad count}
+\end{equation}
 
-(We decided to calculate global speech rate as a ratio of number of syllables per second. As syllables were not annotated in our database, we decided to use the number of (realized?) vowels as an approximation for the number of syllables \cite{Yishan_Jiao_2015} \cite{Kohler1995}.)
+The next thing to think about is the size and identity of the fraction elements. Unit size may be phoneme, syllable or word. Variing the scope from local to globa, the segment on which we calculate speech rate may be a syllable, a word, a phrase, a speech turn or the entire corpus. In the literature \cite{Pfitzinger1998} we also found mentions about a relative speech rate, which combines the speech rate calculated to two different unit sizes.
 
-In our study we avoided expressing speech rate neither as a fraction, nor as a number. We took the segment duration (i.e. denominator) alone, varied it, and tried to figure out what happends in the numerator so that the proportion stays. In other words, what we do is to say that when the speech rate changes, the duration of changes as well. Now given one has an algorithm to predict the duration change of single words in a phrase when speech rate changes, we only care about phoneme duration change inside word of given durations.
+From the beginning, we did not consider the variant of calculating a speech rate for the entire corpus. Given its structure of dialogues recorded by many speakers, it is straightfoward that speech rate may vary tremendousely not only between speakers, but also between different speech turns, and consequently be a bad measure for characterizing our corpus. The size of a speech turn in a dialog proved to be a bad measure as well. The reason for this is again the nature of spontaneous speech as ``live`` creation of the human mind. Hesitations, thinking, and emotions have a much greater influence as in read speech, and result in a variing tempo at which we produce speech. In figure \ref{fig:SR_example} we are illustrating an example of this phenomenon.
+
+\begin{figure}[htbp]
+	\centering
+	\noindent\makebox[\textwidth]{\includegraphics[width=\paperwidth, clip]{../Graphen/SR_example.eps}}
+	\vspace{-25mm}
+	\caption[Example of speech rate variation inside a turn]{This is the content of the speech turn number 22 of speaker AAJ in dialoge g001. The closer the points are to oneanother, the faster he speaks. Orange lines mark prosodic boundaries.}
+	\label{fig:SR_example}
+\end{figure}
+
+Seing this, there is no wonder that we got no good correlation values as long as we calculated speech rate on entire turns. This got better when we reduced the size of the segment to phrase, and then further down to words. 
+An additional measure we used to evaluate how well a speech rate calculating formula may suit our purpose was the correlation value between speech rate and phoneme duration. As long vowels proved to be the most sensible to the variation of the speaking tempo, we present below the values we obtained for this group, together with the speech rate calculated at different segment sizes.
+
+%\begin{table}[htbp]
+%\caption {Duration of long vowels vs. speech rate calculated at turn, phrase, and word level} 
+%\centering
+\vspace{10mm}
+\begin{tabular}{|l|l|}
+\hline
+Segment	 & Correlation coefficient (Pearson)\\
+\hline
+\hline
+Turn 		&0.727178570436 \\
+	\hline
+Phrase  &\\
+	\hline
+Word  &  0.794901825792\\
+	\hline
+\end{tabular}
+%\end{table}
+
+%\end{table}
+
 
 \chapter{Phoneme duration prediction models}
 There are several duration prediction methods in use: 
