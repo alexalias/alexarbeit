@@ -329,9 +329,28 @@ After pruning, the \textit{word} related features got completely eliminated, tog
 To this collection of features we added \textit{speech rate} in the second phase and compare the results. 
 
 \section{Results}
-We trained and evaluated both a M5P and a REPTree model. The results were very similar, so present here only the results obtained using the model tree M5P, as they were slightly better. As can be seen in Table ... adding the speech rate feature caused a significant improvement of all our models. 
+We trained and evaluated both a M5P and a REPTree model. The results were very similar, so present here only the results obtained using the model tree M5P, as they were slightly better. As can be seen in Table \ref{tab:perfM} adding the speech rate feature caused a significant improvement on all our models. 
 
-Table
+\begin{table}[htbp]
+\centering
+%\vspace{10mm}
+\begin{tabular}{|l|c|c|c|c|}
+
+\hline
+	 & Basic - SR & Basic + SR & M5P - SR & M5P + SR \\
+\hline
+\hline
+Correlation coef 		& 0.42  &  & 0.5 & 0.79\\
+	\hline
+MAE  &  0.31 & & 34.21 & 25.19 \\
+	\hline
+RMSE  &  0.47 & & 62.91 & 44.7 \\
+	\hline
+
+\end{tabular}
+\caption{} 
+\label{tab:perfM}
+\end{table}
 
 However, the performance of our model tree is smaller than the performance of the CART built by Brinckmann \& Trouvain \cite{Brinckman2003}. This is explainable if we consider the nature of the used datasets. The CART tree used PhonDat, a rather homogenous dataset in terms of speech rate and number of speakers. Furthermore, the model was trained and tested separately on data produced by one speaker. The reported results show even for PhonDat a difference in performance between speakers. Another aspect that can have a great impact on the model result is the quality of the input data. While PhonDat was manually segmented and annotated, Verbmobil was processed automatically using the MAUS segmentation system. When evaluating outliers we found many examples of wrong segmentation, as we also discussed in Section 4.2.
 
