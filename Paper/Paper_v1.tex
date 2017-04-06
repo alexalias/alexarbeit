@@ -177,8 +177,40 @@ We identified following vowel categories as being relevant for our purpose:
 	\item Diphthongs represent two vowels that are articulated together in a syllable. They are generally characterized by longer durations. German knows three diphthongs: \texttt{/aI/, /aU/} and \texttt{/OY/} as in \textit{Haus} \texttt{/haUs/},  \textit{heiß} \texttt{/haIs/} and \textit{moin} \texttt{/mOYn/}. We considered them as a separate group, as they are generally longer than all other phonemes.
 	\item Schwa: most frequent vowel in German as well as in English. It is also called a reduction vowel \cite{Kohler1995}, as most of the other monophthongs tend to be articulated as schwa in non-stressed vowels. Verbmobil differentiates two types of schwa for the German language: \texttt{/@/} like in the last syllable of \textit{lesen} and \texttt{/6/} like in \textit{Leser}, where the reduced vowel is followed by an \texttt{/r/}.
 	\item Long vowels. As long vowels usually carry the primary stress, as some german phonetics manuals such as the one of Kohler \cite{Kohler1995} suggest, we considered the long vowels as a standalone subclass of vowels. The correlation value for the long vowel group is even greather than that of the primary stressed one, amounting to 0.79.
-	\item Short vowels in opposition to the above mentioned vowel categories.
+	\item Short vowels, in opposition to the above mentioned vowel categories, group phonemes that are to be considered as vowels from the point of view of their production, but which show a relatively low elasticity with respect to duration, if we compare them to the other three vowel groups.
 \end{itemize}
+
+Table \ref{tab:vowel_stats} below presents the main duration information regarding the above mentioned classes, sustaining our comments on them.
+\begin{table}[htbp]
+\centering
+%\vspace{10mm}
+\begin{tabular}{|l|c|c|c|c|c|c|c|}
+
+\hline
+	 & Min value & Max value & Mean & St. Dev. & Q25 & Q75 & Count\\
+\hline
+\hline
+Diphthongs  	& .04  & .71 & .12 & .06 & .08 & .15 & 8495\\
+	\hline
+Long vowels   & .04 & 2.3 &  .11 & .08 & .06 & .13 & 30425\\
+	\hline
+Schwa  &  .03 & 1.02 & .08 & .07 & .04 & .09 & 21637 \\
+	\hline
+Short vowels & .03 & .81 & .07 & .04 & .04 & .08 & 42570 \\
+	\hline
+\end{tabular}
+\caption*{} 
+\label{tab:vowel_stats}
+\end{table}
+
+The vowel tree can be continued further down, introducing several further quality related features from the domain of the articulation manner, which leads to single phonemes at the leaves. However, our purpose was to group vowels, in order to get an overview about the phoneme durations for the beginning, so we don't go further down the tree, but just show for the record fig. \ref{fig:vow_square} on locating vowels according to their place of creation.
+
+\begin{figure}[htbp]
+	\includegraphics[width=.55\linewidth]{../Graphen/vow_art.eps}
+	\centering
+	\caption[Vowel square]{Vowels are produced by the air flow in an open vowel tract, and they differ based on the modification we add to the shape of this cavity. The only way for humans to produce such modifications are by moving the thongue and/or the lips. These changes are usually represented in the so-called vowel square, which may be further simplified to a vowel triangle. Here you can see how to place a vowel square containing the main vowels in the mouth cavity. }
+	\label{fig:vow_square}
+\end{figure}
 
 \section{Glottal stop}
 The glottal stop occurs 13 348 times and only word initially in our database, marked with \texttt{/Q/}. We decided to treat it separately because of its particular usage in German: it may occur only at the beginning of a word or a word stem and in front of a vowel. Some phonetic manuals don't event consider it a phoneme \cite{Ternes2012}. Furthermore, it's acoustical properties make it look like a (filled) pause in speech, as you may see in Fig. ..., which represents a challenge for the transcription. As our files were segmented automatically, there is place for doubt about the accuracy of the collected data for \texttt{/Q/}.
@@ -188,18 +220,46 @@ However, unlike pauses we did consider it  for analysis, as it is has an importa
 The information collected from our database show a very large variation of it's duration from 0.04 sec. to 2.05 sec., with $\sigma = 0.06$, consistent with the official data on the complete VMII. However, if we remove the upper 0.8 \% of the duration data, we obtain a dataset having only half of the mentioned variation with $\sigma = 0.03$ and a maximum duration of 0.3 seconds. We checked manually some of the largest outliers and they proved to be a result of wrong segmentation. Their real duration was within the first 2 thirds of the data.
 
 \section{Consonants}
+In general, we can say that consonants present different degrees of elasticity, which are, however, generally lower than the ones of vowels.
+
 Based on the correlation between phoneme duration and speech rate we created a subgroup of consonants containing the nasals and \texttt{/x/, /C/, /h/} with a relatively good correlation value $\geq 0.7$, and considered plosives to be a subgroup because of their consistently low correlation $\leq 0.42$.
 
 A big surprize in the Verbmobil dataset was the huge duration variation of the plosive /t/, which was even greater than most of the fricatives. Evaluation of some samples showed this to be a result of wrong segmentation in the context /ts/, giving /t/ the longer duration and /s/ the shorter one. Another explanation would be that the phase before the release phase may indeed be relatively long.
 
-Below an overview of the classical consonant categories.
+Same as vowels, the consonant branch of the tree may be split further down into smaller categories. We chose to include them in our phoneme overview, as some of these categories proved to be relevant for the modelling of phoneme durations as well. Consequently, level 2 split shows for for the consonant node following categories:
 \begin{itemize}
-	\item Plosives, which are generally short, is due to their articulation characteristics.
-	\item Fricatives, which show a legth variation almost comparable to that of vowels.
-	\item Nasals: /m/, /n/, /N/.
-	\item Specials: /h/, /l/, /C/, /j/, /r/
+	\item Plosives, which are generally short, due to their articulation characteristics. Their production involves two separate phases: closure, when the vocal tract is completely closed, and release, when the accumulated air flow is let out as in a burst. Considering this, it is straightforward, that the first phase may be longer, limited only by the human physiology, while the second one is technically extremely short. Some speech corpora, like PhonDat, label the two phases differently. Verbmobil doesn't, so we had to take them as a whole. We keep these considerations in mind, when referring to the special case of \texttt{/t/} that we found in our corpus.
+	\item Fricatives, which show a duration variation almost comparable to that of vowels. This fact can also be explained by their production process: the vocal tract is not completely closed, but the air flow is forced out through a narrowing at some point in the vocal tract, so that a friction sound is produced.
+	\item Nasals also show an elasticity comparable to that of vowels. Again this is explainable through their production: the oral passage is blocked, while lowering the velum, so that the air can escape through the nose. Nasals may also constitute the nucleus of a syllable, when the vowel gets reduced. /m/, /n/, /N/.
+	\item Liquids, also called approximants, are produced by partial closure of the mouth produced by the thongue. German knows two liquids \texttt{/l/, /r/}.   One relevant feature is that they have the greatest freedom to occur in consonant clusters, that is a group of consonants belonging to the same syllable part. This also means that they must be particularly short, as we identified vowels as the greater steak holders in word duration. Another fact we considered, is the \texttt{/r/} is relatively seldom in German, being often reduced to a schwa, and when it is articulated, then it is generally extremely short, which durations comparable to the ones of the glottal stop.
 \end{itemize}
 
+Plosives and fricatives may be split further down into voiced, if the vocal cords are participating in the production of the sound, and voiceless, when the vocal cords do not participate. We didn't analyse these groups in particular, as we focused on vowels. 
+
+Table \ref{tab:cons_stats} below presents the main duration information regarding the above mentioned classes, sustaining our comments on them.
+\begin{table}[htbp]
+\centering
+%\vspace{10mm}
+\begin{tabular}{|l|c|c|c|c|c|c|c|}
+
+\hline
+	 & Min value & Max value & Mean & St. Dev. & Q25 & Q75 & Count\\
+\hline
+\hline
+Plosives  	& .03  & 1.50 & .06 & .05 & .03 & .07 & 45477\\
+	\hline
+Fricatives   & .03 & 1.89 &  .06 & .05 & .03 & .08 & 51667\\
+	\hline
+Nasals  &  .03 & 1.46 & .08 & .08 & .04 & .09 & 39936 \\
+	\hline
+Liquids /l/ & .03 & 1.51 & .06 & .06 & .03 & .07 & 8019 \\
+	\hline
+Liquids /r/ & .03 & .46 & .05 & .03 &  .03 & .06 & 5453 \\
+	\hline
+\end{tabular}
+\caption{} 
+\label{tab:cons_stats}
+\end{table}
 
 \chapter{Speech rate}
 Speech rate is a measurement of the ``tempo`` of speech, that is how quickly someone speaks. This may be seen as a discrete/qualitative measure, with discrete values as \textit{slow}, \textit{normal}, and \textit{fast} or as a continuous one, with continuous numerical values.  We opted for the continuous version, because it is quantifyable and so can be a useful input into a regression, see Section 2.1.1.
@@ -346,7 +406,6 @@ MAE  &  31.02 & & 34.21 & 25.19 & 22.46 / 21.40\\
 	\hline
 RMSE  &  47.09 & & 62.91 & 44.70 & NA \\
 	\hline
-
 \end{tabular}
 \caption{Overview of the performance results of 3 models with (+) and without (-) speech rate (SR). CART is the model created by Brinckmann \& Trouvain \cite{Brinckmann_2003}. The two values in the CART cells represent the performance obtained for 2 different speakers.} 
 \label{tab:perfM}
