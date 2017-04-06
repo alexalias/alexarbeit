@@ -147,29 +147,29 @@ Drawbacks of this database come mainly from the characteristics of spontaneous s
 \end{figure}
 
 \chapter{Phoneme durations and the dynamics of speech}
-The phoneme inventory used in Verbmobil includes 52 classes defined according to the German SAMPA. Using the classical phonetic conventions, we can group these phonemes on a first level according to their phonetic features using a tree structure into vowels, consonants and a glottal stop, although the latter one is sometimes treated as a consonant \cite{Kohler1995}. Vowels represent 24\% of the total phoneme inventory analyzed. Further relevant groupings are being examined under sections ``Vowels`` and ``Consonants``.
+The phoneme inventory used in Verbmobil includes 52 classes defined according to the German SAMPA. However, only 49 of these occur in the examined corpus. The missing ones are \texttt{/2/} as in \textit{Ökonom}, and the nasals \texttt{/E\~/} and \texttt{/O\~/} as in the loanwords \textit{Teint, Saison}. Using the classical phonetic conventions, we can group these phonemes using a tree structure. The first branching splits them into vowels, consonants and a glottal stop, although the latter one is sometimes treated as a consonant \cite{Kohler1995}. Vowels represent 24\% of the total phoneme inventory analyzed. Further relevant groupings are being examined under sections ``Vowels`` and ``Consonants``.
 
 Pauses may be caused and/or be quantitatively modified both by linguistic (e.g. phonological) and non-linguistic factors, like technical, psychological, dialog dynamics, etc. Consequently pause length variation needs to be treated separately from phoneme duration variation, as a not negligeable large set of other factors are to be considered for this, which extends beyond the purpose of this work.
 
-The literature records on many potential influencing factors for the duration of phonemes, which vary not only from one author to another but also from one language to another. For the German language, intuition aside, we have information on such factors provided by: Kohler \cite{Kohler1992}, Riedi \cite{Riedi1995}, Moebius \cite{Moebius1996}, and Brinckmann \& Trouvain \cite{Brinckmann_2003}, who applied some of the existent segment duration models to the German language.
-
-As we recreated the tree model of Brinckmann \& Trouvain \cite{Brinckmann_2003} for the most part, we also selected most of the features used by them. Here just a rough listing of these factors:
-
-\begin{itemize}
-	\item phoneme id
-	\item vowel and syllable stress
-	\item manner of articulation for consonants
-	\item position of phoneme in syllable
-	\item position of syllable in word
-	\item position of word in turn
-	\item part-of-speech: function word, content word, proper name, interjection-or-answer-particle
-	\item speech rate
-\end{itemize}
-
-A detailed description of the model implementation and phoneme features used follows in Chapter 6.
-
 \section{Vowels}
-Vowels are an important class, because their variation in terms of duration correlates well with the speech rate. One can say that vowels generally tend to get proportionally longer when the words themselves are spoken slower. We obtained an overall correlation coefficient of 0.72 for vowels against speech rate. Inside the vowel group we could identify the primary stressed vowels as the actual correlation owners, with a group correlation value of 0.75, while the unstressed and secondary stressed ones showed rather modest correlation values of 0.56, resp. 0.47. 
+Vowels are an important class, because they show a high degree of elasticity in terms of duration, and correlate well with the speech rate. The minimum value recorded for vowels lies at 0.03 sec, while their maximum is 2.3 sec. The variation inside the value group may be expressed in terms of standard deviation with a $\sigma$ value of 0.07 sec. However, most values lie within a much smaller range, and 75\% of the vowels are shorter than 0.1 sec. If we remove 1\% of the data at the higher end, $\sigma$ reduces to 0.5 sec and the maximum duration at 0.3 sec. After carefully analyzing some of the outliers, we decided to keep them. We observed that some vowels may last as long a one can hold breath, like in the case of \texttt{/a:/}. Due to this high elasticity, vowels are the best candidates to start working on any phoneme duration model, as they are extremely sensitive to duration influencing factors. 
+
+One can say that vowels generally tend to get proportionally longer when the words themselves are spoken slower. We investigated this assumption by comparing the vowel duration inside words containing a specific number of phonemes, as well as the variation of the word time proportion occupied by them in such words. The results confirmed this hypothesis, as you may see in fig. \ref{fig:w_dur_vs_pho} and \ref{fig:boxplot_prop}. This also means that it is a good idea to look for the correlation between vowels and speech rate. We obtained an overall correlation coefficient of 0.72 for vowels against speech rate. Inside the vowel group we could identify the primary stressed vowels as the actual correlation owners, with a group correlation value of 0.75, while the unstressed and secondary stressed ones showed rather modest correlation values of 0.56, resp. 0.47. 
+
+\begin{figure}[htbp]
+	\noindent\makebox[\textwidth]{\includegraphics[width=\textwidth, clip]{../Graphen/Stats_for_genau.eps}}
+	\centering
+	\vspace{-10mm}
+	\caption[Word duration of ``genau`` vs. its phoneme durations]{We ordered ascendingly the 706 occurences of the word ``genau`` based on word duration and ploted recorded durations of the component phonemes against it. The picture suggests clearly that the diphthong \texttt{/aU/} occupies a rather fixed steak of the total word duration, while the others show no adjustment to the increasing word total duration. }
+	\label{fig:w_dur_vs_pho}
+\end{figure}
+
+\begin{figure}[htbp]
+	\includegraphics[width=.55\linewidth]{../Graphen/box3_oyauaiaab.eps}
+	\centering
+	\caption[Proportions of diphthong in 3-phoneme-words]{The time slice occupied by vowels in words of specific length  vary relatively little, indicating a possible linear correlation between phoneme duration and the variation of word duration. The y-axis measures time in sec.}
+	\label{fig:boxplot_prop}
+\end{figure}
 
 We identified following vowel categories as being relevant for our purpose:
 
@@ -276,7 +276,7 @@ Our starting premise was that phoneme durations are being influenced by the spea
 
 In order to achieve this aim, we first examined the phonemes with respect to their duration. We found out that the classical phonetics book grouping of phonemes is not respected in terms of duration. There are consonants like \texttt{/N/}, and \texttt{/m/} which may be longer than some long vowels, and long vowels which are shorter than some short vowels or even several consonants, like \texttt{/y:/}. If one would apply a clustering method on phonemes to group them on seven classes based on their duration interval coordinates using, say k-means method, the resulting groups would certainly differ from those listed in Chapter 4. Fig?! 
 
-Therefore we decided to capture phoneme identity in our model as well, although it inflates the number of attributes and attribute values to compute. The relation between phoneme duration and factors other than speech rate was treated only marginally, as these have already been extensively examined in the literature on various corpora. At this stage, we considered such factors only to the extent they might have helped identify groups of phonemes that may be best suited to evaluate the influence of speech rate. Such a factor is primary stress, which creates a group of very elastic vowels, which are therefore also sensitive to changes in speech tempo.
+Therefore we decided to capture phoneme identity in our model as well, although it inflates the number of attributes and attribute values to compute. The relation between phoneme duration and factors other than speech rate was treated only marginally, as these have already been extensively examined in the literature on various corpora. For the German language, intuition aside, we have information on such factors provided by: Kohler \cite{Kohler1992}, Riedi \cite{Riedi1995}, Moebius \cite{Moebius1996}, and Brinckmann \& Trouvain \cite{Brinckmann_2003}, who applied some of the existent segment duration models to the German language.At this stage, we considered such factors only to the extent they might have helped identify groups of phonemes that may be best suited to evaluate the influence of speech rate. Such a factor is primary stress, which creates a group of very elastic vowels, which are therefore also sensitive to changes in speech tempo.
 
 Then we looked for a definition of speech rate that can be used to model phoneme durations. This supposed the presence of a good correlation between speech rate and phoneme duration, at least for some phoneme groups. We explained our choice whith respect to this in Chapter 5. 
 The fact, that speech rate doesn't show any correlation with some phonemes, like \texttt{/r/}, while it has a pretty good correlation with others, like \texttt{/a:/} suggests the need for classification in whichever model we choose.
