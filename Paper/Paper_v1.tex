@@ -354,7 +354,7 @@ RMSE  &  47.09 & & 62.91 & 44.70 & NA \\
 
 However, the performance of our model tree is smaller than the performance of the CART built by Brinckmann \& Trouvain \cite{Brinckmann_2003}. This is explainable if we consider the nature of the used datasets. The CART tree used PhonDat, a rather homogenous dataset in terms of speech rate and number of speakers. Furthermore, the model was trained and tested separately on data produced by one speaker. The reported results show even for PhonDat a difference in performance between speakers. Another aspect that can have a great impact on the model result is the quality of the input data. While PhonDat was manually segmented and annotated, Verbmobil was processed automatically using the MAUS segmentation system. When evaluating outliers we found many examples of wrong segmentation, as we also discussed in Section 4.2.
 
-On the other hand, our model tree shows robustness with respect to factors like inter-speaker variability and speech rate. The results obtained for a test set containing data from a speaker not included in the training data were similar to those obtained on known speakers on terms of correlation coefficient, and showed less error rates, as can be seen in table .... Moreover, if the model is to be evaluated on data produced by only one speaker, it produces good results even when using less than 10\% of the amount of data used to train on the multiple speaker corpus. The most frequent speaker in our database still only has 185 recorded turns, consisting of 9315 identifyiable uttered phonemes, which represent 0.02\% of the total phoneme instances in our corpus, so we could not test our model on a larger dataset of a single speaker. In comparison to this, the dataset used for CART contained 624 sentences, and a total of 4932 orthographically different words, which results in more than a double sized corpus.
+On the other hand, our model tree shows robustness with respect to factors like inter-speaker variability and speech rate. The results obtained for a test set containing data from a speaker not included in the training data were similar to those obtained on known speakers on terms of correlation coefficient, and showed less error rates, as can be seen in table \ref{tab:perfM5P}. Moreover, if the model is to be evaluated on data produced by only one speaker, it produces good results even when using less than 10\% of the amount of data used to train on the multiple speaker corpus. The most frequent speaker in our database still only has 185 recorded turns, consisting of 9315 identifyiable uttered phonemes, which represent 0.02\% of the total phoneme instances in our corpus, so we could not test our model on a larger dataset of a single speaker. In comparison to this, the dataset used for CART contained 624 sentences, and a total of 4932 orthographically different words, which results in more than a double sized corpus.
 
 \begin{table}[htbp]
 \centering
@@ -373,8 +373,8 @@ RMSE  &  40.36 & 33.87 & 40.30 \\
 	\hline
 
 \end{tabular}
-\caption{} 
-\label{tab:perfM}
+\caption{Overview of the performance of our M5P model tree on different training and test sets.} 
+\label{tab:perfM5P}
 \end{table}
 
 \chapter{Conclusion and Outlook}
