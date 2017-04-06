@@ -291,7 +291,7 @@ For the sake of comparison, and to see whether we lie on the right track, we cre
 	\item The second one build a two level tree, which split the root on the 49 realized phonemes, and then each phoneme on two specific speech rate values. The leaves contained three predicted values for each phoneme. These values were calculated using the mean duration of the specific phoneme across the corpus modified or not by a proportion of its standard deviation, based on the speech rate value split. Figure ... shows the structure of this tree. 
 \end{enumerate}
 
-As the results of the initial two models were encouraging, we proceeded with a ``real`` model. For this, we reconstructed to a great extent a previous experiment \cite{Brinckman2003} that used a CART tree to predict phoneme duration, and reached good approximation values. By using this model we also had the advantage of having a reference for comparison. There is only one feature out of the 19 used in that experiment, which we could not recreate: degree of word accentuation. We lacked prosodic information for doing this. However, we tried to capture this kind of information by adding two extra word type classes: emphatic function words, like interjections and answer particles, and emphatic content words, like proper names and spelled items. For such words it is generally known that they usually carry phrasal stress.
+As the results of the initial two models were encouraging, we proceeded with a ``real`` model. For this, we reconstructed to a great extent a previous experiment \cite{Brinckmann_2003} that used a CART tree to predict phoneme duration, and reached good approximation values. By using this model we also had the advantage of having a reference for comparison. There is only one feature out of the 19 used in that experiment, which we could not recreate: degree of word accentuation. We lacked prosodic information for doing this. However, we tried to capture this kind of information by adding two extra word type classes: emphatic function words, like interjections and answer particles, and emphatic content words, like proper names and spelled items. For such words it is generally known that they usually carry phrasal stress.
 
 Next, we pruned the used feature space by using two feature selection algorithms: forward and backward feature selection. Their principle is easy to understand and they are available in Weka. Consequently, following features were selected:
 
@@ -334,27 +334,48 @@ We trained and evaluated both a M5P and a REPTree model. The results were very s
 \begin{table}[htbp]
 \centering
 %\vspace{10mm}
+\begin{tabular}{|l|c|c|c|c|c|}
+
+\hline
+	 & Basic - SR & Basic + SR & M5P - SR & M5P + SR & CART\\
+\hline
+\hline
+Correlation coef 		& .42  &  & .50 & .79 & .86 / .83\\
+	\hline
+MAE  &  31.02 & & 34.21 & 25.19 & 22.46 / 21.40\\
+	\hline
+RMSE  &  47.09 & & 62.91 & 44.70 & NA \\
+	\hline
+
+\end{tabular}
+\caption{Overview of the performance results of 3 models with (+) and without (-) speech rate (SR). CART is the model created by Brinckmann \& Trouvain \cite{Brinckmann_2003}. The two values in the CART cells represent the performance obtained for 2 different speakers.} 
+\label{tab:perfM}
+\end{table}
+
+However, the performance of our model tree is smaller than the performance of the CART built by Brinckmann \& Trouvain \cite{Brinckmann_2003}. This is explainable if we consider the nature of the used datasets. The CART tree used PhonDat, a rather homogenous dataset in terms of speech rate and number of speakers. Furthermore, the model was trained and tested separately on data produced by one speaker. The reported results show even for PhonDat a difference in performance between speakers. Another aspect that can have a great impact on the model result is the quality of the input data. While PhonDat was manually segmented and annotated, Verbmobil was processed automatically using the MAUS segmentation system. When evaluating outliers we found many examples of wrong segmentation, as we also discussed in Section 4.2.
+
+On the other hand, our model tree shows robustness with respect to factors like inter-speaker variability and speech rate. The results obtained for a test set containing data from a speaker not included in the training data were similar to those obtained on known speakers on terms of correlation coefficient, and showed less error rates, as can be seen in table .... Moreover, if the model is to be evaluated on data produced by only one speaker, it produces good results even when using less than 10\% of the amount of data used to train on the multiple speaker corpus. The most frequent speaker in our database still only has 185 recorded turns, consisting of 9315 identifyiable uttered phonemes, which represent 0.02\% of the total phoneme instances in our corpus, so we could not test our model on a larger dataset of a single speaker. In comparison to this, the dataset used for CART contained 624 sentences, and a total of 4932 orthographically different words, which results in more than a double sized corpus.
+
+\begin{table}[htbp]
+\centering
+%\vspace{10mm}
 \begin{tabular}{|l|c|c|c|c|}
 
 \hline
-	 & Basic - SR & Basic + SR & M5P - SR & M5P + SR \\
+	 & \shortstack{Train: whole \\ Test: unseen speaker} & \shortstack{Train\&Test (+SR): \\ speaker AKX} & \shortstack{Train\&Test (-SR): \\ speaker AKX} \\ 
 \hline
 \hline
-Correlation coef 		& 0.42  &  & 0.5 & 0.79\\
+Correlation coef 		& .76   & .75 & .63 \\
 	\hline
-MAE  &  0.31 & & 34.21 & 25.19 \\
+MAE  &  22.91 & 22.47 & 26.95 \\
 	\hline
-RMSE  &  0.47 & & 62.91 & 44.7 \\
+RMSE  &  40.36 & 33.87 & 40.30 \\
 	\hline
 
 \end{tabular}
 \caption{} 
 \label{tab:perfM}
 \end{table}
-
-However, the performance of our model tree is smaller than the performance of the CART built by Brinckmann \& Trouvain \cite{Brinckman2003}. This is explainable if we consider the nature of the used datasets. The CART tree used PhonDat, a rather homogenous dataset in terms of speech rate and number of speakers. Furthermore, the model was trained and tested separately on data produced by one speaker. The reported results show even for PhonDat a difference in performance between speakers. Another aspect that can have a great impact on the model result is the quality of the input data. While PhonDat was manually segmented and annotated, Verbmobil was processed automatically using the MAUS segmentation system. When evaluating outliers we found many examples of wrong segmentation, as we also discussed in Section 4.2.
-
-On the other hand, our model tree shows robustness with respect to factors like inter-speaker variability and speech rate. The results obtained for a test set containing data from a speaker not included in the training data were similar to those obtained on known speakers on terms of correlation coefficient, and showed less error rates, as can be seen in table .... Moreover, if the model is to be evaluated on data produced by only one speaker, it produces good results even when using less than 10\% of the amount of data used to train on the multiple speaker corpus. The most frequent speaker in our database still only has 185 recorded turns, consisting of 9315 identifyiable uttered phonemes, which represent 0.02\% of the total phoneme instances in our corpus, so we could not test our model on a larger dataset of a single speaker. In comparison to this, the dataset used for CART contained 624 sentences, and a total of 4932 orthographically different words, which results in more than a double sized corpus.
 
 \chapter{Conclusion and Outlook}
 Our model calculates an approximation for the phoneme duration when its corresponding speech segment changes in terms of duration. It does this no matter what was the cause of the duration change in the segment. However, when speech rate changes, there are also other speech characteristics, like prosody and phoneme quality which change, and which cannot be simulated only by modifying the phoneme duration. Therefore, making speech sound natural while modifying the speech rate needs to consider and adjust these other features too.
