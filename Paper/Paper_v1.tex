@@ -201,14 +201,16 @@ Below an overview of the classical consonant categories.
 \end{itemize}
 
 
-\chapter{Defining speech rate}
-Under speech rate or speech tempo we understand a measure of how fast someone speaks. This may be seen as a discrete variable, with discrete values as \textit{slow}, \textit{normal}, and \textit{fast} or as a continuous one, with continuous numerical values.  We opted for the continuous version, as it is better suited for our purpose.
+\chapter{Speech rate}
+Speech rate is a measurement of the ``tempo`` of speech, that is how quickly someone speaks. This may be seen as a discrete/qualitative measure, with discrete values as \textit{slow}, \textit{normal}, and \textit{fast} or as a continuous one, with continuous numerical values.  We opted for the continuous version, because it is quantifyable and so can be a useful input into a regression, see Section 2.1.1.
 
-Expressed mathematically, this would be a fraction of something divided by total time ocupied by that something. The German word ``Sprechgeschwindigkeit`` involves the concept of ``speed`` in the equation, which would be space divided by time. In the case of speech this would be number of units divided by total time ocupied by those units. This is fine, if one has a fixed time interval and is interested in the number of units that may fit in. However, this way of looking at it does not consider the fact, that the length of the unit may vary. We are not interested in variing the number of units, which should actually stay constant. We are rather interested in variing the time interval while keeping the number of units constant. This is what happends when someone is speaking faster or slower than a specific norm. Therefore we inverted the typical speed-like calculating formula, as you can see in Eq. \ref{eq1}, so we can investigate the length variation in the speech units, with focus on units = phonemes.
+Expressed mathematically, speech rate can be defined similarly to speed in spatial displacement, which would be distance covered by time. In the case of speech, distance is not counted in the spatial domain but in relevant linguistic units. Other than in the case of distance, the length of the speech units is not standardized (like kilometers, miles, etc.). Moreover it's size is also expressed in units of time: phoneme \texttt{/a/} has the length of x seconds, miliseconds, etc. 
+
+This is fine, if one has a fixed time interval and is interested in the number of units that may fit in. However, this way of looking at it does not consider the fact, that the length of the unit may vary. We are not interested in variing the number of units, which should actually stay constant. We are rather interested in variing the time interval while keeping the number of units constant. This is what happens when someone is speaking faster or slower than a specific norm. Therefore we inverted the typical speed-like calculating formula, as you can see in Eq. \ref{eq1}, so we can investigate the length variation in the speech units, with focus on units = phonemes.
 
 \begin{equation}
 \label{eq1}
-	SR = \frac{segment \quad duration}{unit\quad count}
+	SR = \frac{word \quad duration}{phoneme\quad count}
 \end{equation}
 
 The next thing to think about is the size and identity of the fraction elements. Unit size may be phoneme, syllable or word. Variing the scope from local to globa, the segment on which we calculate speech rate may be a syllable, a word, a phrase, a speech turn or the entire corpus. In the literature \cite{Pfitzinger1998} we also found mentions about a relative speech rate, which combines the speech rate calculated to two different unit sizes.
@@ -251,26 +253,11 @@ Word  & $word\_dur / phon\_count$ &  0.794901825792\\
 \end{table}
 
 \begin{figure}[htbp]
-\centering
-	\begin{subfigure}[h]{0.48\textwidth}
-	\centering
-	\includegraphics[width=\textwidth]{../Graphen/SR_turn.eps}
-	\label{fig:tsr}
-	\end{subfigure}
-\hfill
-	\begin{subfigure}[h]{0.48\textwidth}
-	\centering
-	\includegraphics[width=\textwidth]{../Graphen/SR0.eps}
-	\label{fig:phraseSR}
-	\end{subfigure}
-\hfill
-	\begin{subfigure}[h]{0.48\textwidth}
 	\centering
 	\includegraphics[width=\textwidth]{../Graphen/SR4.eps}
-	\label{fig:wsr}
-	\end{subfigure}
-\caption[Speech rate vs long vowel duration]{Phoneme durations measured in msec plotted against different speech rates.}
-\label{fig:SR_corr}
+	\label{fig:}
+\caption[Speech rate vs long vowel duration]{Phoneme durations measured in msec plotted against speech rates.}
+\label{fig:wsr}
 \end{figure}
 
 \chapter{Phoneme duration prediction models}
@@ -289,11 +276,48 @@ Our starting premise was that phoneme durations are being influenced by the spea
 
 In order to achieve this aim, we first examined the phonemes with respect to their duration. We found out that the classical phonetics book grouping of phonemes is not respected in terms of duration. There are consonants like \texttt{/N/}, and \texttt{/m/} which may be longer than some long vowels, and long vowels which are shorter than some short vowels or even several consonants, like \texttt{/y:/}. If one would apply a clustering method on phonemes to group them on seven classes based on their duration interval coordinates using, say k-means method, the resulting groups would certainly differ from those listed in Chapter 4. Fig?! 
 
-Therefore we decided to capture phoneme identity as well in our model, although it inflates the number of attributes and attribute values to compute. 
+Therefore we decided to capture phoneme identity in our model as well, although it inflates the number of attributes and attribute values to compute. The relation between phoneme duration and factors other than speech rate was treated only marginally, as these have already been extensively examined in the literature on various corpora. At this stage, we considered such factors only to the extent they might have helped identify groups of phonemes that may be best suited to evaluate the influence of speech rate. Such a factor is primary stress, which creates a group of very elastic vowels, which are therefore also sensitive to changes in speech tempo.
 
 Then we looked for a definition of speech rate that can be used to model phoneme durations. This supposed the presence of a good correlation between speech rate and phoneme duration, at least for some phoneme groups. We explained our choice whith respect to this in Chapter 5. 
+The fact, that speech rate doesn't show any correlation with some phonemes, like \texttt{/r/}, while it has a pretty good correlation with others, like \texttt{/a:/} suggests the need for classification in whichever model we choose.
 
 \section{Experiment}
+In order to test whether our definition of speech rate has an influence on the prediction of the exact phoneme duration by comparing a duration prediction model with and without a feature for speech rate. We chose a tree model, because it is simple to implement, and to interpret. One can easily examine this kind of model to see which features are being used, and which weights they bear. 
+
+We first reconstructed to a great extent a previous experiment \cite{Brinckmann2003} that used a CART tree to predict phoneme duration, and reached good approximation values, because we wanted to have a reference for comparison. There is only one feature out of the 19 used in that experiment, which we could not recreate: degree of word accentuation. We lacked prosodic information for doing this. However, we tried to capture this kind of information by adding two extra word type classes: emphatic function words, like interjections and answer particles, and emphatic content words, like proper names and spelled items.
+
+Next, we pruned the used feature space by using two feature selection algorithms: forward and backward feature selection. Consequently, following features were selected:
+
+\begin{itemize}
+	\item PHONEME INSTRINSIC FEATURES
+
+	\begin{itemize}
+		\item phoneme id: all the 52 phoneme definitions used in Verbmobil
+		\item phoneme type: vowel, or consonant
+		\item articulation manner: vowel, plosive, fricative, nasal, lateral, approximant, other
+	\end{itemize}
+
+	\item SYLLABLE RELATED FEATURES
+
+	\begin{itemize}
+		\item position of phoneme in syllable: initial, final
+		\item syllable part containing current phoneme: onset, nucleus, code, single-phoneme-syllable
+		\item lexical stress of the syllable (using the stress type of the nucleus vowel)
+	\end{itemize}
+
+	\item PHONEMIC CONTEXT
+
+	\begin{itemize}
+		\item previous phoneme type: vowel, consonant, or none
+		\item following phoneme type: vowel, or consonant, or none
+		\item articulation manner of following phoneme: vowel, plosive, fricative, nasal, lateral, approximant, other, none
+		\item if following phoneme is voiced: yes, no, or none
+		\item syllable part to which following phoneme belongs: onset, nucleus, code, single-phoneme-syllable
+	\end{itemize}
+\end{itemize}
+
+Note that all features consider only actually realised units in speech. 
+After pruning, the \textit{word} related features got completely eliminated, together with \textit{syllable-place-in-word} and \textit{articulation-of-realised-previous phoneme}. 
 
 \section{Results}
 
