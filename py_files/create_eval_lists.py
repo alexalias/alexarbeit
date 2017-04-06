@@ -13,6 +13,8 @@ valid_phonemes = ["a", "a~", "e", "E", "I", "i", "O", "o", "U", "u", "Y", "y", "
                  "o:", "u:", "y:", "2:", "OY", "aU", "aI", "@", "6", "z", "S", "Z", "C", "x", "N", "Q", "b", "d", "f", 
                  "g", "h", "j", "k", "l", "m", "n", "p", "r", "s", "t", "v"]
 
+path_list_test = model_utilities.get_path_list('C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/Evaluation/Test_a')
+
 # Model type uses individual phonemes and their median, mean, or both in words having specific no. of phonemes
 # Actually creates the lists of predictions and actual values to evaluate model
 # @param model: 0, 1, or 2 meaning (median, mean, or (median + mean)/2)

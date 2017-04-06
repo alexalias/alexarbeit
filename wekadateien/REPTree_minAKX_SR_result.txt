@@ -1,0 +1,1209 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.misc.InputMappedClassifier -I -trim -W weka.classifiers.trees.REPTree -- -M 2 -V 0.001 -N 3 -S 1 -L -1 -I 0.0
+Relation:     cart-weka.filters.unsupervised.attribute.Remove-R2,8-11,13
+Instances:    8459
+Attributes:   13
+              phoneme
+              phoneme_type
+              art_manner
+              init_pos_in_syl
+              syl_part
+              syl_stress
+              prev_p_type
+              foll_p_type
+              foll_p_artic
+              foll_p_voiced
+              syl_part_foll_p
+              speech_rate
+              duration
+Test mode:    user supplied test set:  size unknown (reading incrementally)
+
+=== Classifier model (full training set) ===
+
+InputMappedClassifier:
+
+
+REPTree
+============
+
+speech_rate < 141.19
+|   speech_rate < 76.77
+|   |   phoneme = a
+|   |   |   speech_rate < 51.49
+|   |   |   |   speech_rate < 40.77
+|   |   |   |   |   speech_rate < 38.69
+|   |   |   |   |   |   speech_rate < 31.61 : 29.94 (5/-0) [2/0]
+|   |   |   |   |   |   speech_rate >= 31.61
+|   |   |   |   |   |   |   foll_p_artic = v : 34.7 (0/0) [0/0]
+|   |   |   |   |   |   |   foll_p_artic = p : 39.94 (0/0) [1/34.03]
+|   |   |   |   |   |   |   foll_p_artic = f
+|   |   |   |   |   |   |   |   foll_p_voiced = v : 36.09 (0/0) [0/0]
+|   |   |   |   |   |   |   |   foll_p_voiced = y : 29.94 (2/0) [1/0]
+|   |   |   |   |   |   |   |   foll_p_voiced = n
+|   |   |   |   |   |   |   |   |   syl_stress = p_stress : 39.94 (4/50) [3/0]
+|   |   |   |   |   |   |   |   |   syl_stress = s_stress : 37.94 (0/0) [0/0]
+|   |   |   |   |   |   |   |   |   syl_stress = none : 33.27 (3/22.22) [0/0]
+|   |   |   |   |   |   |   |   foll_p_voiced = none : 36.09 (0/0) [0/0]
+|   |   |   |   |   |   |   foll_p_artic = n : 33.27 (2/0) [1/100]
+|   |   |   |   |   |   |   foll_p_artic = l : 29.94 (0/0) [2/17.36]
+|   |   |   |   |   |   |   foll_p_artic = j : 34.7 (0/0) [0/0]
+|   |   |   |   |   |   |   foll_p_artic = o : 29.94 (1/0) [1/0]
+|   |   |   |   |   |   |   foll_p_artic = none : 34.7 (0/0) [0/0]
+|   |   |   |   |   speech_rate >= 38.69 : 41.48 (16/98.44) [10/136.56]
+|   |   |   |   speech_rate >= 40.77
+|   |   |   |   |   syl_stress = p_stress
+|   |   |   |   |   |   prev_p_type = v : 51.61 (4/275) [2/425]
+|   |   |   |   |   |   prev_p_type = c
+|   |   |   |   |   |   |   foll_p_artic = v : 57.39 (0/0) [0/0]
+|   |   |   |   |   |   |   foll_p_artic = p : 73.27 (1/0) [2/50]
+|   |   |   |   |   |   |   foll_p_artic = f
+|   |   |   |   |   |   |   |   foll_p_voiced = v : 58.51 (0/0) [0/0]
+|   |   |   |   |   |   |   |   foll_p_voiced = y : 63.94 (3/155.56) [2/27.78]
+|   |   |   |   |   |   |   |   foll_p_voiced = n
+|   |   |   |   |   |   |   |   |   syl_part_foll_p = onset : 49.94 (3/66.67) [0/0]
+|   |   |   |   |   |   |   |   |   syl_part_foll_p = nucleus : 55.5 (0/0) [0/0]
+|   |   |   |   |   |   |   |   |   syl_part_foll_p = coda : 59.94 (2/100) [2/0]
+|   |   |   |   |   |   |   |   |   syl_part_foll_p = single : 54.94 (2/25) [0/0]
+|   |   |   |   |   |   |   |   |   syl_part_foll_p = none : 55.5 (0/0) [0/0]
+|   |   |   |   |   |   |   |   foll_p_voiced = none : 58.51 (0/0) [0/0]
+|   |   |   |   |   |   |   foll_p_artic = n : 55.39 (20/235) [13/578.85]
+|   |   |   |   |   |   |   foll_p_artic = l : 62.44 (2/0) [2/850]
+|   |   |   |   |   |   |   foll_p_artic = j : 39.94 (0/0) [1/248.3]
+|   |   |   |   |   |   |   foll_p_artic = o : 57.39 (0/0) [0/0]
+|   |   |   |   |   |   |   foll_p_artic = none : 57.39 (0/0) [0/0]
+|   |   |   |   |   |   prev_p_type = none : 56.83 (0/0) [0/0]
+|   |   |   |   |   syl_stress = s_stress : 54.94 (1/0) [1/100]
+|   |   |   |   |   syl_stress = none
+|   |   |   |   |   |   foll_p_artic = v : 42.11 (0/0) [0/0]
+|   |   |   |   |   |   foll_p_artic = p : 36.61 (2/100) [1/100]
+|   |   |   |   |   |   foll_p_artic = f : 41.61 (12/88.89) [6/138.89]
+|   |   |   |   |   |   foll_p_artic = n : 42.11 (0/0) [0/0]
+|   |   |   |   |   |   foll_p_artic = l : 69.94 (1/0) [0/0]
+|   |   |   |   |   |   foll_p_artic = j : 42.11 (0/0) [0/0]
+|   |   |   |   |   |   foll_p_artic = o : 39.94 (1/0) [0/0]
+|   |   |   |   |   |   foll_p_artic = none : 42.11 (0/0) [0/0]
+|   |   |   speech_rate >= 51.49
+|   |   |   |   syl_part_foll_p = onset : 73.99 (23/663.52) [14/222.2]
+|   |   |   |   syl_part_foll_p = nucleus : 109.94 (1/0) [0/0]
+|   |   |   |   syl_part_foll_p = coda
+|   |   |   |   |   syl_stress = p_stress : 70.24 (65/497.61) [35/659.89]
+|   |   |   |   |   syl_stress = s_stress : 91.05 (7/314.29) [2/50]
+|   |   |   |   |   syl_stress = none : 50.81 (13/699.41) [10/589.05]
+|   |   |   |   syl_part_foll_p = single : 97.08 (7/77.55) [0/0]
+|   |   |   |   syl_part_foll_p = none : 129.94 (1/0) [0/0]
+|   |   phoneme = a~ : 56.03 (0/0) [0/0]
+|   |   phoneme = e : 52.44 (4/50) [8/162.5]
+|   |   phoneme = E : 52.8 (55/360.2) [43/433.37]
+|   |   phoneme = I
+|   |   |   speech_rate < 52.86
+|   |   |   |   foll_p_artic = v : 31.37 (3/22.22) [4/11.11]
+|   |   |   |   foll_p_artic = p : 59.94 (3/466.67) [0/0]
+|   |   |   |   foll_p_artic = f : 44.88 (55/199.14) [23/161.31]
+|   |   |   |   foll_p_artic = n : 37.04 (23/101.32) [8/43.79]
+|   |   |   |   foll_p_artic = l : 41.9 (0/0) [0/0]
+|   |   |   |   foll_p_artic = j : 34.94 (1/0) [1/100]
+|   |   |   |   foll_p_artic = o : 29.94 (1/0) [0/0]
+|   |   |   |   foll_p_artic = none : 29.94 (1/0) [2/0]
+|   |   |   speech_rate >= 52.86
+|   |   |   |   foll_p_artic = v : 33.69 (3/22.22) [5/64.44]
+|   |   |   |   foll_p_artic = p
+|   |   |   |   |   init_pos_in_syl = y : 93.27 (3/155.56) [0/0]
+|   |   |   |   |   init_pos_in_syl = n : 50.65 (11/196.69) [3/48.76]
+|   |   |   |   foll_p_artic = f : 59.29 (49/385.96) [20/238.83]
+|   |   |   |   foll_p_artic = n : 50.73 (19/250.97) [19/244.04]
+|   |   |   |   foll_p_artic = l : 39.94 (0/0) [1/306.25]
+|   |   |   |   foll_p_artic = j : 29.94 (1/0) [0/0]
+|   |   |   |   foll_p_artic = o : 54.83 (0/0) [0/0]
+|   |   |   |   foll_p_artic = none : 54.83 (0/0) [0/0]
+|   |   phoneme = i : 45.65 (12/122.22) [2/44.44]
+|   |   phoneme = O
+|   |   |   speech_rate < 48.27
+|   |   |   |   syl_stress = p_stress
+|   |   |   |   |   foll_p_artic = v : 59.94 (1/0) [0/0]
+|   |   |   |   |   foll_p_artic = p : 69.94 (0/0) [1/316.05]
+|   |   |   |   |   foll_p_artic = f : 69.94 (1/0) [0/0]
+|   |   |   |   |   foll_p_artic = n : 48.27 (5/184) [1/196]
+|   |   |   |   |   foll_p_artic = l : 62.44 (2/25) [2/625]
+|   |   |   |   |   foll_p_artic = j : 56.86 (0/0) [0/0]
+|   |   |   |   |   foll_p_artic = o : 56.86 (0/0) [0/0]
+|   |   |   |   |   foll_p_artic = none : 56.86 (0/0) [0/0]
+|   |   |   |   syl_stress = s_stress : 52.44 (0/0) [0/0]
+|   |   |   |   syl_stress = none : 33.27 (3/22.22) [0/0]
+|   |   |   speech_rate >= 48.27
+|   |   |   |   foll_p_artic = v : 107.94 (4/1968.75) [1/506.25]
+|   |   |   |   foll_p_artic = p : 66.61 (3/288.89) [0/0]
+|   |   |   |   foll_p_artic = f : 80.77 (18/260.8) [6/148.46]
+|   |   |   |   foll_p_artic = n : 79.2 (18/564.51) [9/481.79]
+|   |   |   |   foll_p_artic = l : 61.94 (4/525) [1/225]
+|   |   |   |   foll_p_artic = j : 80.1 (0/0) [0/0]
+|   |   |   |   foll_p_artic = o : 80.1 (0/0) [0/0]
+|   |   |   |   foll_p_artic = none : 80.1 (0/0) [0/0]
+|   |   phoneme = o
+|   |   |   foll_p_artic = v : 41.19 (5/16) [3/4]
+|   |   |   foll_p_artic = p : 65.94 (6/358.33) [9/425]
+|   |   |   foll_p_artic = f : 47.94 (4/25) [6/125]
+|   |   |   foll_p_artic = n : 46.61 (5/56) [1/64]
+|   |   |   foll_p_artic = l : 39.94 (1/0) [0/0]
+|   |   |   foll_p_artic = j : 53.2 (0/0) [0/0]
+|   |   |   foll_p_artic = o : 79.94 (0/0) [1/871.66]
+|   |   |   foll_p_artic = none : 44.94 (0/0) [2/54.99]
+|   |   phoneme = U
+|   |   |   speech_rate < 55.22 : 46.16 (31/198.54) [6/153.61]
+|   |   |   speech_rate >= 55.22 : 75.06 (27/1032.37) [14/696.46]
+|   |   phoneme = u : 69.94 (5/336) [2/5364]
+|   |   phoneme = Y
+|   |   |   foll_p_artic = v : 48.94 (3/355.56) [7/401.59]
+|   |   |   foll_p_artic = p : 63.94 (4/1225) [1/25]
+|   |   |   foll_p_artic = f : 56.19 (11/256.2) [5/74.71]
+|   |   |   foll_p_artic = n
+|   |   |   |   speech_rate < 59.32 : 36.61 (7/48.98) [2/29.59]
+|   |   |   |   speech_rate >= 59.32 : 54.94 (3/422.22) [1/44.44]
+|   |   |   foll_p_artic = l : 29.94 (0/0) [1/538.9]
+|   |   |   foll_p_artic = j : 50.83 (0/0) [0/0]
+|   |   |   foll_p_artic = o : 50.83 (0/0) [0/0]
+|   |   |   foll_p_artic = none : 50.83 (0/0) [0/0]
+|   |   phoneme = y : 84.94 (2/625) [0/0]
+|   |   phoneme = 9 : 63.54 (14/210.71) [11/315.91]
+|   |   phoneme = 2 : 56.03 (0/0) [0/0]
+|   |   phoneme = a:
+|   |   |   speech_rate < 60.77
+|   |   |   |   speech_rate < 51.88
+|   |   |   |   |   speech_rate < 43.03 : 42.25 (15/32.89) [11/15.6]
+|   |   |   |   |   speech_rate >= 43.03
+|   |   |   |   |   |   foll_p_artic = v
+|   |   |   |   |   |   |   speech_rate < 48.69 : 44.94 (2/25) [2/25]
+|   |   |   |   |   |   |   speech_rate >= 48.69 : 39.94 (2/0) [0/0]
+|   |   |   |   |   |   foll_p_artic = p
+|   |   |   |   |   |   |   syl_part_foll_p = onset : 51.61 (5/104) [1/196]
+|   |   |   |   |   |   |   syl_part_foll_p = nucleus : 55.39 (0/0) [0/0]
+|   |   |   |   |   |   |   syl_part_foll_p = coda : 44.94 (1/0) [1/100]
+|   |   |   |   |   |   |   syl_part_foll_p = single : 69.94 (3/0) [0/0]
+|   |   |   |   |   |   |   syl_part_foll_p = none : 55.39 (0/0) [0/0]
+|   |   |   |   |   |   foll_p_artic = f : 56.61 (3/155.56) [0/0]
+|   |   |   |   |   |   foll_p_artic = n : 69.94 (4/118.75) [5/2626.25]
+|   |   |   |   |   |   foll_p_artic = l : 49.94 (4/18.75) [1/156.25]
+|   |   |   |   |   |   foll_p_artic = j : 53.27 (3/155.56) [0/0]
+|   |   |   |   |   |   foll_p_artic = o : 77.44 (3/355.56) [1/1877.78]
+|   |   |   |   |   |   foll_p_artic = none : 58.23 (0/0) [0/0]
+|   |   |   |   speech_rate >= 51.88 : 70.64 (42/335.66) [29/483.8]
+|   |   |   speech_rate >= 60.77 : 90.16 (64/1533.96) [29/891.96]
+|   |   phoneme = a~: : 56.03 (0/0) [0/0]
+|   |   phoneme = e:
+|   |   |   speech_rate < 55.77
+|   |   |   |   syl_part_foll_p = onset : 49.94 (4/68.75) [1/156.25]
+|   |   |   |   syl_part_foll_p = nucleus : 54.94 (1/0) [1/100]
+|   |   |   |   syl_part_foll_p = coda
+|   |   |   |   |   foll_p_artic = v
+|   |   |   |   |   |   speech_rate < 49.11 : 39.94 (11/0) [5/0]
+|   |   |   |   |   |   speech_rate >= 49.11 : 44.94 (2/25) [0/0]
+|   |   |   |   |   foll_p_artic = p : 69.94 (1/0) [0/0]
+|   |   |   |   |   foll_p_artic = f : 49.94 (1/0) [0/0]
+|   |   |   |   |   foll_p_artic = n : 47.08 (4/168.75) [3/22.92]
+|   |   |   |   |   foll_p_artic = l : 43.64 (0/0) [0/0]
+|   |   |   |   |   foll_p_artic = j : 43.64 (0/0) [0/0]
+|   |   |   |   |   foll_p_artic = o : 43.64 (0/0) [0/0]
+|   |   |   |   |   foll_p_artic = none : 43.64 (0/0) [0/0]
+|   |   |   |   syl_part_foll_p = single
+|   |   |   |   |   speech_rate < 51.61 : 64.94 (4/18.75) [2/156.25]
+|   |   |   |   |   speech_rate >= 51.61 : 83.27 (2/400) [1/100]
+|   |   |   |   syl_part_foll_p = none : 39.94 (1/0) [0/0]
+|   |   |   speech_rate >= 55.77 : 88.03 (31/803.54) [16/1386.58]
+|   |   phoneme = E: : 65.94 (10/780) [5/1340]
+|   |   phoneme = i:
+|   |   |   speech_rate < 51.1
+|   |   |   |   speech_rate < 40.77 : 41.76 (14/16.84) [8/11.73]
+|   |   |   |   speech_rate >= 40.77
+|   |   |   |   |   syl_part_foll_p = onset
+|   |   |   |   |   |   foll_p_artic = v : 54.32 (0/0) [0/0]
+|   |   |   |   |   |   foll_p_artic = p : 49.94 (3/66.67) [2/100]
+|   |   |   |   |   |   foll_p_artic = f : 61.61 (4/50) [2/50]
+|   |   |   |   |   |   foll_p_artic = n : 49.94 (3/155.56) [1/177.78]
+|   |   |   |   |   |   foll_p_artic = l : 54.32 (0/0) [0/0]
+|   |   |   |   |   |   foll_p_artic = j : 54.32 (0/0) [0/0]
+|   |   |   |   |   |   foll_p_artic = o : 49.94 (1/0) [0/0]
+|   |   |   |   |   |   foll_p_artic = none : 54.32 (0/0) [0/0]
+|   |   |   |   |   syl_part_foll_p = nucleus : 74.94 (1/0) [1/100]
+|   |   |   |   |   syl_part_foll_p = coda
+|   |   |   |   |   |   speech_rate < 45.77 : 47.21 (8/85.94) [3/51.56]
+|   |   |   |   |   |   speech_rate >= 45.77
+|   |   |   |   |   |   |   foll_p_artic = v : 53.58 (6/155.56) [5/64.44]
+|   |   |   |   |   |   |   foll_p_artic = p : 54.31 (0/0) [0/0]
+|   |   |   |   |   |   |   foll_p_artic = f : 49.94 (1/0) [0/0]
+|   |   |   |   |   |   |   foll_p_artic = n : 57.44 (3/22.22) [1/11.11]
+|   |   |   |   |   |   |   foll_p_artic = l : 54.31 (0/0) [0/0]
+|   |   |   |   |   |   |   foll_p_artic = j : 54.31 (0/0) [0/0]
+|   |   |   |   |   |   |   foll_p_artic = o : 54.31 (0/0) [0/0]
+|   |   |   |   |   |   |   foll_p_artic = none : 54.31 (0/0) [0/0]
+|   |   |   |   |   syl_part_foll_p = single : 49.94 (1/0) [0/0]
+|   |   |   |   |   syl_part_foll_p = none : 53.42 (0/0) [0/0]
+|   |   |   speech_rate >= 51.1
+|   |   |   |   foll_p_artic = v
+|   |   |   |   |   syl_part_foll_p = onset : 63.94 (0/0) [0/0]
+|   |   |   |   |   syl_part_foll_p = nucleus : 85.94 (3/355.56) [2/1227.78]
+|   |   |   |   |   syl_part_foll_p = coda
+|   |   |   |   |   |   speech_rate < 71.6
+|   |   |   |   |   |   |   speech_rate < 64.94 : 58.83 (5/360) [4/325]
+|   |   |   |   |   |   |   speech_rate >= 64.94 : 44.94 (3/88.89) [1/44.44]
+|   |   |   |   |   |   speech_rate >= 71.6 : 69.94 (2/900) [0/0]
+|   |   |   |   |   syl_part_foll_p = single : 63.94 (0/0) [0/0]
+|   |   |   |   |   syl_part_foll_p = none : 63.94 (0/0) [0/0]
+|   |   |   |   foll_p_artic = p : 78.83 (13/551.48) [5/122.37]
+|   |   |   |   foll_p_artic = f : 75.94 (3/88.89) [2/627.78]
+|   |   |   |   foll_p_artic = n : 78.83 (12/218.75) [6/364.58]
+|   |   |   |   foll_p_artic = l : 44.94 (2/25) [0/0]
+|   |   |   |   foll_p_artic = j : 79.94 (1/0) [0/0]
+|   |   |   |   foll_p_artic = o : 73.42 (0/0) [0/0]
+|   |   |   |   foll_p_artic = none : 89.94 (0/0) [2/1890.55]
+|   |   phoneme = o:
+|   |   |   foll_p_voiced = v : 58.76 (10/336) [7/169.71]
+|   |   |   foll_p_voiced = y
+|   |   |   |   speech_rate < 59.55 : 59.94 (6/366.67) [0/0]
+|   |   |   |   speech_rate >= 59.55 : 95.65 (4/850) [3/300]
+|   |   |   foll_p_voiced = n
+|   |   |   |   syl_stress = p_stress
+|   |   |   |   |   speech_rate < 63.27
+|   |   |   |   |   |   speech_rate < 53.94 : 74.94 (2/25) [2/25]
+|   |   |   |   |   |   speech_rate >= 53.94 : 93.27 (2/25) [1/25]
+|   |   |   |   |   speech_rate >= 63.27 : 118.69 (5/144) [3/182.67]
+|   |   |   |   syl_stress = s_stress : 116.61 (2/1600) [1/1600]
+|   |   |   |   syl_stress = none : 75.77 (9/222.22) [3/166.67]
+|   |   |   foll_p_voiced = none : 169.94 (1/0) [0/0]
+|   |   phoneme = u:
+|   |   |   speech_rate < 62.1
+|   |   |   |   foll_p_artic = v : 43.69 (11/79.34) [5/22.48]
+|   |   |   |   foll_p_artic = p : 68.94 (8/135.94) [2/1.56]
+|   |   |   |   foll_p_artic = f : 53.27 (0/0) [0/0]
+|   |   |   |   foll_p_artic = n : 49.94 (1/0) [0/0]
+|   |   |   |   foll_p_artic = l : 53.27 (0/0) [0/0]
+|   |   |   |   foll_p_artic = j : 53.27 (0/0) [0/0]
+|   |   |   |   foll_p_artic = o : 53.27 (0/0) [0/0]
+|   |   |   |   foll_p_artic = none : 53.27 (0/0) [0/0]
+|   |   |   speech_rate >= 62.1
+|   |   |   |   foll_p_voiced = v : 79.94 (5/680) [1/0]
+|   |   |   |   foll_p_voiced = y : 89.94 (2/100) [0/0]
+|   |   |   |   foll_p_voiced = n : 98.12 (8/693.75) [3/72.92]
+|   |   |   |   foll_p_voiced = none : 59.94 (1/0) [0/0]
+|   |   phoneme = y:
+|   |   |   speech_rate < 66.19
+|   |   |   |   speech_rate < 49.73 : 42.44 (3/22.22) [1/11.11]
+|   |   |   |   speech_rate >= 49.73 : 61.76 (8/50) [3/333.33]
+|   |   |   speech_rate >= 66.19 : 93.94 (5/824) [0/0]
+|   |   phoneme = 2: : 79.94 (3/466.67) [2/2500]
+|   |   phoneme = OY : 127.94 (3/422.22) [2/11.11]
+|   |   phoneme = aU
+|   |   |   speech_rate < 58.69 : 72.88 (10/469) [7/361]
+|   |   |   speech_rate >= 58.69
+|   |   |   |   syl_stress = p_stress : 139.17 (8/623.44) [5/909.06]
+|   |   |   |   syl_stress = s_stress : 127.31 (0/0) [0/0]
+|   |   |   |   syl_stress = none : 101.61 (3/422.22) [3/188.89]
+|   |   phoneme = aI
+|   |   |   syl_part_foll_p = onset : 116.19 (19/1255.4) [13/2142.98]
+|   |   |   syl_part_foll_p = nucleus : 103.27 (2/25) [1/625]
+|   |   |   syl_part_foll_p = coda
+|   |   |   |   speech_rate < 55.7
+|   |   |   |   |   syl_stress = p_stress
+|   |   |   |   |   |   foll_p_artic = v : 65.65 (0/0) [0/0]
+|   |   |   |   |   |   foll_p_artic = p : 84.94 (1/0) [1/100]
+|   |   |   |   |   |   foll_p_artic = f
+|   |   |   |   |   |   |   speech_rate < 43.77 : 63.27 (2/0) [1/100]
+|   |   |   |   |   |   |   speech_rate >= 43.77 : 77.44 (2/0) [2/250]
+|   |   |   |   |   |   foll_p_artic = n
+|   |   |   |   |   |   |   init_pos_in_syl = y : 46.61 (2/25) [1/25]
+|   |   |   |   |   |   |   init_pos_in_syl = n : 64.94 (3/22.22) [1/44.44]
+|   |   |   |   |   |   foll_p_artic = l : 61.94 (3/88.89) [2/277.78]
+|   |   |   |   |   |   foll_p_artic = j : 65.65 (0/0) [0/0]
+|   |   |   |   |   |   foll_p_artic = o : 65.65 (0/0) [0/0]
+|   |   |   |   |   |   foll_p_artic = none : 65.65 (0/0) [0/0]
+|   |   |   |   |   syl_stress = s_stress : 109.94 (1/0) [0/0]
+|   |   |   |   |   syl_stress = none : 54.94 (4/275) [0/0]
+|   |   |   |   speech_rate >= 55.7 : 103.27 (13/1048.52) [14/944.89]
+|   |   |   syl_part_foll_p = single : 119.32 (9/1466.67) [7/2106.35]
+|   |   |   syl_part_foll_p = none : 129.94 (1/0) [0/0]
+|   |   phoneme = @ : 52.11 (101/488.98) [44/345.74]
+|   |   phoneme = 6
+|   |   |   speech_rate < 54.44
+|   |   |   |   speech_rate < 38.94
+|   |   |   |   |   speech_rate < 34.11 : 29.94 (12/-0) [4/0]
+|   |   |   |   |   speech_rate >= 34.11
+|   |   |   |   |   |   foll_p_artic = v : 39.94 (2/0) [1/0]
+|   |   |   |   |   |   foll_p_artic = p : 38.27 (6/13.89) [0/0]
+|   |   |   |   |   |   foll_p_artic = f : 32.8 (3/22.22) [4/19.44]
+|   |   |   |   |   |   foll_p_artic = n : 37.44 (2/25) [2/25]
+|   |   |   |   |   |   foll_p_artic = l : 36.44 (0/0) [0/0]
+|   |   |   |   |   |   foll_p_artic = j : 36.44 (0/0) [0/0]
+|   |   |   |   |   |   foll_p_artic = o : 36.44 (0/0) [0/0]
+|   |   |   |   |   |   foll_p_artic = none : 36.44 (0/0) [0/0]
+|   |   |   |   speech_rate >= 38.94
+|   |   |   |   |   prev_p_type = v
+|   |   |   |   |   |   syl_part_foll_p = onset
+|   |   |   |   |   |   |   syl_stress = p_stress
+|   |   |   |   |   |   |   |   foll_p_artic = v : 45.47 (0/0) [0/0]
+|   |   |   |   |   |   |   |   foll_p_artic = p
+|   |   |   |   |   |   |   |   |   speech_rate < 46.44 : 44.94 (2/25) [4/75]
+|   |   |   |   |   |   |   |   |   speech_rate >= 46.44 : 39.94 (2/0) [0/0]
+|   |   |   |   |   |   |   |   foll_p_artic = f
+|   |   |   |   |   |   |   |   |   speech_rate < 41.61 : 39.94 (3/0) [1/0]
+|   |   |   |   |   |   |   |   |   speech_rate >= 41.61 : 52.67 (6/66.67) [5/60]
+|   |   |   |   |   |   |   |   foll_p_artic = n : 40.65 (9/239.51) [5/73.83]
+|   |   |   |   |   |   |   |   foll_p_artic = l : 45.47 (0/0) [0/0]
+|   |   |   |   |   |   |   |   foll_p_artic = j : 69.94 (1/0) [0/0]
+|   |   |   |   |   |   |   |   foll_p_artic = o : 45.47 (0/0) [0/0]
+|   |   |   |   |   |   |   |   foll_p_artic = none : 45.47 (0/0) [0/0]
+|   |   |   |   |   |   |   syl_stress = s_stress : 42.82 (0/0) [0/0]
+|   |   |   |   |   |   |   syl_stress = none : 35.65 (8/98.44) [6/234.9]
+|   |   |   |   |   |   syl_part_foll_p = nucleus : 35.65 (3/88.89) [4/77.78]
+|   |   |   |   |   |   syl_part_foll_p = coda : 39.94 (4/100) [4/300]
+|   |   |   |   |   |   syl_part_foll_p = single : 51.37 (11/188.43) [3/211.57]
+|   |   |   |   |   |   syl_part_foll_p = none : 29.94 (1/0) [0/0]
+|   |   |   |   |   prev_p_type = c
+|   |   |   |   |   |   foll_p_artic = v : 53.02 (6/91.67) [7/225]
+|   |   |   |   |   |   foll_p_artic = p
+|   |   |   |   |   |   |   init_pos_in_syl = y : 34.94 (2/25) [0/0]
+|   |   |   |   |   |   |   init_pos_in_syl = n : 52.61 (8/100) [7/114.29]
+|   |   |   |   |   |   foll_p_artic = f
+|   |   |   |   |   |   |   speech_rate < 49.11 : 51.61 (5/120) [1/100]
+|   |   |   |   |   |   |   speech_rate >= 49.11 : 74.94 (2/0) [2/200]
+|   |   |   |   |   |   foll_p_artic = n : 59.94 (10/229) [8/166]
+|   |   |   |   |   |   foll_p_artic = l : 55.51 (0/0) [0/0]
+|   |   |   |   |   |   foll_p_artic = j : 49.94 (3/66.67) [0/0]
+|   |   |   |   |   |   foll_p_artic = o : 55.51 (0/0) [0/0]
+|   |   |   |   |   |   foll_p_artic = none : 55.51 (0/0) [0/0]
+|   |   |   |   |   prev_p_type = none : 48.47 (0/0) [0/0]
+|   |   |   speech_rate >= 54.44
+|   |   |   |   foll_p_artic = v
+|   |   |   |   |   speech_rate < 58.27 : 39.94 (2/100) [0/0]
+|   |   |   |   |   speech_rate >= 58.27
+|   |   |   |   |   |   speech_rate < 61.61 : 85.94 (3/22.22) [2/227.78]
+|   |   |   |   |   |   speech_rate >= 61.61
+|   |   |   |   |   |   |   speech_rate < 64.11 : 33.27 (2/25) [1/25]
+|   |   |   |   |   |   |   speech_rate >= 64.11 : 91.05 (3/422.22) [6/2044.44]
+|   |   |   |   foll_p_artic = p
+|   |   |   |   |   speech_rate < 70.94
+|   |   |   |   |   |   prev_p_type = v : 53.27 (16/271.48) [8/336.33]
+|   |   |   |   |   |   prev_p_type = c : 69.94 (8/375) [3/66.67]
+|   |   |   |   |   |   prev_p_type = none : 58.51 (0/0) [0/0]
+|   |   |   |   |   speech_rate >= 70.94 : 76.19 (5/776) [3/2310.67]
+|   |   |   |   foll_p_artic = f : 74.74 (37/657.63) [13/483.53]
+|   |   |   |   foll_p_artic = n : 65.57 (21/1056.24) [11/616.49]
+|   |   |   |   foll_p_artic = l
+|   |   |   |   |   speech_rate < 64.94 : 49.94 (2/0) [0/0]
+|   |   |   |   |   speech_rate >= 64.94 : 66.61 (2/0) [1/400]
+|   |   |   |   foll_p_artic = j : 59.94 (3/266.67) [0/0]
+|   |   |   |   foll_p_artic = o : 143.27 (1/0) [2/4250]
+|   |   |   |   foll_p_artic = none
+|   |   |   |   |   speech_rate < 71.82 : 107.44 (4/525) [4/775]
+|   |   |   |   |   speech_rate >= 71.82 : 173.27 (3/9088.89) [0/0]
+|   |   phoneme = z
+|   |   |   speech_rate < 52.19
+|   |   |   |   speech_rate < 38.27 : 29.94 (7/-0) [2/0]
+|   |   |   |   speech_rate >= 38.27
+|   |   |   |   |   speech_rate < 50.77
+|   |   |   |   |   |   speech_rate < 42.86 : 39.94 (7/85.71) [3/66.67]
+|   |   |   |   |   |   speech_rate >= 42.86
+|   |   |   |   |   |   |   speech_rate < 48.11 : 44.7 (16/160.94) [5/119.06]
+|   |   |   |   |   |   |   speech_rate >= 48.11 : 49.11 (9/120.99) [3/267.9]
+|   |   |   |   |   speech_rate >= 50.77 : 29.94 (2/0) [0/0]
+|   |   |   speech_rate >= 52.19
+|   |   |   |   speech_rate < 69.38 : 52.97 (42/282.78) [19/228.22]
+|   |   |   |   speech_rate >= 69.38 : 68.27 (11/487.6) [7/786.42]
+|   |   phoneme = S : 59.71 (28/668.75) [15/272.92]
+|   |   phoneme = Z : 56.03 (0/0) [0/0]
+|   |   phoneme = C
+|   |   |   speech_rate < 57.02 : 40.57 (58/305.92) [22/176.45]
+|   |   |   speech_rate >= 57.02
+|   |   |   |   foll_p_artic = v : 87.08 (4/1118.75) [3/556.25]
+|   |   |   |   foll_p_artic = p : 70.53 (10/564) [7/850.29]
+|   |   |   |   foll_p_artic = f
+|   |   |   |   |   syl_stress = p_stress : 65.94 (4/425) [1/25]
+|   |   |   |   |   syl_stress = s_stress : 53.02 (0/0) [0/0]
+|   |   |   |   |   syl_stress = none : 44.94 (7/134.69) [1/293.88]
+|   |   |   |   foll_p_artic = n : 63.27 (2/400) [1/400]
+|   |   |   |   foll_p_artic = l : 64.94 (1/0) [0/0]
+|   |   |   |   foll_p_artic = j : 67.55 (0/0) [0/0]
+|   |   |   |   foll_p_artic = o : 89.94 (1/0) [0/0]
+|   |   |   |   foll_p_artic = none : 64.94 (2/1225) [0/0]
+|   |   phoneme = x
+|   |   |   speech_rate < 70.22
+|   |   |   |   foll_p_artic = v
+|   |   |   |   |   syl_part = onset : 73.27 (2/0) [4/1300]
+|   |   |   |   |   syl_part = nucleus : 63.02 (0/0) [0/0]
+|   |   |   |   |   syl_part = coda : 58.27 (3/466.67) [3/633.33]
+|   |   |   |   |   syl_part = single : 29.94 (1/0) [0/0]
+|   |   |   |   foll_p_artic = p
+|   |   |   |   |   syl_stress = p_stress : 65.65 (2/900) [5/1760]
+|   |   |   |   |   syl_stress = s_stress : 99.94 (1/0) [0/0]
+|   |   |   |   |   syl_stress = none : 45.94 (2/25) [3/291.67]
+|   |   |   |   foll_p_artic = f : 40.32 (7/47.96) [6/598.47]
+|   |   |   |   foll_p_artic = n : 34.56 (9/355.56) [4/44.44]
+|   |   |   |   foll_p_artic = l : 49.2 (0/0) [0/0]
+|   |   |   |   foll_p_artic = j : 39.94 (1/0) [0/0]
+|   |   |   |   foll_p_artic = o : 44.94 (1/0) [1/100]
+|   |   |   |   foll_p_artic = none : 48.27 (5/456) [1/484]
+|   |   |   speech_rate >= 70.22 : 100.71 (10/1524) [3/602.67]
+|   |   phoneme = N : 47.98 (31/286.99) [20/482.2]
+|   |   phoneme = Q : 46.94 (59/630.68) [31/325.2]
+|   |   phoneme = b : 49.41 (53/368.78) [32/371.79]
+|   |   phoneme = d
+|   |   |   speech_rate < 48.11
+|   |   |   |   speech_rate < 38.27 : 31.42 (21/15.42) [6/3.63]
+|   |   |   |   speech_rate >= 38.27
+|   |   |   |   |   syl_stress = p_stress
+|   |   |   |   |   |   speech_rate < 45.77
+|   |   |   |   |   |   |   prev_p_type = v : 34.94 (9/69.14) [5/66.42]
+|   |   |   |   |   |   |   prev_p_type = c
+|   |   |   |   |   |   |   |   speech_rate < 44.11 : 45.94 (8/200) [2/425]
+|   |   |   |   |   |   |   |   speech_rate >= 44.11 : 36.61 (2/100) [1/100]
+|   |   |   |   |   |   |   prev_p_type = none : 39.2 (0/0) [0/0]
+|   |   |   |   |   |   speech_rate >= 45.77 : 52.16 (6/266.67) [3/200]
+|   |   |   |   |   syl_stress = s_stress : 40.73 (0/0) [0/0]
+|   |   |   |   |   syl_stress = none
+|   |   |   |   |   |   speech_rate < 44.94 : 39.94 (11/142.15) [8/162.4]
+|   |   |   |   |   |   speech_rate >= 44.94 : 34.94 (4/18.75) [4/93.75]
+|   |   |   speech_rate >= 48.11
+|   |   |   |   speech_rate < 66.34
+|   |   |   |   |   foll_p_artic = v
+|   |   |   |   |   |   speech_rate < 59.07
+|   |   |   |   |   |   |   speech_rate < 57.69
+|   |   |   |   |   |   |   |   prev_p_type = v
+|   |   |   |   |   |   |   |   |   speech_rate < 52.61 : 55.39 (4/275) [7/310.71]
+|   |   |   |   |   |   |   |   |   speech_rate >= 52.61 : 47.08 (10/145) [4/125]
+|   |   |   |   |   |   |   |   prev_p_type = c
+|   |   |   |   |   |   |   |   |   speech_rate < 56.49
+|   |   |   |   |   |   |   |   |   |   speech_rate < 54.11 : 51.09 (12/224.31) [14/386.41]
+|   |   |   |   |   |   |   |   |   |   speech_rate >= 54.11 : 37.44 (5/136) [3/90.67]
+|   |   |   |   |   |   |   |   |   speech_rate >= 56.49 : 63.27 (6/655.56) [0/0]
+|   |   |   |   |   |   |   |   prev_p_type = none : 50.4 (0/0) [0/0]
+|   |   |   |   |   |   |   speech_rate >= 57.69 : 29.94 (3/0) [0/0]
+|   |   |   |   |   |   speech_rate >= 59.07 : 56.7 (27/409.33) [10/418.45]
+|   |   |   |   |   foll_p_artic = p : 69.94 (0/0) [1/362.56]
+|   |   |   |   |   foll_p_artic = f : 51.46 (0/0) [0/0]
+|   |   |   |   |   foll_p_artic = n : 29.94 (2/0) [0/0]
+|   |   |   |   |   foll_p_artic = l : 51.46 (0/0) [0/0]
+|   |   |   |   |   foll_p_artic = j : 51.46 (0/0) [0/0]
+|   |   |   |   |   foll_p_artic = o : 42.44 (4/68.75) [0/0]
+|   |   |   |   |   foll_p_artic = none : 51.46 (0/0) [0/0]
+|   |   |   |   speech_rate >= 66.34
+|   |   |   |   |   speech_rate < 74.1
+|   |   |   |   |   |   speech_rate < 70.57
+|   |   |   |   |   |   |   syl_stress = p_stress : 73.79 (7/106.12) [6/562.93]
+|   |   |   |   |   |   |   syl_stress = s_stress : 64.44 (0/0) [0/0]
+|   |   |   |   |   |   |   syl_stress = none : 47.08 (4/350) [3/133.33]
+|   |   |   |   |   |   speech_rate >= 70.57 : 79.94 (8/660.94) [2/64.06]
+|   |   |   |   |   speech_rate >= 74.1 : 48.69 (8/510.94) [0/0]
+|   |   phoneme = f
+|   |   |   foll_p_artic = v
+|   |   |   |   speech_rate < 52.86
+|   |   |   |   |   speech_rate < 42.86 : 38.83 (6/113.89) [3/202.78]
+|   |   |   |   |   speech_rate >= 42.86 : 63.58 (16/357.81) [6/143.23]
+|   |   |   |   speech_rate >= 52.86 : 82.72 (44/378.55) [19/354.19]
+|   |   |   foll_p_artic = p
+|   |   |   |   syl_stress = p_stress
+|   |   |   |   |   syl_part_foll_p = onset : 41.61 (4/50) [2/50]
+|   |   |   |   |   syl_part_foll_p = nucleus : 53.94 (0/0) [0/0]
+|   |   |   |   |   syl_part_foll_p = coda : 89.94 (0/0) [1/2025]
+|   |   |   |   |   syl_part_foll_p = single : 66.61 (2/25) [1/1225]
+|   |   |   |   |   syl_part_foll_p = none : 53.94 (0/0) [0/0]
+|   |   |   |   syl_stress = s_stress : 89.94 (2/100) [0/0]
+|   |   |   |   syl_stress = none : 33.94 (4/75) [1/25]
+|   |   |   foll_p_artic = f : 47.44 (3/422.22) [1/544.44]
+|   |   |   foll_p_artic = n : 56.61 (2/0) [1/1600]
+|   |   |   foll_p_artic = l : 70.39 (11/438.43) [0/0]
+|   |   |   foll_p_artic = j : 44.94 (0/0) [1/481.1]
+|   |   |   foll_p_artic = o : 53 (9/235.8) [9/252.16]
+|   |   |   foll_p_artic = none : 66.61 (3/288.89) [0/0]
+|   |   phoneme = g
+|   |   |   foll_p_artic = v
+|   |   |   |   speech_rate < 61.19 : 48.89 (29/280.86) [9/201.9]
+|   |   |   |   speech_rate >= 61.19 : 64 (20/532.75) [12/593.92]
+|   |   |   foll_p_artic = p : 79.94 (1/0) [0/0]
+|   |   |   foll_p_artic = f : 29.94 (0/0) [1/485.49]
+|   |   |   foll_p_artic = n : 38.27 (4/168.75) [2/156.25]
+|   |   |   foll_p_artic = l : 49.94 (0/0) [1/4.14]
+|   |   |   foll_p_artic = j : 53.31 (0/0) [0/0]
+|   |   |   foll_p_artic = o : 41.37 (5/24) [2/986]
+|   |   |   foll_p_artic = none : 53.31 (0/0) [0/0]
+|   |   phoneme = h : 43.99 (56/341.76) [23/270.29]
+|   |   phoneme = j
+|   |   |   speech_rate < 57.44
+|   |   |   |   speech_rate < 42.44
+|   |   |   |   |   speech_rate < 37.44 : 29.94 (6/-0) [2/0]
+|   |   |   |   |   speech_rate >= 37.44 : 37.44 (4/18.75) [0/0]
+|   |   |   |   speech_rate >= 42.44 : 45.44 (14/210.2) [6/296.94]
+|   |   |   speech_rate >= 57.44
+|   |   |   |   speech_rate < 72.44 : 68.42 (17/353.63) [6/732.15]
+|   |   |   |   speech_rate >= 72.44 : 94.94 (4/100) [2/250]
+|   |   phoneme = k
+|   |   |   foll_p_artic = v
+|   |   |   |   speech_rate < 46.27 : 35.94 (4/68.75) [1/56.25]
+|   |   |   |   speech_rate >= 46.27
+|   |   |   |   |   init_pos_in_syl = y
+|   |   |   |   |   |   speech_rate < 70.77
+|   |   |   |   |   |   |   speech_rate < 68.69
+|   |   |   |   |   |   |   |   speech_rate < 57.02 : 74.11 (6/191.67) [6/391.67]
+|   |   |   |   |   |   |   |   speech_rate >= 57.02 : 86.3 (14/326.53) [8/780.61]
+|   |   |   |   |   |   |   speech_rate >= 68.69 : 66.61 (5/744) [1/16]
+|   |   |   |   |   |   speech_rate >= 70.77 : 101.19 (4/18.75) [4/181.25]
+|   |   |   |   |   init_pos_in_syl = n : 43.94 (4/125) [1/25]
+|   |   |   foll_p_artic = p : 47.94 (9/88.89) [1/2177.78]
+|   |   |   foll_p_artic = f
+|   |   |   |   speech_rate < 59.11 : 52.21 (6/175) [5/345]
+|   |   |   |   speech_rate >= 59.11 : 76.44 (7/277.55) [3/221.26]
+|   |   |   foll_p_artic = n : 29.94 (0/0) [1/1269.77]
+|   |   |   foll_p_artic = l : 56.61 (3/288.89) [0/0]
+|   |   |   foll_p_artic = j : 56.61 (1/0) [2/100]
+|   |   |   foll_p_artic = o : 68.27 (4/518.75) [2/1156.25]
+|   |   |   foll_p_artic = none : 33.69 (4/0) [4/225]
+|   |   phoneme = l : 49.54 (106/991.5) [71/551.96]
+|   |   phoneme = m
+|   |   |   speech_rate < 45.77
+|   |   |   |   foll_p_artic = v
+|   |   |   |   |   speech_rate < 37.02 : 32.44 (5/24) [3/16]
+|   |   |   |   |   speech_rate >= 37.02
+|   |   |   |   |   |   syl_stress = p_stress
+|   |   |   |   |   |   |   speech_rate < 41.61
+|   |   |   |   |   |   |   |   speech_rate < 38.69 : 49.94 (2/0) [0/0]
+|   |   |   |   |   |   |   |   speech_rate >= 38.69
+|   |   |   |   |   |   |   |   |   prev_p_type = v : 42.44 (2/25) [2/125]
+|   |   |   |   |   |   |   |   |   prev_p_type = c : 36.61 (3/66.67) [3/66.67]
+|   |   |   |   |   |   |   |   |   prev_p_type = none : 38.94 (0/0) [0/0]
+|   |   |   |   |   |   |   speech_rate >= 41.61 : 56.61 (2/225) [1/25]
+|   |   |   |   |   |   syl_stress = s_stress : 42.29 (0/0) [0/0]
+|   |   |   |   |   |   syl_stress = none : 29.94 (2/0) [0/0]
+|   |   |   |   foll_p_artic = p : 37.94 (1/0) [4/250]
+|   |   |   |   foll_p_artic = f
+|   |   |   |   |   speech_rate < 37.44 : 29.94 (2/0) [0/0]
+|   |   |   |   |   speech_rate >= 37.44
+|   |   |   |   |   |   foll_p_voiced = v : 37.44 (0/0) [0/0]
+|   |   |   |   |   |   foll_p_voiced = y : 32.8 (4/18.75) [3/22.92]
+|   |   |   |   |   |   foll_p_voiced = n : 43.94 (3/0) [2/200]
+|   |   |   |   |   |   foll_p_voiced = none : 37.44 (0/0) [0/0]
+|   |   |   |   foll_p_artic = n : 34.94 (0/0) [2/34]
+|   |   |   |   foll_p_artic = l : 49.94 (1/0) [0/0]
+|   |   |   |   foll_p_artic = j : 39.94 (1/0) [0/0]
+|   |   |   |   foll_p_artic = o : 29.94 (1/0) [0/0]
+|   |   |   |   foll_p_artic = none : 29.94 (1/0) [0/0]
+|   |   |   speech_rate >= 45.77
+|   |   |   |   speech_rate < 57.78 : 54.32 (53/262.3) [27/224.04]
+|   |   |   |   speech_rate >= 57.78 : 68.33 (80/376.11) [44/604.29]
+|   |   phoneme = n
+|   |   |   foll_p_artic = v
+|   |   |   |   speech_rate < 43.69
+|   |   |   |   |   syl_part = onset
+|   |   |   |   |   |   speech_rate < 37.02 : 31.19 (3/22.22) [5/11.11]
+|   |   |   |   |   |   speech_rate >= 37.02
+|   |   |   |   |   |   |   speech_rate < 41.61 : 45.94 (4/25) [1/25]
+|   |   |   |   |   |   |   speech_rate >= 41.61
+|   |   |   |   |   |   |   |   prev_p_type = v : 38.51 (6/66.67) [1/100]
+|   |   |   |   |   |   |   |   prev_p_type = c : 29.94 (2/0) [2/0]
+|   |   |   |   |   |   |   |   prev_p_type = none : 35.39 (0/0) [0/0]
+|   |   |   |   |   syl_part = nucleus : 34.94 (0/0) [0/0]
+|   |   |   |   |   syl_part = coda : 33.27 (10/21) [2/29]
+|   |   |   |   |   syl_part = single : 29.94 (2/0) [0/0]
+|   |   |   |   speech_rate >= 43.69 : 48.1 (97/251.93) [58/351.63]
+|   |   |   foll_p_artic = p
+|   |   |   |   speech_rate < 58.2
+|   |   |   |   |   prev_p_type = v
+|   |   |   |   |   |   syl_part_foll_p = onset
+|   |   |   |   |   |   |   speech_rate < 53.61
+|   |   |   |   |   |   |   |   speech_rate < 52.44
+|   |   |   |   |   |   |   |   |   speech_rate < 50.5
+|   |   |   |   |   |   |   |   |   |   speech_rate < 49.11 : 37.08 (14/49.49) [7/90.31]
+|   |   |   |   |   |   |   |   |   |   speech_rate >= 49.11 : 48.69 (5/184) [3/209.33]
+|   |   |   |   |   |   |   |   |   speech_rate >= 50.5 : 37.94 (3/22.22) [2/361.11]
+|   |   |   |   |   |   |   |   speech_rate >= 52.44 : 47.44 (4/18.75) [0/0]
+|   |   |   |   |   |   |   speech_rate >= 53.61
+|   |   |   |   |   |   |   |   speech_rate < 54.75 : 29.94 (3/0) [1/0]
+|   |   |   |   |   |   |   |   speech_rate >= 54.75 : 38.94 (6/47.22) [4/52.78]
+|   |   |   |   |   |   syl_part_foll_p = nucleus : 38.45 (0/0) [0/0]
+|   |   |   |   |   |   syl_part_foll_p = coda : 35.94 (10/44) [0/0]
+|   |   |   |   |   |   syl_part_foll_p = single : 31.94 (5/16) [0/0]
+|   |   |   |   |   |   syl_part_foll_p = none : 38.45 (0/0) [0/0]
+|   |   |   |   |   prev_p_type = c
+|   |   |   |   |   |   foll_p_voiced = v : 55.94 (0/0) [0/0]
+|   |   |   |   |   |   foll_p_voiced = y : 74.94 (2/25) [0/0]
+|   |   |   |   |   |   foll_p_voiced = n : 43.27 (2/25) [1/25]
+|   |   |   |   |   |   foll_p_voiced = none : 55.94 (0/0) [0/0]
+|   |   |   |   |   prev_p_type = none : 39.66 (0/0) [0/0]
+|   |   |   |   speech_rate >= 58.2
+|   |   |   |   |   syl_part = onset : 45.65 (4/168.75) [3/789.58]
+|   |   |   |   |   syl_part = nucleus : 50.86 (0/0) [0/0]
+|   |   |   |   |   syl_part = coda
+|   |   |   |   |   |   foll_p_voiced = v : 51.82 (0/0) [0/0]
+|   |   |   |   |   |   foll_p_voiced = y
+|   |   |   |   |   |   |   speech_rate < 64.44 : 48.69 (6/191.67) [2/325]
+|   |   |   |   |   |   |   speech_rate >= 64.44
+|   |   |   |   |   |   |   |   syl_stress = p_stress : 73.27 (4/68.75) [2/1681.25]
+|   |   |   |   |   |   |   |   syl_stress = s_stress : 39.94 (1/0) [0/0]
+|   |   |   |   |   |   |   |   syl_stress = none : 83.27 (2/0) [1/1600]
+|   |   |   |   |   |   foll_p_voiced = n
+|   |   |   |   |   |   |   speech_rate < 64.11
+|   |   |   |   |   |   |   |   speech_rate < 63.11 : 43.79 (10/64) [3/89.33]
+|   |   |   |   |   |   |   |   speech_rate >= 63.11 : 59.94 (3/266.67) [0/0]
+|   |   |   |   |   |   |   speech_rate >= 64.11
+|   |   |   |   |   |   |   |   speech_rate < 69.73 : 35.65 (6/22.22) [1/277.78]
+|   |   |   |   |   |   |   |   speech_rate >= 69.73 : 52.8 (3/-0) [4/1450]
+|   |   |   |   |   |   foll_p_voiced = none : 51.82 (0/0) [0/0]
+|   |   |   |   |   syl_part = single : 49.94 (7/167.35) [3/404.08]
+|   |   |   foll_p_artic = f
+|   |   |   |   speech_rate < 67.16
+|   |   |   |   |   speech_rate < 46.84
+|   |   |   |   |   |   speech_rate < 38.27 : 29.94 (4/0) [1/0]
+|   |   |   |   |   |   speech_rate >= 38.27
+|   |   |   |   |   |   |   syl_part = onset : 29.94 (2/0) [2/0]
+|   |   |   |   |   |   |   syl_part = nucleus : 40.31 (0/0) [0/0]
+|   |   |   |   |   |   |   syl_part = coda : 41.61 (19/94.32) [14/131.81]
+|   |   |   |   |   |   |   syl_part = single : 39.94 (3/22.22) [1/177.78]
+|   |   |   |   |   speech_rate >= 46.84
+|   |   |   |   |   |   foll_p_voiced = v : 52.54 (0/0) [0/0]
+|   |   |   |   |   |   foll_p_voiced = y : 45.73 (25/151.84) [13/171.85]
+|   |   |   |   |   |   foll_p_voiced = n
+|   |   |   |   |   |   |   speech_rate < 66.34 : 57.57 (36/232.62) [23/449.9]
+|   |   |   |   |   |   |   speech_rate >= 66.34 : 39.94 (3/66.67) [0/0]
+|   |   |   |   |   |   foll_p_voiced = none : 52.54 (0/0) [0/0]
+|   |   |   |   speech_rate >= 67.16
+|   |   |   |   |   foll_p_voiced = v : 71.15 (0/0) [0/0]
+|   |   |   |   |   foll_p_voiced = y
+|   |   |   |   |   |   syl_part = onset : 49.94 (1/0) [2/400]
+|   |   |   |   |   |   syl_part = nucleus : 54.49 (0/0) [0/0]
+|   |   |   |   |   |   syl_part = coda : 63.27 (4/68.75) [2/331.25]
+|   |   |   |   |   |   syl_part = single : 34.94 (2/25) [0/0]
+|   |   |   |   |   foll_p_voiced = n : 79.49 (14/385.71) [8/1187.5]
+|   |   |   |   |   foll_p_voiced = none : 71.15 (0/0) [0/0]
+|   |   |   foll_p_artic = n
+|   |   |   |   speech_rate < 46.61 : 32.8 (4/18.75) [3/22.92]
+|   |   |   |   speech_rate >= 46.61 : 50.28 (21/261.68) [8/102.61]
+|   |   |   foll_p_artic = l : 38.69 (6/213.89) [2/136.11]
+|   |   |   foll_p_artic = j : 45.5 (4/218.75) [5/316.25]
+|   |   |   foll_p_artic = o : 61.61 (5/664) [1/676]
+|   |   |   foll_p_artic = none
+|   |   |   |   syl_part = onset : 54.23 (5/376) [2/1384]
+|   |   |   |   syl_part = nucleus : 71.88 (0/0) [0/0]
+|   |   |   |   syl_part = coda
+|   |   |   |   |   speech_rate < 66.77 : 72.44 (10/256) [2/34]
+|   |   |   |   |   speech_rate >= 66.77 : 99.94 (4/818.75) [4/143.75]
+|   |   |   |   syl_part = single : 44.94 (3/466.67) [1/400]
+|   |   phoneme = p : 68 (25/840) [11/651.27]
+|   |   phoneme = r
+|   |   |   syl_part_foll_p = onset : 29.94 (10/-0) [3/0]
+|   |   |   syl_part_foll_p = nucleus
+|   |   |   |   speech_rate < 47.26 : 32.16 (7/20.41) [2/8.16]
+|   |   |   |   speech_rate >= 47.26 : 52.84 (41/324.09) [21/428.29]
+|   |   |   syl_part_foll_p = coda : 32.94 (6/25) [4/25]
+|   |   |   syl_part_foll_p = single : 39.94 (1/0) [0/0]
+|   |   |   syl_part_foll_p = none : 29.94 (1/0) [0/0]
+|   |   phoneme = s
+|   |   |   speech_rate < 64.44
+|   |   |   |   foll_p_artic = v
+|   |   |   |   |   speech_rate < 48.51
+|   |   |   |   |   |   speech_rate < 37.44 : 33.94 (4/25) [1/25]
+|   |   |   |   |   |   speech_rate >= 37.44
+|   |   |   |   |   |   |   speech_rate < 44.11 : 45.57 (6/86.81) [2/25.69]
+|   |   |   |   |   |   |   speech_rate >= 44.11 : 39.94 (3/0) [2/100]
+|   |   |   |   |   speech_rate >= 48.51 : 55.5 (32/217.09) [22/345.41]
+|   |   |   |   foll_p_artic = p
+|   |   |   |   |   speech_rate < 54.11
+|   |   |   |   |   |   speech_rate < 37.44 : 29.94 (3/0) [3/0]
+|   |   |   |   |   |   speech_rate >= 37.44
+|   |   |   |   |   |   |   syl_part_foll_p = onset
+|   |   |   |   |   |   |   |   speech_rate < 41.61
+|   |   |   |   |   |   |   |   |   init_pos_in_syl = y : 39.94 (2/0) [1/0]
+|   |   |   |   |   |   |   |   |   init_pos_in_syl = n : 34.94 (4/75) [0/0]
+|   |   |   |   |   |   |   |   speech_rate >= 41.61
+|   |   |   |   |   |   |   |   |   speech_rate < 45.44 : 49.94 (3/66.67) [2/100]
+|   |   |   |   |   |   |   |   |   speech_rate >= 45.44 : 41.86 (20/50) [6/283.33]
+|   |   |   |   |   |   |   syl_part_foll_p = nucleus : 41.1 (0/0) [0/0]
+|   |   |   |   |   |   |   syl_part_foll_p = coda : 33.94 (3/22.22) [2/27.78]
+|   |   |   |   |   |   |   syl_part_foll_p = single : 41.1 (0/0) [0/0]
+|   |   |   |   |   |   |   syl_part_foll_p = none : 41.1 (0/0) [0/0]
+|   |   |   |   |   speech_rate >= 54.11
+|   |   |   |   |   |   foll_p_voiced = v : 54.42 (0/0) [0/0]
+|   |   |   |   |   |   foll_p_voiced = y : 66.19 (4/525) [4/375]
+|   |   |   |   |   |   foll_p_voiced = n : 49.94 (13/223.67) [8/450.37]
+|   |   |   |   |   |   foll_p_voiced = none : 54.42 (0/0) [0/0]
+|   |   |   |   foll_p_artic = f
+|   |   |   |   |   speech_rate < 58.94
+|   |   |   |   |   |   foll_p_voiced = v : 38.04 (0/0) [0/0]
+|   |   |   |   |   |   foll_p_voiced = y
+|   |   |   |   |   |   |   speech_rate < 54.25 : 32.69 (14/-0) [6/137.5]
+|   |   |   |   |   |   |   speech_rate >= 54.25 : 54.94 (2/100) [2/100]
+|   |   |   |   |   |   foll_p_voiced = n : 39.56 (17/182.01) [9/158.52]
+|   |   |   |   |   |   foll_p_voiced = none : 38.04 (0/0) [0/0]
+|   |   |   |   |   speech_rate >= 58.94 : 48.87 (10/270.25) [4/452.25]
+|   |   |   |   foll_p_artic = n : 46.9 (14/195.92) [9/414.4]
+|   |   |   |   foll_p_artic = l : 29.94 (2/0) [0/0]
+|   |   |   |   foll_p_artic = j : 46.19 (5/400) [3/900]
+|   |   |   |   foll_p_artic = o : 41.19 (6/133.33) [2/250]
+|   |   |   |   foll_p_artic = none
+|   |   |   |   |   speech_rate < 33.27 : 29.94 (8/-0) [1/0]
+|   |   |   |   |   speech_rate >= 33.27
+|   |   |   |   |   |   speech_rate < 44.94 : 39.94 (3/66.67) [0/0]
+|   |   |   |   |   |   speech_rate >= 44.94 : 31.37 (5/16) [2/4]
+|   |   |   speech_rate >= 64.44 : 63.29 (57/722.78) [25/551.28]
+|   |   phoneme = t
+|   |   |   speech_rate < 59.21
+|   |   |   |   speech_rate < 52.94 : 38.68 (60/99.89) [39/267.85]
+|   |   |   |   speech_rate >= 52.94 : 46.88 (48/254.12) [24/347.79]
+|   |   |   speech_rate >= 59.21
+|   |   |   |   foll_p_artic = v
+|   |   |   |   |   speech_rate < 65.8 : 61.19 (20/434.75) [12/796.08]
+|   |   |   |   |   speech_rate >= 65.8 : 75.52 (25/484.16) [18/348.28]
+|   |   |   |   foll_p_artic = p : 46.94 (7/738.78) [3/285.03]
+|   |   |   |   foll_p_artic = f : 50.03 (42/350.24) [15/302.74]
+|   |   |   |   foll_p_artic = n : 57.08 (13/639.05) [1/2130.18]
+|   |   |   |   foll_p_artic = l : 59.94 (1/0) [1/3600]
+|   |   |   |   foll_p_artic = j : 39.94 (2/25) [2/325]
+|   |   |   |   foll_p_artic = o : 29.94 (2/0) [1/0]
+|   |   |   |   foll_p_artic = none : 39.94 (4/100) [1/0]
+|   |   phoneme = v
+|   |   |   speech_rate < 57.02
+|   |   |   |   speech_rate < 46.27 : 33.64 (58/63.05) [34/45.72]
+|   |   |   |   speech_rate >= 46.27
+|   |   |   |   |   syl_stress = p_stress : 43.23 (27/203.36) [14/106.56]
+|   |   |   |   |   syl_stress = s_stress
+|   |   |   |   |   |   init_pos_in_syl = y : 32.44 (3/0) [1/100]
+|   |   |   |   |   |   init_pos_in_syl = n : 64.94 (2/225) [2/425]
+|   |   |   |   |   syl_stress = none
+|   |   |   |   |   |   speech_rate < 52.44 : 33.02 (7/110.2) [6/20.75]
+|   |   |   |   |   |   speech_rate >= 52.44 : 34.94 (6/122.22) [2/44.44]
+|   |   |   speech_rate >= 57.02
+|   |   |   |   syl_stress = p_stress : 52.49 (33/609) [14/465.24]
+|   |   |   |   syl_stress = s_stress
+|   |   |   |   |   speech_rate < 72.23 : 66.19 (5/56) [3/44]
+|   |   |   |   |   speech_rate >= 72.23 : 42.44 (2/100) [2/250]
+|   |   |   |   syl_stress = none : 41.52 (12/125) [7/196.43]
+|   speech_rate >= 76.77
+|   |   phoneme = a
+|   |   |   foll_p_artic = v : 89.94 (1/0) [0/0]
+|   |   |   foll_p_artic = p : 78.83 (7/1020.41) [2/3236.73]
+|   |   |   foll_p_artic = f : 99.41 (24/1316.49) [14/2763.27]
+|   |   |   foll_p_artic = n
+|   |   |   |   syl_stress = p_stress
+|   |   |   |   |   speech_rate < 114.77
+|   |   |   |   |   |   speech_rate < 98.27
+|   |   |   |   |   |   |   speech_rate < 88.27 : 93.27 (3/1088.89) [0/0]
+|   |   |   |   |   |   |   speech_rate >= 88.27 : 99.94 (3/466.67) [2/400]
+|   |   |   |   |   |   speech_rate >= 98.27 : 84.94 (2/25) [0/0]
+|   |   |   |   |   speech_rate >= 114.77
+|   |   |   |   |   |   speech_rate < 131.61 : 106.61 (3/22.22) [0/0]
+|   |   |   |   |   |   speech_rate >= 131.61 : 86.61 (2/25) [1/625]
+|   |   |   |   syl_stress = s_stress : 139.94 (1/0) [0/0]
+|   |   |   |   syl_stress = none
+|   |   |   |   |   speech_rate < 107.44 : 57.44 (6/80.56) [2/36.11]
+|   |   |   |   |   speech_rate >= 107.44 : 79.94 (7/1228.57) [0/0]
+|   |   |   foll_p_artic = l : 86.19 (8/498.44) [0/0]
+|   |   |   foll_p_artic = j : 89.94 (1/0) [0/0]
+|   |   |   foll_p_artic = o : 204.94 (1/0) [1/900]
+|   |   |   foll_p_artic = none : 162.44 (4/6918.75) [0/0]
+|   |   phoneme = a~ : 97.77 (0/0) [0/0]
+|   |   phoneme = e : 64.94 (4/275) [0/0]
+|   |   phoneme = E
+|   |   |   foll_p_artic = v : 36.61 (1/0) [2/50]
+|   |   |   foll_p_artic = p : 78.27 (4/118.75) [2/1656.25]
+|   |   |   foll_p_artic = f : 96.05 (11/1363.64) [7/585.71]
+|   |   |   foll_p_artic = n : 94.94 (3/1088.89) [1/44.44]
+|   |   |   foll_p_artic = l : 76.94 (8/1185.94) [2/1351.56]
+|   |   |   foll_p_artic = j : 87.77 (0/0) [0/0]
+|   |   |   foll_p_artic = o : 89.94 (2/3600) [0/0]
+|   |   |   foll_p_artic = none : 133.27 (2/0) [1/400]
+|   |   phoneme = I
+|   |   |   foll_p_artic = v : 39.94 (2/100) [0/0]
+|   |   |   foll_p_artic = p : 56.61 (2/225) [4/225]
+|   |   |   foll_p_artic = f
+|   |   |   |   prev_p_type = v : 39.94 (2/100) [0/0]
+|   |   |   |   prev_p_type = c : 75.65 (13/115.98) [8/3965.75]
+|   |   |   |   prev_p_type = none : 72.55 (0/0) [0/0]
+|   |   |   foll_p_artic = n : 62.86 (13/474.56) [11/779.29]
+|   |   |   foll_p_artic = l : 34.94 (2/25) [0/0]
+|   |   |   foll_p_artic = j : 43.27 (2/225) [1/25]
+|   |   |   foll_p_artic = o : 109.94 (0/0) [1/2640.82]
+|   |   |   foll_p_artic = none : 64.04 (0/0) [0/0]
+|   |   phoneme = i : 79.94 (2/1225) [1/225]
+|   |   phoneme = O
+|   |   |   foll_p_artic = v : 157.44 (2/900) [2/4050]
+|   |   |   foll_p_artic = p : 73.69 (4/250) [4/675]
+|   |   |   foll_p_artic = f
+|   |   |   |   speech_rate < 109.94 : 109.94 (5/296) [5/1672]
+|   |   |   |   speech_rate >= 109.94 : 76.61 (2/0) [1/400]
+|   |   |   foll_p_artic = n : 88.51 (4/168.75) [3/1856.25]
+|   |   |   foll_p_artic = l : 117.44 (2/100) [2/3250]
+|   |   |   foll_p_artic = j : 101.05 (0/0) [0/0]
+|   |   |   foll_p_artic = o : 101.05 (0/0) [0/0]
+|   |   |   foll_p_artic = none : 101.05 (0/0) [0/0]
+|   |   phoneme = o : 116.94 (16/3737.5) [14/2135.71]
+|   |   phoneme = U : 112.8 (10/5016) [4/3514]
+|   |   phoneme = u : 77.44 (4/1068.75) [0/0]
+|   |   phoneme = Y : 61.48 (4/118.75) [9/500.69]
+|   |   phoneme = y : 163.27 (3/2955.56) [0/0]
+|   |   phoneme = 9 : 99.94 (2/0) [0/0]
+|   |   phoneme = 2 : 97.77 (0/0) [0/0]
+|   |   phoneme = a:
+|   |   |   speech_rate < 100.77
+|   |   |   |   foll_p_artic = v : 69.94 (5/1144) [4/1596]
+|   |   |   |   foll_p_artic = p : 132.02 (25/1865.76) [11/2384.33]
+|   |   |   |   foll_p_artic = f
+|   |   |   |   |   syl_stress = p_stress : 85.5 (8/948.44) [1/39.06]
+|   |   |   |   |   syl_stress = s_stress : 94.49 (0/0) [0/0]
+|   |   |   |   |   syl_stress = none : 134.94 (2/25) [0/0]
+|   |   |   |   foll_p_artic = n : 148.51 (4/818.75) [3/822.92]
+|   |   |   |   foll_p_artic = l : 176.61 (2/2500) [1/100]
+|   |   |   |   foll_p_artic = j : 121.52 (0/0) [0/0]
+|   |   |   |   foll_p_artic = o : 149.94 (3/66.67) [1/6400]
+|   |   |   |   foll_p_artic = none : 112.16 (6/647.22) [3/358.33]
+|   |   |   speech_rate >= 100.77
+|   |   |   |   foll_p_artic = v : 113.27 (1/0) [2/5200]
+|   |   |   |   foll_p_artic = p : 169.17 (14/2473.98) [12/8226.02]
+|   |   |   |   foll_p_artic = f : 158.51 (7/897.96) [0/0]
+|   |   |   |   foll_p_artic = n : 219.94 (3/200) [0/0]
+|   |   |   |   foll_p_artic = l : 159.94 (0/0) [1/1.47]
+|   |   |   |   foll_p_artic = j : 161.29 (0/0) [0/0]
+|   |   |   |   foll_p_artic = o : 161.29 (0/0) [0/0]
+|   |   |   |   foll_p_artic = none
+|   |   |   |   |   speech_rate < 112.44 : 124.94 (4/275) [2/25]
+|   |   |   |   |   speech_rate >= 112.44 : 161.61 (4/1275) [2/3425]
+|   |   phoneme = a~: : 97.77 (0/0) [0/0]
+|   |   phoneme = e:
+|   |   |   foll_p_artic = v : 138.51 (7/2355.1) [0/0]
+|   |   |   foll_p_artic = p : 137.08 (5/864) [2/1616]
+|   |   |   foll_p_artic = f : 97.94 (4/150) [1/100]
+|   |   |   foll_p_artic = n : 136.86 (10/741) [3/22.33]
+|   |   |   foll_p_artic = l : 69.94 (1/0) [1/3600]
+|   |   |   foll_p_artic = j : 148.8 (0/0) [0/0]
+|   |   |   foll_p_artic = o : 59.94 (1/0) [0/0]
+|   |   |   foll_p_artic = none : 238.83 (3/1866.67) [6/4116.67]
+|   |   phoneme = E: : 114.94 (3/22.22) [1/44.44]
+|   |   phoneme = i: : 111.58 (33/2060.24) [22/1165.52]
+|   |   phoneme = o: : 142.9 (38/2983.1) [16/4143.87]
+|   |   phoneme = u:
+|   |   |   foll_p_artic = v : 105.94 (6/925) [4/475]
+|   |   |   foll_p_artic = p : 126.44 (11/1219.83) [9/560.97]
+|   |   |   foll_p_artic = f : 99.94 (0/0) [2/884]
+|   |   |   foll_p_artic = n : 104.94 (2/25) [0/0]
+|   |   |   foll_p_artic = l : 119.94 (0/0) [0/0]
+|   |   |   foll_p_artic = j : 119.94 (0/0) [0/0]
+|   |   |   foll_p_artic = o : 119.94 (0/0) [0/0]
+|   |   |   foll_p_artic = none : 199.94 (1/0) [0/0]
+|   |   phoneme = y: : 124.38 (7/5538.78) [2/2061.22]
+|   |   phoneme = 2: : 99.94 (3/1266.67) [0/0]
+|   |   phoneme = OY : 187.94 (3/2466.67) [2/650]
+|   |   phoneme = aU : 182.14 (29/2823.54) [12/2492.84]
+|   |   phoneme = aI
+|   |   |   foll_p_artic = v : 129.94 (1/0) [0/0]
+|   |   |   foll_p_artic = p : 162.8 (6/580.56) [8/886.11]
+|   |   |   foll_p_artic = f
+|   |   |   |   syl_part_foll_p = onset : 185.77 (4/1218.75) [2/81.25]
+|   |   |   |   syl_part_foll_p = nucleus : 157.02 (0/0) [0/0]
+|   |   |   |   syl_part_foll_p = coda : 128.27 (4/425) [2/325]
+|   |   |   |   syl_part_foll_p = single : 157.02 (0/0) [0/0]
+|   |   |   |   syl_part_foll_p = none : 157.02 (0/0) [0/0]
+|   |   |   foll_p_artic = n : 143.62 (13/1530.18) [6/4389.05]
+|   |   |   foll_p_artic = l : 229.94 (1/0) [0/0]
+|   |   |   foll_p_artic = j : 159.94 (2/25) [1/2025]
+|   |   |   foll_p_artic = o : 197.44 (2/100) [2/250]
+|   |   |   foll_p_artic = none : 239.94 (2/400) [1/900]
+|   |   phoneme = @
+|   |   |   speech_rate < 111.57
+|   |   |   |   foll_p_artic = v : 99.94 (4/350) [0/0]
+|   |   |   |   foll_p_artic = p : 64.94 (2/0) [2/100]
+|   |   |   |   foll_p_artic = f : 102.16 (7/2869.39) [2/1816.33]
+|   |   |   |   foll_p_artic = n : 63.02 (20/2679) [6/1901]
+|   |   |   |   foll_p_artic = l : 29.94 (1/0) [1/0]
+|   |   |   |   foll_p_artic = j : 59.94 (0/0) [1/875.17]
+|   |   |   |   foll_p_artic = o : 159.94 (2/3600) [0/0]
+|   |   |   |   foll_p_artic = none
+|   |   |   |   |   speech_rate < 97.98 : 111.05 (9/343.21) [0/0]
+|   |   |   |   |   speech_rate >= 97.98 : 159.94 (3/955.56) [3/200]
+|   |   |   speech_rate >= 111.57
+|   |   |   |   init_pos_in_syl = y : 264.94 (2/1225) [0/0]
+|   |   |   |   init_pos_in_syl = n : 152.8 (7/5624.49) [7/8648.98]
+|   |   phoneme = 6
+|   |   |   foll_p_artic = v : 125.5 (8/2048.44) [1/264.06]
+|   |   |   foll_p_artic = p : 98.76 (11/7879.34) [6/3043.39]
+|   |   |   foll_p_artic = f : 87.05 (16/463.96) [3/356.35]
+|   |   |   foll_p_artic = n
+|   |   |   |   speech_rate < 98.69 : 130.44 (9/676.54) [11/3627.5]
+|   |   |   |   speech_rate >= 98.69 : 176.61 (2/0) [1/400]
+|   |   |   foll_p_artic = l : 86.61 (3/822.22) [0/0]
+|   |   |   foll_p_artic = j : 129.94 (1/0) [0/0]
+|   |   |   foll_p_artic = o : 113.27 (2/400) [1/100]
+|   |   |   foll_p_artic = none
+|   |   |   |   init_pos_in_syl = y : 259.94 (2/1225) [1/11025]
+|   |   |   |   init_pos_in_syl = n
+|   |   |   |   |   speech_rate < 95.27 : 128.69 (10/1881) [6/915.67]
+|   |   |   |   |   speech_rate >= 95.27
+|   |   |   |   |   |   speech_rate < 127.44 : 185.94 (14/1408.67) [6/6269.9]
+|   |   |   |   |   |   speech_rate >= 127.44 : 213.69 (2/900) [6/5350]
+|   |   phoneme = z
+|   |   |   syl_stress = p_stress : 83.64 (16/1599.61) [11/812.32]
+|   |   |   syl_stress = s_stress : 49.94 (0/0) [1/309.08]
+|   |   |   syl_stress = none : 51.26 (15/292.22) [4/369.44]
+|   |   phoneme = S
+|   |   |   syl_part_foll_p = onset : 75.5 (9/476.54) [9/501.23]
+|   |   |   syl_part_foll_p = nucleus
+|   |   |   |   speech_rate < 107.85 : 94.94 (4/150) [2/250]
+|   |   |   |   speech_rate >= 107.85 : 75.94 (2/25) [3/2091.67]
+|   |   |   syl_part_foll_p = coda : 149.94 (1/0) [0/0]
+|   |   |   syl_part_foll_p = single : 81.94 (0/0) [0/0]
+|   |   |   syl_part_foll_p = none : 81.94 (0/0) [0/0]
+|   |   phoneme = Z : 97.77 (0/0) [0/0]
+|   |   phoneme = C
+|   |   |   speech_rate < 80.57 : 73.94 (4/518.75) [1/1056.25]
+|   |   |   speech_rate >= 80.57 : 128.15 (15/2672.89) [13/4132.75]
+|   |   phoneme = x
+|   |   |   syl_stress = p_stress
+|   |   |   |   foll_p_artic = v : 159.94 (0/0) [1/1922.49]
+|   |   |   |   foll_p_artic = p : 113.58 (10/729) [1/2601]
+|   |   |   |   foll_p_artic = f : 173.27 (1/0) [2/400]
+|   |   |   |   foll_p_artic = n : 119.94 (0/0) [1/14.79]
+|   |   |   |   foll_p_artic = l : 131.52 (0/0) [0/0]
+|   |   |   |   foll_p_artic = j : 131.52 (0/0) [0/0]
+|   |   |   |   foll_p_artic = o : 131.52 (0/0) [0/0]
+|   |   |   |   foll_p_artic = none : 149.94 (2/100) [1/3600]
+|   |   |   syl_stress = s_stress : 101.27 (0/0) [0/0]
+|   |   |   syl_stress = none
+|   |   |   |   foll_p_artic = v : 89.94 (4/850) [2/3600]
+|   |   |   |   foll_p_artic = p : 63.94 (4/568.75) [1/56.25]
+|   |   |   |   foll_p_artic = f : 76.61 (3/955.56) [0/0]
+|   |   |   |   foll_p_artic = n : 53.69 (6/1280.56) [2/1002.78]
+|   |   |   |   foll_p_artic = l : 79.17 (0/0) [0/0]
+|   |   |   |   foll_p_artic = j : 119.94 (1/0) [0/0]
+|   |   |   |   foll_p_artic = o : 79.17 (0/0) [0/0]
+|   |   |   |   foll_p_artic = none : 139.94 (2/625) [1/11025]
+|   |   phoneme = N
+|   |   |   foll_p_artic = v : 82.8 (5/424) [2/116]
+|   |   |   foll_p_artic = p : 193.27 (2/1600) [1/6400]
+|   |   |   foll_p_artic = f : 95.94 (3/1088.89) [2/1627.78]
+|   |   |   foll_p_artic = n : 69.94 (1/0) [0/0]
+|   |   |   foll_p_artic = l : 148.12 (0/0) [0/0]
+|   |   |   foll_p_artic = j : 148.12 (0/0) [0/0]
+|   |   |   foll_p_artic = o : 148.12 (0/0) [0/0]
+|   |   |   foll_p_artic = none : 258.27 (5/11024) [1/2116]
+|   |   phoneme = Q
+|   |   |   syl_stress = p_stress
+|   |   |   |   speech_rate < 105.77 : 59.94 (17/488.58) [7/575.28]
+|   |   |   |   speech_rate >= 105.77 : 113.69 (4/425) [4/3725]
+|   |   |   syl_stress = s_stress : 58.51 (0/0) [0/0]
+|   |   |   syl_stress = none : 38.69 (15/157.33) [9/231.56]
+|   |   phoneme = b
+|   |   |   syl_stress = p_stress : 85.94 (9/1980.25) [1/19.75]
+|   |   |   syl_stress = s_stress : 39.94 (1/0) [0/0]
+|   |   |   syl_stress = none
+|   |   |   |   foll_p_artic = v : 53.94 (20/564) [10/424]
+|   |   |   |   foll_p_artic = p : 51.37 (0/0) [0/0]
+|   |   |   |   foll_p_artic = f : 51.37 (0/0) [0/0]
+|   |   |   |   foll_p_artic = n : 32.44 (3/22.22) [1/11.11]
+|   |   |   |   foll_p_artic = l : 51.37 (0/0) [0/0]
+|   |   |   |   foll_p_artic = j : 51.37 (0/0) [0/0]
+|   |   |   |   foll_p_artic = o : 49.94 (1/0) [0/0]
+|   |   |   |   foll_p_artic = none : 51.37 (0/0) [0/0]
+|   |   phoneme = d
+|   |   |   syl_stress = p_stress
+|   |   |   |   speech_rate < 92.85 : 63.27 (13/101.78) [5/421.3]
+|   |   |   |   speech_rate >= 92.85
+|   |   |   |   |   speech_rate < 95.77 : 106.61 (3/1088.89) [0/0]
+|   |   |   |   |   speech_rate >= 95.77
+|   |   |   |   |   |   foll_p_type = v : 72.94 (3/0) [7/757.14]
+|   |   |   |   |   |   foll_p_type = c : 65.94 (2/100) [3/166.67]
+|   |   |   |   |   |   foll_p_type = none : 70.61 (0/0) [0/0]
+|   |   |   syl_stress = s_stress : 58.27 (0/0) [0/0]
+|   |   |   syl_stress = none : 48.27 (33/690.91) [9/122.22]
+|   |   phoneme = f
+|   |   |   speech_rate < 104.44
+|   |   |   |   foll_p_artic = v : 92.44 (26/1091.01) [10/414.95]
+|   |   |   |   foll_p_artic = p : 83.27 (3/622.22) [0/0]
+|   |   |   |   foll_p_artic = f : 71.61 (3/2005.56) [0/0]
+|   |   |   |   foll_p_artic = n : 114.94 (2/225) [0/0]
+|   |   |   |   foll_p_artic = l : 74.32 (2/100) [6/520.83]
+|   |   |   |   foll_p_artic = j : 49.94 (0/0) [1/1025.36]
+|   |   |   |   foll_p_artic = o : 64.94 (11/477.27) [0/0]
+|   |   |   |   foll_p_artic = none : 209.94 (0/0) [1/16378.55]
+|   |   |   speech_rate >= 104.44
+|   |   |   |   syl_part_foll_p = onset
+|   |   |   |   |   speech_rate < 115.77 : 69.94 (3/600) [0/0]
+|   |   |   |   |   speech_rate >= 115.77 : 104.94 (4/475) [3/116.67]
+|   |   |   |   syl_part_foll_p = nucleus
+|   |   |   |   |   speech_rate < 132.44 : 114.11 (6/347.22) [6/2136.11]
+|   |   |   |   |   speech_rate >= 132.44 : 173.27 (2/25) [1/3025]
+|   |   |   |   syl_part_foll_p = coda : 124.94 (0/0) [2/262.35]
+|   |   |   |   syl_part_foll_p = single : 144.94 (2/2025) [0/0]
+|   |   |   |   syl_part_foll_p = none : 139.94 (1/0) [0/0]
+|   |   phoneme = g
+|   |   |   syl_stress = p_stress : 79.61 (18/672.84) [12/857.72]
+|   |   |   syl_stress = s_stress : 66.9 (0/0) [0/0]
+|   |   |   syl_stress = none : 52.25 (17/339.79) [9/479.82]
+|   |   phoneme = h
+|   |   |   syl_stress = p_stress
+|   |   |   |   speech_rate < 85.06 : 59.11 (5/836) [1/169]
+|   |   |   |   speech_rate >= 85.06 : 95.94 (7/2653.06) [3/1689.8]
+|   |   |   syl_stress = s_stress : 39.94 (1/0) [2/450]
+|   |   |   syl_stress = none
+|   |   |   |   speech_rate < 133.27
+|   |   |   |   |   speech_rate < 80.94 : 39.94 (3/66.67) [0/0]
+|   |   |   |   |   speech_rate >= 80.94 : 55.5 (12/505.56) [6/444.44]
+|   |   |   |   speech_rate >= 133.27 : 99.94 (2/100) [1/3600]
+|   |   phoneme = j : 81.34 (40/1082.44) [10/1904.06]
+|   |   phoneme = k : 87.01 (34/899.65) [24/880.49]
+|   |   phoneme = l
+|   |   |   syl_part_foll_p = onset : 75.39 (9/1400) [2/1250]
+|   |   |   syl_part_foll_p = nucleus : 78.72 (32/761.3) [17/6404.46]
+|   |   |   syl_part_foll_p = coda : 117.72 (7/3191.84) [2/108.16]
+|   |   |   syl_part_foll_p = single : 149.94 (1/0) [0/0]
+|   |   |   syl_part_foll_p = none : 152.16 (5/2304) [4/9356]
+|   |   phoneme = m
+|   |   |   syl_part_foll_p = onset : 102.44 (15/1038.22) [5/619.11]
+|   |   |   syl_part_foll_p = nucleus : 88.59 (34/851.92) [14/1134.73]
+|   |   |   syl_part_foll_p = coda : 53.27 (2/225) [1/625]
+|   |   |   syl_part_foll_p = single : 144.94 (1/0) [1/4900]
+|   |   |   syl_part_foll_p = none : 174.23 (5/1240) [2/450]
+|   |   phoneme = n : 90.64 (161/3010.81) [66/2614.31]
+|   |   phoneme = p : 86.9 (15/2046.22) [8/913.78]
+|   |   phoneme = r : 64.94 (34/535.64) [18/814.03]
+|   |   phoneme = s
+|   |   |   foll_p_artic = v
+|   |   |   |   syl_stress = p_stress : 56.52 (12/368.58) [7/450.17]
+|   |   |   |   syl_stress = s_stress : 104.94 (1/0) [0/0]
+|   |   |   |   syl_stress = none : 97.63 (8/400) [5/820]
+|   |   |   foll_p_artic = p : 88.12 (6/2200) [5/400]
+|   |   |   foll_p_artic = f : 70.69 (15/1096.67) [5/905]
+|   |   |   foll_p_artic = n : 86.61 (7/1257.14) [5/440]
+|   |   |   foll_p_artic = l : 79.94 (1/0) [0/0]
+|   |   |   foll_p_artic = j : 79.94 (3/1266.67) [0/0]
+|   |   |   foll_p_artic = o : 79.94 (1/0) [2/1800]
+|   |   |   foll_p_artic = none : 111.61 (9/2143.21) [3/3360.49]
+|   |   phoneme = t
+|   |   |   foll_p_artic = v
+|   |   |   |   speech_rate < 114.08
+|   |   |   |   |   speech_rate < 104.44
+|   |   |   |   |   |   init_pos_in_syl = y : 80.8 (23/760.68) [12/398.74]
+|   |   |   |   |   |   init_pos_in_syl = n : 63.27 (16/577.73) [2/397.27]
+|   |   |   |   |   speech_rate >= 104.44 : 47.94 (5/496) [0/0]
+|   |   |   |   speech_rate >= 114.08 : 123.58 (7/7155.1) [4/4105.61]
+|   |   |   foll_p_artic = p : 32.8 (6/-0) [1/400]
+|   |   |   foll_p_artic = f : 60.96 (31/1069.67) [13/571.34]
+|   |   |   foll_p_artic = n : 86.3 (8/598.44) [3/447.4]
+|   |   |   foll_p_artic = l : 51.61 (3/172.22) [0/0]
+|   |   |   foll_p_artic = j : 57.44 (2/156.25) [0/0]
+|   |   |   foll_p_artic = o
+|   |   |   |   speech_rate < 91.05 : 39.94 (4/100) [1/0]
+|   |   |   |   speech_rate >= 91.05 : 89.94 (2/0) [0/0]
+|   |   |   foll_p_artic = none : 153.12 (17/3904.5) [5/3797.85]
+|   |   phoneme = v
+|   |   |   speech_rate < 77.85 : 78.69 (4/2229.69) [0/0]
+|   |   |   speech_rate >= 77.85
+|   |   |   |   init_pos_in_syl = y
+|   |   |   |   |   syl_stress = p_stress : 48.85 (18/302.78) [5/760]
+|   |   |   |   |   syl_stress = s_stress : 36.61 (2/100) [1/100]
+|   |   |   |   |   syl_stress = none
+|   |   |   |   |   |   prev_p_type = v : 37.44 (4/68.75) [0/0]
+|   |   |   |   |   |   prev_p_type = c : 29.94 (5/-0) [3/0]
+|   |   |   |   |   |   prev_p_type = none : 32.44 (0/0) [0/0]
+|   |   |   |   init_pos_in_syl = n : 65.39 (9/128.4) [2/188.27]
+speech_rate >= 141.19
+|   phoneme = a : 119.41 (11/3801.65) [8/7176.76]
+|   phoneme = a~ : 197.2 (0/0) [0/0]
+|   phoneme = e : 197.2 (0/0) [0/0]
+|   phoneme = E : 39.94 (2/25) [1/225]
+|   phoneme = I : 98.51 (5/1784) [2/3536]
+|   phoneme = i : 289.94 (1/0) [0/0]
+|   phoneme = O : 74.94 (3/1800) [1/400]
+|   phoneme = o : 116.61 (4/650) [2/5000]
+|   phoneme = U : 64.94 (1/0) [1/4900]
+|   phoneme = u : 197.2 (0/0) [0/0]
+|   phoneme = Y : 197.2 (0/0) [0/0]
+|   phoneme = y : 197.2 (0/0) [0/0]
+|   phoneme = 9 : 69.94 (1/0) [0/0]
+|   phoneme = 2 : 197.2 (0/0) [0/0]
+|   phoneme = a:
+|   |   speech_rate < 293.69 : 211.19 (26/4226.78) [14/4255.09]
+|   |   speech_rate >= 293.69 : 429.94 (3/55466.67) [0/0]
+|   phoneme = a~: : 197.2 (0/0) [0/0]
+|   phoneme = e: : 197.21 (6/5680.56) [5/2576.11]
+|   phoneme = E:
+|   |   speech_rate < 444.94 : 297.44 (5/7736) [3/9757.33]
+|   |   speech_rate >= 444.94 : 836.61 (3/4355.56) [0/0]
+|   phoneme = i: : 178.51 (6/6588.89) [1/1344.44]
+|   phoneme = o:
+|   |   speech_rate < 169.11 : 266.61 (3/88.89) [0/0]
+|   |   speech_rate >= 169.11 : 196.61 (2/400) [1/25600]
+|   phoneme = u: : 207.72 (6/12891.67) [3/8958.33]
+|   phoneme = y: : 89.94 (1/0) [0/0]
+|   phoneme = 2: : 189.94 (2/225) [1/225]
+|   phoneme = OY : 197.2 (0/0) [0/0]
+|   phoneme = aU : 255.65 (10/7281) [4/4279]
+|   phoneme = aI : 278.51 (3/155.56) [4/22794.44]
+|   phoneme = @ : 236.19 (10/31736) [6/27477.33]
+|   phoneme = 6 : 264.94 (11/16438.02) [7/17134.71]
+|   phoneme = z : 74.38 (7/2391.84) [2/1651.02]
+|   phoneme = S
+|   |   speech_rate < 154.94 : 66.61 (3/822.22) [0/0]
+|   |   speech_rate >= 154.94 : 129.94 (3/600) [1/0]
+|   phoneme = Z : 197.2 (0/0) [0/0]
+|   phoneme = C : 254.94 (2/7225) [0/0]
+|   phoneme = x : 195.94 (3/7466.67) [2/19450]
+|   phoneme = N : 415.94 (5/26664) [0/0]
+|   phoneme = Q : 170.53 (10/122964) [7/17993.14]
+|   phoneme = b : 73.27 (1/0) [2/5450]
+|   phoneme = d : 58.69 (6/2813.89) [2/236.11]
+|   phoneme = f : 143.58 (5/18584) [6/8439.33]
+|   phoneme = g : 66.19 (5/400) [3/700]
+|   phoneme = h
+|   |   speech_rate < 184.61 : 89.94 (3/2422.22) [2/4294.44]
+|   |   speech_rate >= 184.61 : 564.38 (6/108625) [3/163158.33]
+|   phoneme = j : 163.12 (19/18928.95) [14/9082.14]
+|   phoneme = k : 273.27 (3/29355.56) [0/0]
+|   phoneme = l : 143.69 (5/960) [3/37500]
+|   phoneme = m
+|   |   syl_part_foll_p = onset : 172.44 (3/16466.67) [5/9240]
+|   |   syl_part_foll_p = nucleus : 136.61 (5/21816) [1/1024]
+|   |   syl_part_foll_p = coda : 213.73 (0/0) [0/0]
+|   |   syl_part_foll_p = single : 749.94 (1/0) [0/0]
+|   |   syl_part_foll_p = none : 232.08 (11/16365.29) [3/14771.07]
+|   phoneme = n : 188.61 (23/10093.38) [7/9321.52]
+|   phoneme = p : 154.94 (2/625) [0/0]
+|   phoneme = r : 137.94 (3/3822.22) [2/51077.78]
+|   phoneme = s : 163.47 (13/23413.02) [4/5652.37]
+|   phoneme = t
+|   |   speech_rate < 205.48
+|   |   |   syl_stress = p_stress : 142.8 (3/5488.89) [4/15186.11]
+|   |   |   syl_stress = s_stress : 99.94 (1/0) [0/0]
+|   |   |   syl_stress = none : 289.94 (2/44100) [1/900]
+|   |   speech_rate >= 205.48 : 398.27 (4/12100) [2/8450]
+|   phoneme = v
+|   |   speech_rate < 194.94 : 57.94 (4/750) [1/100]
+|   |   speech_rate >= 194.94 : 84.94 (2/1225) [0/0]
+
+Size of the tree : 1145
+Attribute mappings:
+
+Model attributes           	    Incoming attributes
+---------------------------	    ----------------
+(nominal) phoneme          	--> 1 (nominal) phoneme
+(nominal) phoneme_type     	--> 3 (nominal) phoneme_type
+(nominal) art_manner       	--> 4 (nominal) art_manner
+(nominal) init_pos_in_syl  	--> 5 (nominal) init_pos_in_syl
+(nominal) syl_part         	--> 6 (nominal) syl_part
+(nominal) syl_stress       	--> 7 (nominal) syl_stress
+(nominal) prev_p_type      	--> 12 (nominal) prev_p_type
+(nominal) foll_p_type      	--> 14 (nominal) foll_p_type
+(nominal) foll_p_artic     	--> 15 (nominal) foll_p_artic
+(nominal) foll_p_voiced    	--> 16 (nominal) foll_p_voiced
+(nominal) syl_part_foll_p  	--> 17 (nominal) syl_part_foll_p
+(numeric) speech_rate      	--> 18 (numeric) speech_rate
+(numeric) duration         	--> 19 (numeric) duration
+
+
+Time taken to build model: 0.06 seconds
+
+=== Evaluation on test set ===
+
+Time taken to test model on supplied test set: 0 seconds
+
+=== Summary ===
+
+Correlation coefficient                  0.7931
+Mean absolute error                     20.6016
+Root mean squared error                 31.5396
+Relative absolute error                 58.5632 %
+Root relative squared error             60.9199 %
+Total Number of Instances              856     
+

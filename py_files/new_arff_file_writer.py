@@ -1,12 +1,13 @@
 import new_phon_dict
 import model_utilities
+import phon_list
 import time
 
 # Generates an almost ready for processing with weka text file. 
 
 ######################################################## STATIC DATA #############################################################
 # Dataset used must contain only modified par-files
-dataset_path = model_utilities.get_path_list('C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/Evaluation/Test_a')
+dataset_path = model_utilities.get_path_list('C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/Evaluation/Training_a')
 
 # List of phonemes approximated by our models. 
 # As there are also other phonetic items segmented in our database, we use this list to sort those out.
@@ -33,7 +34,7 @@ wtype_dict = {
 
 ######################################################## Writing file: attribute description #############################################################
 
-arff_file = open("C:/Users/alexutza_a/Abschlussarbeit/wekadateien/cart_test.txt", "w")
+arff_file = open("C:/Users/alexutza_a/Abschlussarbeit/wekadateien/cart_min_trainAKX.txt", "w")
 
 arff_file.write("% ARFF file for Verbmobil\n% \n@relation cart\n%\n% List of attributes:\n")
 arff_file.write("% Duration is expressed in miliseconds\n%\n")
@@ -72,28 +73,43 @@ arff_file.write("@data\n%\n")
 
 t1 = time.time()
 # Create dictionary to be written in the arff-file
-cart_dict = new_phon_dict.cart_dict(dataset_path)
-
+c_dict = new_phon_dict.cart_dict(dataset_path)
+#cart_l = phon_list.cart_list(dataset_path)
 t2 = time.time()
 print("Time to create dictionary: " + str(t2 - t1))
 
 # Combine all value lists of the dictionary into one huge list
-cart_list = []
-for phon in cart_dict.keys():
-	cart_list += cart_dict[phon]
-t3 = time.time()
-print("Time to build the list for writing: " + str(t3 - t2))
+#cart_list = []
+#for phon in cart_dict.keys():
+#	cart_list += cart_dict[phon]
+#t3 = time.time()
+#print("Time to build the list for writing: " + str(t3 - t2))
 
 time1 = time.time()
-print("Time to get list length: " + str(time1 - t3))
-
+#print("Time to get list length: " + str(time1 - t3))
+#i =0
 # Write elements of the cart_list to the arff_file
-for el in cart_list:
-	if  (cart_list.index(el) + 1):
-		arff_file.write(str(el) + "\n")
-	else:
-		arff_file.write(str(el) + ", ")
+#for el in cart_list:
+#	if (cart_list.index(el) + 1)%19 ==0:
+#	if (i+1)%19 == 0:
+#		arff_file.write(str(el) + "\n")
+#	else:
+#		arff_file.write(str(el) + ", ")
+#	i += 1
 
+
+for phon in c_dict.keys():
+    phon_list = c_dict[phon]
+    i = 0
+    while (i < len(phon_list)):
+        arff_file.write (", ".join([ str(x) for x in phon_list[i:i+19]]) + "\n")
+        i += 19
+
+#i = 0
+#while (i < len(cart_l)):
+#    arff_file.write (", ".join([ str(x) for x in cart_l[i:i+19]]) + "\n")
+
+#    i += 19
 
 arff_file.close()
 

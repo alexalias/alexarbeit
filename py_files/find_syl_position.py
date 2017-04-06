@@ -189,11 +189,11 @@ def get_syl(p_index, syl_dict):
 #print(prepare_strings("Qan6", "thal", "Q''an.d6+t.h'alp"))
 #print(prepare_strings("fE6aI", "nma:6n", "f6.+Q'aIn.+ba:.r#+@n"))
 #print(prepare_strings("ve", "a:t6b@zu:x", "te.Qa:t6.b@.zu:x"))
-#print(compare_strings("an6", "thal", "an.d6t.halp"))	# anderthalb
-#print(compare_strings("fE6aI", "nma:6n", "f6.aIn.ba:.r@n"))	# vereinbaren
-#print(compare_strings("b@zICt", "IgN", "b@.zIC.tI.g@n"))	# besichtigen
-#print(compare_strings("naIn", "halpte:gIg@s", "aI.naIn.halp.tE:.gi.g@s")) # eineinhalbtägiges
-#print(compare_strings("ar", "baItstrEfn", "a6.baIts.trE.f@n")) # Arbeitstreffen
+print(compare_strings("an6thal", "an.d6t.halp"))	# anderthalb
+print(compare_strings("fE6aInma:6n", "f6.aIn.ba:.r@n"))	# vereinbaren
+print(compare_strings("b@zICtIgN", "b@.zIC.tI.g@n"))	# besichtigen
+print(compare_strings("naInhalpte:gIg@s", "aI.naIn.halp.tE:.gi.g@s")) # eineinhalbtägiges
+print(compare_strings("arbaItstrEfn", "a6.baIts.trE.f@n")) # Arbeitstreffen
 #print(compare_strings("tE6m", "i:nmE:sIC", "tE6.mi:n.mE:.sIC"))
 #print(compare_strings("neC", "stn", "n'E:Cs.t@n"))
 #print(compare_strings("vea:t6b@zu:x", "te.a:.t6.b@.zu:x"))

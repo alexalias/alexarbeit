@@ -17,8 +17,9 @@ def stress_type(datei, word_number, phoneme, cursor):
 			#print(phoneme)
 		
 	mau_rank = p_rank_in_mau(work_file, word_no, phoneme, cursor)
-	stress_type = ""
-	word = ""
+	#print("MAU-rank: " + str(mau_rank))
+	#stress_type = ""
+	#word = ""
 	
 	for line in work_file:	
 		if re.match("KAN", line) and (int(line.split()[1]) == word_no):
@@ -136,6 +137,7 @@ def short_mono_stress(mau, kan, mau_rank, phoneme):
 		# If given phoneme has same count in both strings, 
 		#  then we can simply search for the needed occurence in the kan string, no other checks necessary
 		if count_m == count_k: 
+			#print("ok")
 			k_index = kan.find(phoneme)
 			stress_type = set_label(k_index, kan)
 

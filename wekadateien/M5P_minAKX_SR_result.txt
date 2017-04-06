@@ -1,0 +1,849 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.misc.InputMappedClassifier -I -trim -W weka.classifiers.trees.M5P -- -M 4.0
+Relation:     cart-weka.filters.unsupervised.attribute.Remove-R2,8-11,13
+Instances:    8459
+Attributes:   13
+              phoneme
+              phoneme_type
+              art_manner
+              init_pos_in_syl
+              syl_part
+              syl_stress
+              prev_p_type
+              foll_p_type
+              foll_p_artic
+              foll_p_voiced
+              syl_part_foll_p
+              speech_rate
+              duration
+Test mode:    user supplied test set:  size unknown (reading incrementally)
+
+=== Classifier model (full training set) ===
+
+InputMappedClassifier:
+
+M5 pruned model tree:
+(using smoothed linear models)
+
+speech_rate <= 91.155 : 
+|   speech_rate <= 55.215 : LM1 (2654/22.539%)
+|   speech_rate >  55.215 : 
+|   |   phoneme=C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: <= 0.5 : LM2 (2032/39.007%)
+|   |   phoneme=C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: >  0.5 : 
+|   |   |   phoneme=u:,e:,a:,2:,o:,aI,y,OY,aU,E: <= 0.5 : LM3 (1530/45.521%)
+|   |   |   phoneme=u:,e:,a:,2:,o:,aI,y,OY,aU,E: >  0.5 : LM4 (511/49.255%)
+speech_rate >  91.155 : 
+|   speech_rate <= 142.69 : LM5 (1307/76.824%)
+|   speech_rate >  142.69 : 
+|   |   speech_rate <= 194.105 : 
+|   |   |   syl_part_foll_p=single,none <= 0.5 : 
+|   |   |   |   phoneme=N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: <= 0.5 : 
+|   |   |   |   |   phoneme=i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: <= 0.5 : LM6 (45/70.096%)
+|   |   |   |   |   phoneme=i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: >  0.5 : LM7 (111/115.615%)
+|   |   |   |   phoneme=N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: >  0.5 : LM8 (45/81.36%)
+|   |   |   syl_part_foll_p=single,none >  0.5 : 
+|   |   |   |   phoneme_type=v <= 0.5 : LM9 (27/194.002%)
+|   |   |   |   phoneme_type=v >  0.5 : LM10 (43/110.343%)
+|   |   speech_rate >  194.105 : LM11 (154/278.46%)
+
+LM num: 1
+duration = 
+	5.4789 * phoneme=d,I,b,Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 5.9842 * phoneme=I,b,Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 9.4739 * phoneme=b,Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 7.9601 * phoneme=Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.055 * phoneme=r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 2.9547 * phoneme=e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 8.1241 * phoneme=z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.0112 * phoneme=g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0348 * phoneme=s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 2.2967 * phoneme=E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 2.7405 * phoneme=Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0628 * phoneme=i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 12.2211 * phoneme=n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 6.0477 * phoneme=l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 1.9137 * phoneme=9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 3.3259 * phoneme=t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 3.7669 * phoneme=C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 4.3538 * phoneme=U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 4.1896 * phoneme=a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.0262 * phoneme=S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 9.3712 * phoneme=u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0676 * phoneme=2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 10.4043 * phoneme=p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 3.7764 * phoneme=x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 16.934 * phoneme=m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 6.3218 * phoneme=i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 4.6995 * phoneme=f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 12.1208 * phoneme=@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0238 * phoneme=o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 13.5564 * phoneme=O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 6.9416 * phoneme=y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0687 * phoneme=6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 13.5815 * phoneme=h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 8.6994 * phoneme=j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 4.7483 * phoneme=N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0353 * phoneme=u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0244 * phoneme=e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.0205 * phoneme=a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0374 * phoneme=2:,o:,aI,y,OY,aU,E: 
+	+ 11.3374 * phoneme=o:,aI,y,OY,aU,E: 
+	+ 0.153 * phoneme=aI,y,OY,aU,E: 
+	+ 0.1085 * phoneme=y,OY,aU,E: 
+	- 0.0616 * phoneme=aU,E: 
+	- 0.2408 * phoneme=E: 
+	- 0.0432 * phoneme_type=v 
+	+ 0.0723 * art_manner=p,f,l,n,v,j 
+	- 6.2546 * art_manner=l,n,v,j 
+	- 1.9786 * art_manner=n,v,j 
+	+ 4.0236 * art_manner=v,j 
+	+ 0.0176 * art_manner=j 
+	- 0.0256 * init_pos_in_syl=n 
+	+ 0.0274 * syl_part=single,coda,nucleus 
+	- 2.4967 * syl_part=coda,nucleus 
+	+ 13.8726 * syl_part=nucleus 
+	+ 9.3109 * syl_stress=s_stress,p_stress 
+	- 5.4382 * syl_stress=p_stress 
+	+ 0.0204 * prev_p_type=c,none 
+	+ 4.6618 * foll_p_type=c,none 
+	+ 0.0821 * foll_p_type=none 
+	- 2.6352 * foll_p_artic=l,f,o,n,p,none 
+	+ 3.1826 * foll_p_artic=f,o,n,p,none 
+	- 1.4755 * foll_p_artic=o,n,p,none 
+	- 0.0282 * foll_p_artic=n,p,none 
+	+ 0.0261 * foll_p_artic=p,none 
+	+ 4.6619 * foll_p_voiced=y,n,none 
+	+ 1.8717 * foll_p_voiced=n,none 
+	- 11.368 * syl_part_foll_p=onset,coda,single,none 
+	+ 3.9971 * syl_part_foll_p=single,none 
+	+ 0.0821 * syl_part_foll_p=none 
+	+ 0.9656 * speech_rate 
+	- 8.4504
+
+LM num: 2
+duration = 
+	5.2585 * phoneme=d,I,b,Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 6.3607 * phoneme=I,b,Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 5.2375 * phoneme=b,Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 5.868 * phoneme=Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 9.8204 * phoneme=r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.048 * phoneme=e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 3.1986 * phoneme=g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0671 * phoneme=s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.0188 * phoneme=E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 5.8165 * phoneme=Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 2.7066 * phoneme=i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.0265 * phoneme=n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0078 * phoneme=9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.0785 * phoneme=t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.1845 * phoneme=C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.0449 * phoneme=U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.0128 * phoneme=a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.0207 * phoneme=S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.0825 * phoneme=u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.1343 * phoneme=2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0584 * phoneme=p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.008 * phoneme=x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.007 * phoneme=m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0198 * phoneme=i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.2103 * phoneme=@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0727 * phoneme=o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.2003 * phoneme=O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.1162 * phoneme=y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.1314 * phoneme=6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.367 * phoneme=h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.1541 * phoneme=j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.1347 * phoneme=N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0639 * phoneme=u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0889 * phoneme=e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.0576 * phoneme=a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0244 * phoneme=2:,o:,aI,y,OY,aU,E: 
+	+ 0.0296 * phoneme=o:,aI,y,OY,aU,E: 
+	+ 0.3379 * phoneme=aI,y,OY,aU,E: 
+	+ 0.0847 * phoneme=y,OY,aU,E: 
+	- 0.0402 * phoneme=aU,E: 
+	- 0.4043 * phoneme=E: 
+	- 11.4123 * phoneme_type=v 
+	+ 7.5064 * art_manner=p,f,l,n,v,j 
+	- 0.0505 * art_manner=l,n,v,j 
+	- 0.037 * art_manner=v,j 
+	+ 0.1179 * art_manner=j 
+	- 0.0551 * init_pos_in_syl=n 
+	+ 5.818 * syl_part=single,coda,nucleus 
+	+ 0.0292 * syl_part=coda,nucleus 
+	+ 17.8712 * syl_part=nucleus 
+	+ 0.093 * syl_stress=s_stress,p_stress 
+	+ 3.9229 * syl_stress=p_stress 
+	+ 0.036 * prev_p_type=c,none 
+	+ 5.4008 * foll_p_type=c,none 
+	+ 10.7835 * foll_p_type=none 
+	- 0.0988 * foll_p_artic=l,f,o,n,p,none 
+	+ 4.7572 * foll_p_artic=f,o,n,p,none 
+	+ 0.0159 * foll_p_artic=o,n,p,none 
+	- 0.0615 * foll_p_artic=n,p,none 
+	- 3.1673 * foll_p_artic=p,none 
+	+ 0.0367 * foll_p_voiced=y,n,none 
+	- 2.5004 * foll_p_voiced=n,none 
+	- 11.7911 * syl_part_foll_p=onset,coda,single,none 
+	+ 0.0121 * syl_part_foll_p=single,none 
+	+ 10.7835 * syl_part_foll_p=none 
+	+ 0.6946 * speech_rate 
+	- 7.4563
+
+LM num: 3
+duration = 
+	0.06 * phoneme=d,I,b,Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.054 * phoneme=I,b,Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0586 * phoneme=b,Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.0477 * phoneme=Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.1322 * phoneme=r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.0479 * phoneme=e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.0112 * phoneme=g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0669 * phoneme=s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.0187 * phoneme=E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.0428 * phoneme=Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.1014 * phoneme=i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.0265 * phoneme=n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0078 * phoneme=9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.0783 * phoneme=t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.1839 * phoneme=C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 9.1557 * phoneme=U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.0128 * phoneme=a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.0207 * phoneme=S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 4.8535 * phoneme=u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 6.2938 * phoneme=2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 9.2463 * phoneme=p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0678 * phoneme=x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 5.0385 * phoneme=m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0198 * phoneme=i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 13.0436 * phoneme=@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 9.1018 * phoneme=o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 9.692 * phoneme=O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 8.5106 * phoneme=y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 13.7785 * phoneme=6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 38.3473 * phoneme=h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 14.9613 * phoneme=j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 15.6698 * phoneme=N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0637 * phoneme=u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.2112 * phoneme=e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.1273 * phoneme=a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0244 * phoneme=2:,o:,aI,y,OY,aU,E: 
+	+ 0.0296 * phoneme=o:,aI,y,OY,aU,E: 
+	+ 0.6188 * phoneme=aI,y,OY,aU,E: 
+	+ 0.0847 * phoneme=y,OY,aU,E: 
+	- 0.0402 * phoneme=aU,E: 
+	- 0.6854 * phoneme=E: 
+	- 5.9743 * phoneme_type=v 
+	+ 0.1373 * art_manner=p,f,l,n,v,j 
+	- 4.551 * art_manner=l,n,v,j 
+	- 4.4778 * art_manner=v,j 
+	+ 13.3832 * art_manner=j 
+	- 7.8179 * init_pos_in_syl=n 
+	- 0.0262 * syl_part=single,coda,nucleus 
+	+ 7.3743 * syl_part=coda,nucleus 
+	+ 24.8514 * syl_part=nucleus 
+	+ 17.0872 * syl_stress=s_stress,p_stress 
+	- 3.9518 * syl_stress=p_stress 
+	+ 0.0359 * prev_p_type=c,none 
+	+ 7.8441 * foll_p_type=c,none 
+	+ 29.4892 * foll_p_type=none 
+	- 10.4856 * foll_p_artic=l,f,o,n,p,none 
+	+ 11.3513 * foll_p_artic=f,o,n,p,none 
+	+ 0.0158 * foll_p_artic=o,n,p,none 
+	- 4.4243 * foll_p_artic=n,p,none 
+	+ 0.092 * foll_p_artic=p,none 
+	+ 0.0367 * foll_p_voiced=y,n,none 
+	+ 0.0467 * foll_p_voiced=n,none 
+	- 15.1642 * syl_part_foll_p=onset,coda,single,none 
+	+ 0.0121 * syl_part_foll_p=single,none 
+	+ 0.1495 * syl_part_foll_p=none 
+	+ 0.9902 * speech_rate 
+	+ 5.1579
+
+LM num: 4
+duration = 
+	0.06 * phoneme=d,I,b,Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.054 * phoneme=I,b,Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0586 * phoneme=b,Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.0477 * phoneme=Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.1322 * phoneme=r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.0479 * phoneme=e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.0112 * phoneme=g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0669 * phoneme=s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.0187 * phoneme=E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.0428 * phoneme=Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.1014 * phoneme=i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.0265 * phoneme=n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0078 * phoneme=9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.0783 * phoneme=t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.1839 * phoneme=C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.4149 * phoneme=U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.0128 * phoneme=a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.0207 * phoneme=S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.2466 * phoneme=u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.5143 * phoneme=2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0582 * phoneme=p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.2146 * phoneme=x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.2166 * phoneme=m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0198 * phoneme=i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.6455 * phoneme=@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.2776 * phoneme=o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.5255 * phoneme=O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.34 * phoneme=y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.481 * phoneme=6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 1.2456 * phoneme=h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.7093 * phoneme=j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.2782 * phoneme=N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0637 * phoneme=u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 13.0219 * phoneme=e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 8.1734 * phoneme=a:,2:,o:,aI,y,OY,aU,E: 
+	+ 5.3565 * phoneme=2:,o:,aI,y,OY,aU,E: 
+	+ 0.0296 * phoneme=o:,aI,y,OY,aU,E: 
+	+ 24.7234 * phoneme=aI,y,OY,aU,E: 
+	+ 0.0847 * phoneme=y,OY,aU,E: 
+	- 0.0402 * phoneme=aU,E: 
+	- 19.4433 * phoneme=E: 
+	- 0.2744 * phoneme_type=v 
+	+ 0.1373 * art_manner=p,f,l,n,v,j 
+	- 0.0504 * art_manner=l,n,v,j 
+	- 0.0369 * art_manner=v,j 
+	+ 0.1173 * art_manner=j 
+	- 0.2483 * init_pos_in_syl=n 
+	- 0.1634 * syl_part=single,coda,nucleus 
+	+ 0.2644 * syl_part=coda,nucleus 
+	+ 0.8573 * syl_part=nucleus 
+	+ 25.3515 * syl_stress=s_stress,p_stress 
+	- 10.8835 * syl_stress=p_stress 
+	+ 0.0359 * prev_p_type=c,none 
+	+ 21.4222 * foll_p_type=c,none 
+	+ 0.7731 * foll_p_type=none 
+	- 0.3441 * foll_p_artic=l,f,o,n,p,none 
+	+ 0.4333 * foll_p_artic=f,o,n,p,none 
+	+ 8.8535 * foll_p_artic=o,n,p,none 
+	- 14.507 * foll_p_artic=n,p,none 
+	+ 8.9995 * foll_p_artic=p,none 
+	+ 0.0367 * foll_p_voiced=y,n,none 
+	+ 9.9872 * foll_p_voiced=n,none 
+	- 0.7828 * syl_part_foll_p=onset,coda,single,none 
+	+ 0.0121 * syl_part_foll_p=single,none 
+	+ 0.1495 * syl_part_foll_p=none 
+	+ 1.4469 * speech_rate 
+	- 52.6791
+
+LM num: 5
+duration = 
+	27.812 * phoneme=d,I,b,Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.3828 * phoneme=I,b,Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.4322 * phoneme=b,Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.4162 * phoneme=Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0964 * phoneme=r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.0773 * phoneme=e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.3263 * phoneme=g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.2957 * phoneme=s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 10.6594 * phoneme=E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 11.2235 * phoneme=Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 22.2874 * phoneme=i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.1022 * phoneme=n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 22.2889 * phoneme=l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 18.3663 * phoneme=9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.8432 * phoneme=t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 13.7666 * phoneme=C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 82.3623 * phoneme=U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 90.4141 * phoneme=a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 12.9504 * phoneme=S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 9.6732 * phoneme=u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0372 * phoneme=2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.4027 * phoneme=x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 29.2255 * phoneme=m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 51.9546 * phoneme=i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 14.7232 * phoneme=f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 11.5174 * phoneme=@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.3876 * phoneme=o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.1293 * phoneme=O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 27.2693 * phoneme=y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.577 * phoneme=6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 68.5123 * phoneme=h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 52.8253 * phoneme=j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 1.2023 * phoneme=N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 2.2168 * phoneme=u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 18.9139 * phoneme=e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 10.2802 * phoneme=a:,2:,o:,aI,y,OY,aU,E: 
+	- 31.4955 * phoneme=2:,o:,aI,y,OY,aU,E: 
+	+ 51.8223 * phoneme=o:,aI,y,OY,aU,E: 
+	+ 14.7005 * phoneme=aI,y,OY,aU,E: 
+	+ 17.475 * phoneme=y,OY,aU,E: 
+	- 0.1952 * phoneme=E: 
+	+ 15.8698 * phoneme_type=v 
+	- 0.3765 * art_manner=p,f,l,n,v,j 
+	+ 9.4277 * art_manner=f,l,n,v,j 
+	+ 18.6639 * art_manner=l,n,v,j 
+	+ 15.8507 * art_manner=n,v,j 
+	- 83.3587 * art_manner=v,j 
+	- 0.8361 * art_manner=j 
+	- 0.0262 * init_pos_in_syl=n 
+	+ 13.8623 * syl_part=single,coda,nucleus 
+	+ 0.0271 * syl_part=coda,nucleus 
+	+ 20.4078 * syl_part=nucleus 
+	+ 10.3771 * syl_stress=s_stress,p_stress 
+	+ 0.1176 * syl_stress=p_stress 
+	+ 5.6991 * prev_p_type=c,none 
+	+ 0.3418 * foll_p_type=c,none 
+	+ 30.8267 * foll_p_type=none 
+	+ 15.3905 * foll_p_artic=l,f,o,n,p,none 
+	+ 8.2801 * foll_p_artic=f,o,n,p,none 
+	- 9.8085 * foll_p_artic=n,p,none 
+	+ 13.1669 * foll_p_artic=p,none 
+	+ 0.0642 * foll_p_voiced=y,n,none 
+	- 24.9332 * syl_part_foll_p=onset,coda,single,none 
+	+ 16.024 * syl_part_foll_p=single,none 
+	+ 0.1523 * syl_part_foll_p=none 
+	+ 0.7743 * speech_rate 
+	- 56.5551
+
+LM num: 6
+duration = 
+	1.8939 * phoneme=d,I,b,Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 1.1502 * phoneme=I,b,Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 1.2985 * phoneme=b,Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 1.2505 * phoneme=Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0964 * phoneme=r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.0773 * phoneme=e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 1.0673 * phoneme=g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 1.0444 * phoneme=s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 2.9982 * phoneme=E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 37.6972 * phoneme=i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.1022 * phoneme=n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 18.8777 * phoneme=l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 16.9884 * phoneme=9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 2.5335 * phoneme=t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 9.2529 * phoneme=C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 20.5043 * phoneme=a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 3.1347 * phoneme=S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 4.1647 * phoneme=u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0372 * phoneme=2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 1.2098 * phoneme=x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 2.0627 * phoneme=m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 35.7323 * phoneme=i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 28.7142 * phoneme=f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.5443 * phoneme=@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 7.9688 * phoneme=o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.1293 * phoneme=O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.3789 * phoneme=y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 9.5711 * phoneme=6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 2.4787 * phoneme=h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 2.6297 * phoneme=j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 17.0866 * phoneme=N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 16.9645 * phoneme=u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 2.5521 * phoneme=e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 2.9596 * phoneme=a:,2:,o:,aI,y,OY,aU,E: 
+	+ 16.3266 * phoneme=o:,aI,y,OY,aU,E: 
+	+ 0.1375 * phoneme=aI,y,OY,aU,E: 
+	+ 1.2219 * phoneme=y,OY,aU,E: 
+	- 0.1952 * phoneme=E: 
+	+ 2.046 * phoneme_type=v 
+	- 6.7916 * art_manner=p,f,l,n,v,j 
+	+ 1.3285 * art_manner=f,l,n,v,j 
+	- 8.5917 * art_manner=l,n,v,j 
+	+ 5.832 * art_manner=n,v,j 
+	+ 1.2214 * art_manner=v,j 
+	- 6.768 * art_manner=j 
+	- 19.0813 * init_pos_in_syl=n 
+	+ 21.8176 * syl_part=single,coda,nucleus 
+	- 2.3083 * syl_part=coda,nucleus 
+	- 2.5769 * syl_part=nucleus 
+	- 1.081 * syl_stress=s_stress,p_stress 
+	+ 0.3534 * syl_stress=p_stress 
+	+ 0.3451 * prev_p_type=c,none 
+	+ 62.9295 * foll_p_type=c,none 
+	+ 1.4148 * foll_p_type=none 
+	- 17.4899 * foll_p_artic=l,f,o,n,p,none 
+	+ 0.0754 * foll_p_artic=f,o,n,p,none 
+	- 0.0293 * foll_p_artic=n,p,none 
+	+ 0.0354 * foll_p_artic=p,none 
+	+ 0.0642 * foll_p_voiced=y,n,none 
+	- 5.9183 * foll_p_voiced=n,none 
+	- 14.7473 * syl_part_foll_p=onset,coda,single,none 
+	- 6.2406 * syl_part_foll_p=coda,single,none 
+	+ 6.7655 * syl_part_foll_p=single,none 
+	+ 0.1523 * syl_part_foll_p=none 
+	+ 0.464 * speech_rate 
+	+ 7.8063
+
+LM num: 7
+duration = 
+	1.8939 * phoneme=d,I,b,Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 1.1502 * phoneme=I,b,Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 1.2985 * phoneme=b,Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 1.2505 * phoneme=Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0964 * phoneme=r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.0773 * phoneme=e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 1.0673 * phoneme=g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 1.0444 * phoneme=s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 2.9982 * phoneme=E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 29.7148 * phoneme=i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.1022 * phoneme=n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 60.7135 * phoneme=l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 11.604 * phoneme=9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 2.5335 * phoneme=t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 9.2529 * phoneme=C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 14.7406 * phoneme=a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 3.1347 * phoneme=S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 4.1647 * phoneme=u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0372 * phoneme=2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 1.2098 * phoneme=x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 2.0627 * phoneme=m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 86.1626 * phoneme=i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 62.1538 * phoneme=f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.5443 * phoneme=@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 7.9688 * phoneme=o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.1293 * phoneme=O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.3789 * phoneme=y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 9.5711 * phoneme=6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 2.4787 * phoneme=h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 2.6297 * phoneme=j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 17.0866 * phoneme=N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 16.9645 * phoneme=u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 2.5521 * phoneme=e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 2.9596 * phoneme=a:,2:,o:,aI,y,OY,aU,E: 
+	+ 16.3266 * phoneme=o:,aI,y,OY,aU,E: 
+	+ 0.1375 * phoneme=aI,y,OY,aU,E: 
+	+ 1.2219 * phoneme=y,OY,aU,E: 
+	- 0.1952 * phoneme=E: 
+	+ 2.046 * phoneme_type=v 
+	- 6.7916 * art_manner=p,f,l,n,v,j 
+	- 48.9406 * art_manner=f,l,n,v,j 
+	- 8.5917 * art_manner=l,n,v,j 
+	+ 5.832 * art_manner=n,v,j 
+	+ 1.2214 * art_manner=v,j 
+	- 6.768 * art_manner=j 
+	- 1.1023 * init_pos_in_syl=n 
+	+ 51.8549 * syl_part=single,coda,nucleus 
+	- 2.3083 * syl_part=coda,nucleus 
+	- 2.5769 * syl_part=nucleus 
+	- 1.081 * syl_stress=s_stress,p_stress 
+	+ 0.3534 * syl_stress=p_stress 
+	+ 0.3451 * prev_p_type=c,none 
+	+ 30.2048 * foll_p_type=c,none 
+	+ 1.4148 * foll_p_type=none 
+	- 11.8675 * foll_p_artic=l,f,o,n,p,none 
+	+ 0.0754 * foll_p_artic=f,o,n,p,none 
+	- 0.0293 * foll_p_artic=n,p,none 
+	+ 0.0354 * foll_p_artic=p,none 
+	+ 0.0642 * foll_p_voiced=y,n,none 
+	- 5.9183 * foll_p_voiced=n,none 
+	- 14.7473 * syl_part_foll_p=onset,coda,single,none 
+	- 29.4783 * syl_part_foll_p=coda,single,none 
+	+ 6.7655 * syl_part_foll_p=single,none 
+	+ 0.1523 * syl_part_foll_p=none 
+	+ 1.6282 * speech_rate 
+	- 74.4477
+
+LM num: 8
+duration = 
+	1.8939 * phoneme=d,I,b,Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 1.1502 * phoneme=I,b,Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 1.2985 * phoneme=b,Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 1.2505 * phoneme=Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0964 * phoneme=r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.0773 * phoneme=e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 1.0673 * phoneme=g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 1.0444 * phoneme=s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 2.9982 * phoneme=E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 33.1944 * phoneme=i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.1022 * phoneme=n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 12.1381 * phoneme=l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 12.1966 * phoneme=9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 2.5335 * phoneme=t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 18.0406 * phoneme=C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 9.5009 * phoneme=a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 3.1347 * phoneme=S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 4.1647 * phoneme=u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0372 * phoneme=2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 1.2098 * phoneme=x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 2.0627 * phoneme=m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 32.8109 * phoneme=i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 26.3204 * phoneme=f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.5443 * phoneme=@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 7.9688 * phoneme=o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.1293 * phoneme=O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.3789 * phoneme=y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 9.5711 * phoneme=6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 2.4787 * phoneme=h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 2.6297 * phoneme=j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 17.0866 * phoneme=N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 16.9645 * phoneme=u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 2.5521 * phoneme=e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 2.9596 * phoneme=a:,2:,o:,aI,y,OY,aU,E: 
+	+ 50.3836 * phoneme=o:,aI,y,OY,aU,E: 
+	+ 25.2172 * phoneme=aI,y,OY,aU,E: 
+	+ 1.2219 * phoneme=y,OY,aU,E: 
+	- 0.1952 * phoneme=E: 
+	+ 2.046 * phoneme_type=v 
+	- 6.7916 * art_manner=p,f,l,n,v,j 
+	+ 1.3285 * art_manner=f,l,n,v,j 
+	- 13.2214 * art_manner=l,n,v,j 
+	+ 11.1938 * art_manner=n,v,j 
+	+ 1.2214 * art_manner=v,j 
+	- 6.768 * art_manner=j 
+	+ 1.564 * init_pos_in_syl=n 
+	+ 16.5967 * syl_part=single,coda,nucleus 
+	- 2.3083 * syl_part=coda,nucleus 
+	- 2.5769 * syl_part=nucleus 
+	- 1.081 * syl_stress=s_stress,p_stress 
+	+ 0.3534 * syl_stress=p_stress 
+	+ 0.3451 * prev_p_type=c,none 
+	+ 42.7403 * foll_p_type=c,none 
+	+ 1.4148 * foll_p_type=none 
+	- 13.4281 * foll_p_artic=l,f,o,n,p,none 
+	+ 0.0754 * foll_p_artic=f,o,n,p,none 
+	- 0.0293 * foll_p_artic=n,p,none 
+	+ 0.0354 * foll_p_artic=p,none 
+	+ 0.0642 * foll_p_voiced=y,n,none 
+	- 11.8923 * foll_p_voiced=n,none 
+	- 23.3366 * syl_part_foll_p=onset,coda,single,none 
+	- 21.8782 * syl_part_foll_p=coda,single,none 
+	+ 6.7655 * syl_part_foll_p=single,none 
+	+ 0.1523 * syl_part_foll_p=none 
+	+ 0.3654 * speech_rate 
+	+ 92.4954
+
+LM num: 9
+duration = 
+	1.8939 * phoneme=d,I,b,Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 1.1502 * phoneme=I,b,Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 1.2985 * phoneme=b,Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 1.2505 * phoneme=Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0964 * phoneme=r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.0773 * phoneme=e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 1.0673 * phoneme=g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 1.0444 * phoneme=s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 2.9982 * phoneme=E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 16.6548 * phoneme=i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.1022 * phoneme=n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 4.0751 * phoneme=l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 82.6627 * phoneme=9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 2.5335 * phoneme=t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 4.5028 * phoneme=C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 16.4014 * phoneme=a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 3.1347 * phoneme=S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 7.5206 * phoneme=u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0372 * phoneme=2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 1.2098 * phoneme=x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 26.7011 * phoneme=m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 110.2102 * phoneme=i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 25.7229 * phoneme=f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.5443 * phoneme=@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 7.9688 * phoneme=o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.1293 * phoneme=O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.3789 * phoneme=y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 9.5711 * phoneme=6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 52.022 * phoneme=h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 2.6297 * phoneme=j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 32.08 * phoneme=N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 16.9645 * phoneme=u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 2.5521 * phoneme=e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 42.1368 * phoneme=a:,2:,o:,aI,y,OY,aU,E: 
+	+ 17.0765 * phoneme=o:,aI,y,OY,aU,E: 
+	+ 0.1375 * phoneme=aI,y,OY,aU,E: 
+	+ 1.2219 * phoneme=y,OY,aU,E: 
+	- 0.1952 * phoneme=E: 
+	- 3.5154 * phoneme_type=v 
+	- 6.7916 * art_manner=p,f,l,n,v,j 
+	+ 1.3285 * art_manner=f,l,n,v,j 
+	- 6.0892 * art_manner=l,n,v,j 
+	+ 10.7068 * art_manner=n,v,j 
+	+ 1.2214 * art_manner=v,j 
+	- 6.768 * art_manner=j 
+	+ 1.564 * init_pos_in_syl=n 
+	+ 8.1293 * syl_part=single,coda,nucleus 
+	- 2.3083 * syl_part=coda,nucleus 
+	- 29.3956 * syl_part=nucleus 
+	- 17.55 * syl_stress=s_stress,p_stress 
+	+ 0.3534 * syl_stress=p_stress 
+	+ 0.3451 * prev_p_type=c,none 
+	+ 26.5237 * foll_p_type=c,none 
+	+ 33.0169 * foll_p_type=none 
+	- 3.1496 * foll_p_artic=l,f,o,n,p,none 
+	+ 0.0754 * foll_p_artic=f,o,n,p,none 
+	- 0.0293 * foll_p_artic=n,p,none 
+	+ 0.0354 * foll_p_artic=p,none 
+	+ 0.0642 * foll_p_voiced=y,n,none 
+	- 6.8335 * foll_p_voiced=n,none 
+	- 16.7435 * syl_part_foll_p=onset,coda,single,none 
+	+ 9.0133 * syl_part_foll_p=single,none 
+	+ 0.1523 * syl_part_foll_p=none 
+	+ 0.7938 * speech_rate 
+	+ 15.7999
+
+LM num: 10
+duration = 
+	1.8939 * phoneme=d,I,b,Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 1.1502 * phoneme=I,b,Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 1.2985 * phoneme=b,Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 1.2505 * phoneme=Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0964 * phoneme=r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.0773 * phoneme=e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 1.0673 * phoneme=g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 1.0444 * phoneme=s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 2.9982 * phoneme=E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 16.6548 * phoneme=i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.1022 * phoneme=n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 4.0751 * phoneme=l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 35.1798 * phoneme=9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 2.5335 * phoneme=t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 4.5028 * phoneme=C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 16.4014 * phoneme=a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 3.1347 * phoneme=S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 7.5206 * phoneme=u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0372 * phoneme=2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 1.2098 * phoneme=x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 21.5762 * phoneme=m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 34.1495 * phoneme=i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 25.7229 * phoneme=f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.5443 * phoneme=@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 7.9688 * phoneme=o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.1293 * phoneme=O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.3789 * phoneme=y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 9.5711 * phoneme=6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 36.6017 * phoneme=h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 2.6297 * phoneme=j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 32.08 * phoneme=N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 16.9645 * phoneme=u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 2.5521 * phoneme=e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 32.5875 * phoneme=a:,2:,o:,aI,y,OY,aU,E: 
+	+ 17.0765 * phoneme=o:,aI,y,OY,aU,E: 
+	+ 0.1375 * phoneme=aI,y,OY,aU,E: 
+	+ 1.2219 * phoneme=y,OY,aU,E: 
+	- 0.1952 * phoneme=E: 
+	- 3.5154 * phoneme_type=v 
+	- 6.7916 * art_manner=p,f,l,n,v,j 
+	+ 1.3285 * art_manner=f,l,n,v,j 
+	- 6.0892 * art_manner=l,n,v,j 
+	+ 10.7068 * art_manner=n,v,j 
+	+ 1.2214 * art_manner=v,j 
+	- 6.768 * art_manner=j 
+	+ 1.564 * init_pos_in_syl=n 
+	+ 8.1293 * syl_part=single,coda,nucleus 
+	- 2.3083 * syl_part=coda,nucleus 
+	- 23.3413 * syl_part=nucleus 
+	- 13.4918 * syl_stress=s_stress,p_stress 
+	+ 0.3534 * syl_stress=p_stress 
+	+ 0.3451 * prev_p_type=c,none 
+	+ 26.5237 * foll_p_type=c,none 
+	+ 25.376 * foll_p_type=none 
+	- 3.1496 * foll_p_artic=l,f,o,n,p,none 
+	+ 0.0754 * foll_p_artic=f,o,n,p,none 
+	- 0.0293 * foll_p_artic=n,p,none 
+	+ 0.0354 * foll_p_artic=p,none 
+	+ 0.0642 * foll_p_voiced=y,n,none 
+	- 6.8335 * foll_p_voiced=n,none 
+	- 16.7435 * syl_part_foll_p=onset,coda,single,none 
+	+ 9.0133 * syl_part_foll_p=single,none 
+	+ 0.1523 * syl_part_foll_p=none 
+	+ 0.6469 * speech_rate 
+	+ 62.619
+
+LM num: 11
+duration = 
+	1.8939 * phoneme=d,I,b,Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 1.1502 * phoneme=I,b,Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 1.2985 * phoneme=b,Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 1.2505 * phoneme=Y,r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0964 * phoneme=r,e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.0773 * phoneme=e,z,g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 1.0673 * phoneme=g,s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 1.0444 * phoneme=s,E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 5.0739 * phoneme=E,Q,i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 111.0363 * phoneme=i,n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 0.1022 * phoneme=n,l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 5.41 * phoneme=l,9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 2.6008 * phoneme=9,t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 2.5335 * phoneme=t,C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 7.1971 * phoneme=C,U,a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 7.4418 * phoneme=a,S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 5.3322 * phoneme=S,u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 1.9871 * phoneme=u,2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.0372 * phoneme=2,Z,a~:,a~,k,p,x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 1.2098 * phoneme=x,m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 12.0501 * phoneme=m,i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 2.9811 * phoneme=i:,f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 209.8868 * phoneme=f,@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.5443 * phoneme=@,o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 224.1721 * phoneme=o,O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.1293 * phoneme=O,y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 0.3789 * phoneme=y:,6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 280.964 * phoneme=6,h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 11.2634 * phoneme=h,j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 237.7222 * phoneme=j,N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 10.0942 * phoneme=N,u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 82.5191 * phoneme=u:,e:,a:,2:,o:,aI,y,OY,aU,E: 
+	- 4.3189 * phoneme=e:,a:,2:,o:,aI,y,OY,aU,E: 
+	+ 89.5811 * phoneme=2:,o:,aI,y,OY,aU,E: 
+	+ 8.7336 * phoneme=o:,aI,y,OY,aU,E: 
+	+ 0.1375 * phoneme=aI,y,OY,aU,E: 
+	+ 1.2219 * phoneme=y,OY,aU,E: 
+	- 0.1952 * phoneme=E: 
+	- 124.5219 * phoneme_type=v 
+	- 123.4669 * art_manner=p,f,l,n,v,j 
+	+ 1.3285 * art_manner=f,l,n,v,j 
+	- 9.152 * art_manner=l,n,v,j 
+	- 2.1099 * art_manner=n,v,j 
+	+ 1.2214 * art_manner=v,j 
+	- 9.9279 * art_manner=j 
+	+ 2.6649 * init_pos_in_syl=n 
+	+ 6.8193 * syl_part=single,coda,nucleus 
+	- 3.9251 * syl_part=coda,nucleus 
+	+ 0.5843 * syl_part=nucleus 
+	+ 0.0598 * syl_stress=s_stress,p_stress 
+	+ 0.3534 * syl_stress=p_stress 
+	+ 0.3451 * prev_p_type=c,none 
+	+ 12.7575 * foll_p_type=c,none 
+	- 2.591 * foll_p_type=none 
+	- 5.2813 * foll_p_artic=l,f,o,n,p,none 
+	+ 0.0754 * foll_p_artic=f,o,n,p,none 
+	- 0.0293 * foll_p_artic=n,p,none 
+	+ 0.0354 * foll_p_artic=p,none 
+	+ 0.0642 * foll_p_voiced=y,n,none 
+	+ 57.9011 * foll_p_voiced=n,none 
+	- 9.0786 * syl_part_foll_p=onset,coda,single,none 
+	+ 8.3816 * syl_part_foll_p=single,none 
+	+ 0.1523 * syl_part_foll_p=none 
+	+ 0.7794 * speech_rate 
+	+ 41.4551
+
+Number of Rules : 11
+Attribute mappings:
+
+Model attributes           	    Incoming attributes
+---------------------------	    ----------------
+(nominal) phoneme          	--> 1 (nominal) phoneme
+(nominal) phoneme_type     	--> 3 (nominal) phoneme_type
+(nominal) art_manner       	--> 4 (nominal) art_manner
+(nominal) init_pos_in_syl  	--> 5 (nominal) init_pos_in_syl
+(nominal) syl_part         	--> 6 (nominal) syl_part
+(nominal) syl_stress       	--> 7 (nominal) syl_stress
+(nominal) prev_p_type      	--> 12 (nominal) prev_p_type
+(nominal) foll_p_type      	--> 14 (nominal) foll_p_type
+(nominal) foll_p_artic     	--> 15 (nominal) foll_p_artic
+(nominal) foll_p_voiced    	--> 16 (nominal) foll_p_voiced
+(nominal) syl_part_foll_p  	--> 17 (nominal) syl_part_foll_p
+(numeric) speech_rate      	--> 18 (numeric) speech_rate
+(numeric) duration         	--> 19 (numeric) duration
+
+
+Time taken to build model: 5.13 seconds
+
+=== Evaluation on test set ===
+
+Time taken to test model on supplied test set: 0.02 seconds
+
+=== Summary ===
+
+Correlation coefficient                  0.7678
+Mean absolute error                     21.8663
+Root mean squared error                 33.1266
+Relative absolute error                 62.1584 %
+Root relative squared error             63.9852 %
+Total Number of Instances              856     
+

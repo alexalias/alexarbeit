@@ -186,4 +186,11 @@ def get_word_SR(datei, word_nr):
 
 	return p_phon_WSR, n_phon_WSR
 
-#print(get_word_SR('C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/mod_dataset/g001acn1_000_AAJ_a.par', 1)[0])
+#SR_list = []
+#for el in range(13):
+#	SR_list.append(get_word_SR('C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/mod_dataset/g001acn1_035_AAJ_a.par', el)[0])
+#SR_list = [ (x/10)*2 for x in SR_list]
+
+#print(SR_list)
+
+#print(get_word_SR('C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/mod_dataset/g001acn1_017_AAJ_a.par', 1)[0])
