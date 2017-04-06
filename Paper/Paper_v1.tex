@@ -282,11 +282,18 @@ Then we looked for a definition of speech rate that can be used to model phoneme
 The fact, that speech rate doesn't show any correlation with some phonemes, like \texttt{/r/}, while it has a pretty good correlation with others, like \texttt{/a:/} suggests the need for classification in whichever model we choose.
 
 \section{Experiment}
-In order to test whether our definition of speech rate has an influence on the prediction of the exact phoneme duration by comparing a duration prediction model with and without a feature for speech rate. We chose a tree model, because it is simple to implement, and to interpret. One can easily examine this kind of model to see which features are being used, and which weights they bear. 
+In order to test whether adding speech rate information really improves the predictions of a phoneme duration model, we tested the same model with and without the speech rate feature. We chose a tree model, because it is simple to implement, and to interpret. One can easily examine this kind of model to see which features are being used, and which weights they bear. 
 
-We first reconstructed to a great extent a previous experiment \cite{Brinckmann2003} that used a CART tree to predict phoneme duration, and reached good approximation values, because we wanted to have a reference for comparison. There is only one feature out of the 19 used in that experiment, which we could not recreate: degree of word accentuation. We lacked prosodic information for doing this. However, we tried to capture this kind of information by adding two extra word type classes: emphatic function words, like interjections and answer particles, and emphatic content words, like proper names and spelled items.
+For the sake of comparison, and to see whether we lie on the right track, we created at the beginning two basic models: 
 
-Next, we pruned the used feature space by using two feature selection algorithms: forward and backward feature selection. Consequently, following features were selected:
+\begin{enumerate}
+	\item The first one predicted the phoneme duration as the mean of its durations across the whole corpus. 
+	\item The second one build a two level tree, which split the root on the 49 realized phonemes, and then each phoneme on two specific speech rate values. The leaves contained three predicted values for each phoneme. These values were calculated using the mean duration of the specific phoneme across the corpus modified or not by a proportion of its standard deviation, based on the speech rate value split. Figure ... shows the structure of this tree. 
+\end{enumerate}
+
+As the results of the initial two models were encouraging, we proceeded with a ``real`` model. For this, we reconstructed to a great extent a previous experiment \cite{Brinckman2003} that used a CART tree to predict phoneme duration, and reached good approximation values. By using this model we also had the advantage of having a reference for comparison. There is only one feature out of the 19 used in that experiment, which we could not recreate: degree of word accentuation. We lacked prosodic information for doing this. However, we tried to capture this kind of information by adding two extra word type classes: emphatic function words, like interjections and answer particles, and emphatic content words, like proper names and spelled items. For such words it is generally known that they usually carry phrasal stress.
+
+Next, we pruned the used feature space by using two feature selection algorithms: forward and backward feature selection. Their principle is easy to understand and they are available in Weka. Consequently, following features were selected:
 
 \begin{itemize}
 	\item PHONEME INSTRINSIC FEATURES
@@ -316,10 +323,19 @@ Next, we pruned the used feature space by using two feature selection algorithms
 	\end{itemize}
 \end{itemize}
 
-Note that all features consider only actually realised units in speech. 
+Note that all features consider only actually realised units in speech. We also had to reduce the amount of data used for the model to 58\% of the total corpus, due to capacity limitations imposed by Weka on our system.
 After pruning, the \textit{word} related features got completely eliminated, together with \textit{syllable-place-in-word} and \textit{articulation-of-realised-previous phoneme}. 
 
+To this collection of features we added \textit{speech rate} in the second phase and compare the results. 
+
 \section{Results}
+We trained and evaluated both a M5P and a REPTree model. The results were very similar, so present here only the results obtained using the model tree M5P, as they were slightly better. As can be seen in Table ... adding the speech rate feature caused a significant improvement of all our models. 
+
+Table
+
+However, the performance of our model tree is smaller than the performance of the CART built by Brinckmann \& Trouvain \cite{Brinckman2003}. This is explainable if we consider the nature of the used datasets. The CART tree used PhonDat, a rather homogenous dataset in terms of speech rate and number of speakers. Furthermore, the model was trained and tested separately on data produced by one speaker. The reported results show even for PhonDat a difference in performance between speakers. Another aspect that can have a great impact on the model result is the quality of the input data. While PhonDat was manually segmented and annotated, Verbmobil was processed automatically using the MAUS segmentation system. When evaluating outliers we found many examples of wrong segmentation, as we also discussed in Section 4.2.
+
+On the other hand, our model tree shows robustness with respect to factors like inter-speaker variability and speech rate. The results obtained for a test set containing data from a speaker not included in the training data were similar to those obtained on known speakers on terms of correlation coefficient, and showed less error rates, as can be seen in table .... Moreover, if the model is to be evaluated on data produced by only one speaker, it produces good results even when using less than 10\% of the amount of data used to train on the multiple speaker corpus. The most frequent speaker in our database still only has 185 recorded turns, consisting of 9315 identifyiable uttered phonemes, which represent 0.02\% of the total phoneme instances in our corpus, so we could not test our model on a larger dataset of a single speaker. In comparison to this, the dataset used for CART contained 624 sentences, and a total of 4932 orthographically different words, which results in more than a double sized corpus.
 
 \chapter{Conclusion and Outlook}
 Our model calculates an approximation for the phoneme duration when its corresponding speech segment changes in terms of duration. It does this no matter what was the cause of the duration change in the segment. However, when speech rate changes, there are also other speech characteristics, like prosody and phoneme quality which change, and which cannot be simulated only by modifying the phoneme duration. Therefore, making speech sound natural while modifying the speech rate needs to consider and adjust these other features too.
