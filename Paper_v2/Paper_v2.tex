@@ -5,7 +5,7 @@
 %\usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[style=numeric]{biblatex}
-\bibliography{../PaperBib2}
+\bibliography{PaperBib}
 \usepackage{colortbl}	
 \usepackage{xcolor}
 %\usepackage{soul}
@@ -35,26 +35,27 @@
 
 \frontmatter
 \newgeometry{centering,left=2cm,right=2cm,top=2cm,bottom=2cm}
+
 \begin{titlepage}
 \includegraphics[scale=0.3]{../Graphen/UHH-Logo_2010_Farbe_CMYK.pdf}
 \vspace*{2cm}
 \Large
+
 \begin{center} 
       {\color{uhhred}\textbf{\so{BACHELORTHESIS}}}
-%oder {\color{uhhred}\textbf{\so{MASTERTHESIS}}}
-\vspace*{2.0cm}\\
-{\LARGE \textbf{Improving the modelling of tempo and phoneme duration}}
-\vspace*{2.0cm}\\
-vorgelegt von
-\vspace*{0.4cm}\\
-Alexandra Krah
+	\vspace*{2.0cm}\\
+	{\LARGE \textbf{Improving the modelling of tempo and phoneme duration}}
+	\vspace*{2.0cm}\\
+	vorgelegt von
+	\vspace*{0.4cm}\\
+	Alexandra Krah
 \end{center}
+
 \vspace*{3.9cm}
 
 \noindent 
 MIN-Fakultät \vspace*{0.4cm} \\ 
 Fachbereich Informatik \vspace*{0.4cm} \\ 
-%Ggf. Professur/Institut \vspace*{0.4cm} \\
 Studiengang: Informatik \vspace*{0.4cm} \\ 
 Matrikelnummer: 6415559 \vspace*{0.8cm} \\ 
 Erstgutachter: Dr. Timo Baumann \vspace*{0.4cm} \\ 
@@ -488,9 +489,8 @@ A further possible improvement may achieved considering Koreman's observation \c
 
 More generally, we spoke about improving the quality of rendered speech under varying tempo. Correct phoneme length prediction is just a step when improving the speech quality retrieved by audio programs when the rendering speed is modified, which we adressed in this work. However, when tempo changes in natural speech, other speech characteristics are being modified as well, like prosody, pitch, and phoneme quality, which cannot be simulated only by modifying the phoneme duration. Therefore, making speech sound natural while modifying the rendering speed needs to consider and adjust these other features too, implying further work to investigate changes of these factors produced by speech rate modification.
 
-
-
 \printbibliography
+
 \backmatter 
 
 \thispagestyle{empty}
@@ -508,5 +508,5 @@ Hamburg, den 06.04.2017
 \vspace*{3cm}
 
 }
-\vspace*{\fill} 
+\vspace*{\fill}
 \end{document}
