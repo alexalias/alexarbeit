@@ -4,6 +4,7 @@ import model_wl
 import model_wl_ip
 import model_wl_ipdur
 import model_ipdur
+import model_ipdur_SR
 
 
 # List of paths to the files in our test data, to later iterate on
@@ -15,7 +16,7 @@ valid_phonemes = ["a", "a~", "e", "E", "I", "i", "O", "o", "U", "u", "Y", "y", "
 
 path_list_test = model_utilities.get_path_list('C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/Evaluation/Test_a')
 
-# Model type uses individual phonemes and their median, mean, or both in words having specific no. of phonemes
+# Model type uses individual phonemes and their median, mean, or both 
 # Actually creates the lists of predictions and actual values to evaluate model
 # @param model: 0, 1, or 2 meaning (median, mean, or (median + mean)/2)
 # Return: 2 lists of integers
@@ -35,7 +36,27 @@ def create_modelIPdur_lists(model):
 	#print(len(actuals_list))
 	return predictions_list, actuals_list
 
-# Model type uses individual phonemes and their median, mean, or both
+# Model type uses individual phonemes and their median, mean, or both and a split of the speech rate values
+# Actually creates the lists of predictions and actual values to evaluate model
+# @param model: 0, 1, or 2 meaning (median, mean, or (median + mean)/2)
+# Return: 2 lists of integers
+def create_modelIPdurSR_lists(model):
+	predictions_list, actuals_list = [], []
+	for datei in path_list_test:
+		work_file = open(datei)
+		for line in work_file:
+			# Restrain model to relevant phonemes
+			if re.match("MAU", line) and (str(line.split()[4]) in valid_phonemes):
+				predicted_pdur = model_ipdur_SR.pdur_prediction_value(datei, int(line.split()[3]), str(line.split()[4]), model)
+				predictions_list.append(predicted_pdur)
+
+				actuals_list.append(int(line.split()[2]))
+		work_file.close()
+	#print(len(predictions_list))
+	#print(len(actuals_list))
+	return predictions_list, actuals_list
+
+# Model type uses individual phonemes and their median, mean, or both in words having specific no. of phonemes
 # Actually creates the lists of predictions and actual values to evaluate model
 # @param model: 0, 1, or 2 meaning (median, mean, or (median + mean)/2)
 # Return: 2 lists of integers
@@ -53,6 +74,7 @@ def create_modelWLIP_lists(model, path_list_test, path_list_training):
 		work_file.close()
 	return predictions_list, actuals_list
 #print(create_modelWLIP_lists(0)[0])
+
 
 # Model type uses individual phonemes and their median, mean, or both in words having specific no. of phonemes
 # Actually creates the lists of predictions and actual values to evaluate model
