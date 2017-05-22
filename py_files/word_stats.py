@@ -1,17 +1,15 @@
 import re
-import phon_dict
-import speech_rate
+import model_utilities
 from collections import defaultdict
-
-path_list = phon_dict.verbmo_par_files()
 
 word_list = ["genau", "eineinhalb", "Arbeitstreffen", "Flughafen", "auf", "einen", "fliegen", "Restaurant", "Regul"]
 
 # Returns a dictionary of the reference words containing:
 #    filename, word_duration, list of sounds and their durations in this word
 # 	 All durations are in samples. Searches the complete verbmobil database.
-def create_word_dict():
+def create_word_dict(path_list):
 	word_dict = defaultdict(list)
+
 	for datei in path_list:
 		filename = str(datei)
 		work_file = open(datei)
@@ -20,7 +18,7 @@ def create_word_dict():
 				# Filename
 				word_dict[line.split()[2]].append(datei[-20:])
 				# Word duration
-				word_duration, phoneme_count, mau_syl_count = speech_rate.word_duration(datei, int(line.split()[1]))
+				word_duration, phoneme_count, mau_syl_count = model_utilities.word_statistics(datei, int(line.split()[1]))
 				word_dict[line.split()[2]].append(word_duration)
 				#word_dict[line.split()[2]].append(int(round(word_duration/0.0000625, 0)))
 				# List of word sounds and their respective durations
@@ -42,11 +40,11 @@ def word_sounds(datei, word_no):
 	work_file.close()
 	return sound_list
 
-word_dict = create_word_dict()
+word_dict = create_word_dict(model_utilities.get_path_list('C:/Users/alexutza_a/Abschlussarbeit/DB_Verbmobil/verbmobil_par'))
 # Create a list of durations of word "genau"
 genau_dauer = word_dict["genau"][1::3]
-#genau_dauer = [ float(x)*0.0625 for x in genau_dauer]
-print(genau_dauer)
+genau_dauer = [ float(x)*0.0625 for x in genau_dauer]
+#print(genau_dauer)
 
 sound_lists = word_dict["genau"][2::3]
 #print(sound_lists)

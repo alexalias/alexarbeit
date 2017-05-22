@@ -48,6 +48,24 @@ def phon_dur_dict(path_list):
     #print(len(phon_dur_dict["a~:"]))
     return phon_dur_dict
 
+# Creates a flat dictionary of phonemes, their durations, and filename in the given dataset
+# Return looks like: {"a" : [1599, g001a_acn1_AAJ.par, 2348, g001a_acn1_AAJ.par, 959, ...], 
+#                     "b" : [...], ...}
+def dur_dict_filename(path_list):
+    dur_dict = dict( (i, []) for i in valid_phonemes)
+    for datei in path_list:
+        work_file = open(datei)
+        
+        for line in work_file:
+            if re.match("MAU", line) and (str(line.split()[4]) in valid_phonemes):
+                dur_dict[str(line.split()[4])].append(int(line.split()[2]))
+                dur_dict[str(line.split()[4])].append(str(datei)[-22:])
+        work_file.close()
+    #print(l)
+    #print(len(phon_dur_dict["Z"]))
+    #print(len(phon_dur_dict["a~:"]))
+    return dur_dict
+
 
 # Creates a nested dict of phoneme proportions in words of specific lengths (as no of phonemes) - w_dur in samples
 # Returns: a dictionary
